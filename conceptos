@@ -176,5 +176,87 @@ PARADIGMAS DE PROGRAMACION: formas de programar en diferentes Lenguajes
     console.log(suma(1,4))
     console.log(multiplica(1,4))
     
+FRONTEND Y BACKEND:
+    La diferencia es que el front es la pagina en donde el cliente ve todo, programa la interfaz, solo lo visual para representar los datos y el back es donde no se ve todo lo que viene por detras, para que esa pagina o servicio funcione. El back se encarga de dar toda la info para el frontend. Esta todo interconectado. Desde el cliente, se hace una consulta, se llama al servidor, el cual puede hacer una consulta a una base de datos. Ese servidor tiene que acceder a noticias, usuarios, estilos. Cuando se tiene toda la informacion desde el back, se manda al frontend, y el cliente pueda interpetrar. La mayor parte del calculo debe estar en el backend. 
+FULLSTACK: es front y back, es programar las dos cosas. stacks: estructuras o conjuntos. 
+
+LENGUAJES DEL LADO DEL SERVIDOR: JAVA,RUBY,PHP,ASP.NET,PERL,C#,PYTHON, NODEJS (framework de javascript). Algunos tambien sirven para desarrollar aplicaciones de cliente, como PYTHON Y PHP. Se encargan de liberar la mayor carga computacional al cliente, la informacion. 
+
+LENGUAJES DEL LADO DEL CLIENTE: {HTML,CSS,JAVASCRIPT} TRIADA MAS UTILIZADA, AJAX,TYPESCRIPT. 
+
+CMS: Content Management System. Es un software que tiene su propio frontend y su backend, a traves de un CMS sos capaz de crear una pagina web sin necesidad de programar el front ni el back. Cada uno tienen acceso a una base de datos. Nos da muchisima agilidad al momento de crear paginas web. Algunos son: {WORDPRESS, JOOMLA, DRUPAL, MAGENTO, PRESTASHOP} estos cinco estan programados en php y javascript, ,{SHOPIFY esta creado en HTML Y javascript, enfocado en la creacion de paginas online, ODOO esta programado en Python y en javascript, la mayor parte de su desarrollo esta enfocado en CRM (Client Relationship Manager).
+
+FRAMEWORKS: estructuras o marcos. es una serie de librerias que facilitan la creacion de paginas webs, servidores, etc. no son lenguajes de programacion, si no que complementan a los lenguajes. 
+    Frameworks del cliente: ayudan a crear aplicaciones desde el punto del vista del cliente, es decir, desde el frontend. 
+        Ejemplos: *AngularJS, ViewJs, ReactJs (los mas usados y utilizan Javascript).
+        *Laravel, usa el lenguaje PHP, es de los mas utilizados 
+        *Spring, usa el lenguaje JAVA
+        *Microsoft.Net, usa C#.
+        *Flash y Django usa Python. 
+
+    Frameworks del servidor:Estan los dos mas utilizados en Javascript. EXPRESS JS y ADONIS JS.
+
+    Frameworks de test unitarios: cuando desarrollamos una app y queremos que funcione bien, es una obligacion de realizar pruebas para que funcione bien. Los mas utilizados:
+        *JEST: usa el lenguaje Javascript, a traves de la programacion se realiza en javascript.
+        *JUNIT 5: para lenguaje JAVA. 
+        *PHPUNIT: lenguaje PHP.
+        *NUNIT Y XUNIT.NET: lenguaje en .NET (el de microsoft)
+        *PYTEST: lenguaje Python. 
+
+LIBRERIAS HTML desde el punto de vista el cliente, que manejan HTML.
+    REACTJS: ayuda a trabajar con el DOM (Document Object Model), es decir para manipular la parte visible del HTML, se puede cambiar textos, colores, funcionalidades de botones,  
+    JQUERY: ayuda a trabajar con el DOM (Document Object Model), es decir para manipular la parte visible del HTML, se puede cambiar textos, colores, funcionalidades de botones,  
+    BOOTSTRAP: Una de las mas utilizadas, ayuda con los estilos, CSS (estilos), clases de las etiquetas, para crear botones, ventanas, animaciones, etc.
+
+SERVIDORES WEB: servir paginas web, archivos mp3, archivos videos mp4,pdf, cualquier archivo. no deja de ser un soft. 
+    APACHE: es el mas utilizado, es multiplataforma,  
+    NGNIX: es un poco mas rapido que apache, 
+    TOMCAT: uno de los clasicos. 
+    OPENLITESPEED: version de codigo abierto de litespeed.
+    MICROSOFT IIS: 
+    NODEJS: desde 2009, programado en javascript,sirve para tener el mismo lenguaje desde cliente como servidor. 
+Nos pueden servir para conexiones NFTP, servidor de correo electronico, servidor WEB, servidor de base de datos (como proveedor de base de datos)
+
+NAVEGADORES: los mas usados 
+    MICROSOFT EDGE: viene por defecto con windows, ex explorer.
+    FIREFOX: el segundo mas usado, para desarrollar tiene herramientas buenas.
+    GOOGLE CHROME: normalmente es el que se usa para desarrollar.
+    SAFARI: si desarrollas apps para iphone, usar este. de APPLE.
+    OPERA: el tercero mas usado. 
+    BRAVE: centrado en criptomonedas, basado en chrome por su codigo fuente (chromio), 
+
+STACKS: conjuntos de tecnologias que me permiten crear una pagina web en modo fullstack. desde el cliente y desde el servidor. 
     
+    *XAMPP (Multiplataforma Apache MySql Php Perl Python), LAMP (Linux Apache MySql Php) Y WAMP (Windows Apache MySql Php Perl Python): son los mas usados, basados en APACHE.
+    
+    *MERN (MongoDB Express Reactjs NodeJs), MEAN (MongoDb Express Angular NodeJs), MEVN (MongoDb Express ViewJs NodeJs), PERN (Perl Express ReactJs NodeJs) : todos basados en Javascript y en NodeJS. Podes usar las combinaciones que quieras, pero en funcion de las tecnologias que usas se definen los stacks. 
+
+INTRODUCCION AL DESARROLLO MOVIL: 
+    PLATAFORMAS MOVILES: los mas usados son estos dos 
+        ANDROID
+        IOS
+
+    ENTORNOS DE DESARROLLO ESPECIFICOS PARA CADA PLATAFORMA: IDEs y Emuladores
+        XCODE: para IOS
+        ANDROID STUDIO: para Android
+        cada uno de estos tiene su propio emulador
+
+    LENGUAJES DE PROGRAMACION QUE USAN:
+        ANDROID STUDIO usa KOTLIN o JAVA, o los dos, ya que son compatibles. 
+        XCODE usa lenguaje SWIFT.
+
+    FRAMEWORKS Y LIBRERIAS:
+        XAMARIN: usa lenguaje C# con .NET, estos son los de microsoft
+        FLUTTER: usa lenguaje DART
+        REACT NATIVE: usa Javascript con el framework REACT. Es el que mas se usa. 
+        La diferencia entre estos tres, es que cuando creamos apps compilamos la aplicacion nativa, pueden crear para Android o IOS, crean codigo nativo. Mientras que IONIC no compila directo la app nativa, usa un emulador web para poder ejecutar su app, para que parezca nativa. 
+
+        IONIC: es un frame exclusivo en desarrollo movil, desarrolla apps webs basadas en el framework ANGULAR (de Javascript), ademas usa un web view, lo que hace es crear un simulador web que se integra para desarrollar la app y poder ejecutarlo en el celu. Ademas tambien puede usar REACT y VIEW. Usa tambien un bridge, para que tenga funcionalidades nativas. este bridge es APACHE CORDOVA.
+
+        
+
+
+    
+
+
 
