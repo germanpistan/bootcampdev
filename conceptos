@@ -41,5 +41,88 @@ PROCESO DE CONVERSION: necesitamos un traductor, para que nuestro lenguaje sea t
 
 DESARROLLO DE CODIGO:
     Entorno de desarrollo integrado IDE: son programas con caracteristicas que nos ayudan a programar.Notepad++, Visual Studio Code, Atom, Sublime text, etc.
-     
 
+CONTROL DE VERSIONES:
+    a principios de los 2000 se creo GIT, para controlar las versiones, revisar cambios. el primero fue el CVS (Concurrent Version System).
+
+INTRODUCCION A LOS LENGUAJES DE PROGRAMACION:
+    PYTHON: es el mas utilizado, se usa para todo, tiene frameworks para ayudar a desarrollar web (DJANGO y FLASK)
+    es un lenguaje facil de aprender y utilizar, es un lenguaje interpretado.
+
+    JAVA: es el mas utilizado por las grandes corporaciones, apps webs, es el lenguaje base para apps android, android studio es similar la sintaxis a java
+    es sencillo de aprender.
+
+    JAVASCRIPT: es el mas utilizado para web y para apps webs, ECMA es el organismo regulador de este lenguaje, no tiene pagina web. 
+    las nuevas empresas estan usando NODEJS para sus servidores, es un framework de Javascript.
+    mas facil de aprender que Java. es el mismo lenguaje para cliente y servidor.
+
+    TYPESCRIPT: basado en Javascript, de microsoft, con funcionalidades extras. 
+    aplica los tipos a Javascript, es decir, que hay que definir los tipos de variables. 
+    es mas complejo que Javascript. 
+
+    C#: es un lenguaje versatil, derivado de C y C++, es para backend, videojuegos, apps de microsoft
+    se lo usa para videojuegos en el motor Unity
+    es de dificultad moderada. 
+
+    ASP.NET: Es un framework para hacer apps webs, apis, y sitios webs. creado por microsoft.
+    dificultad moderada. es todo relacionado a microsoft. 
+
+    PHP:uno de los lenguaje mas utilizados para desarrollar apps web. es de backend de servidores. 
+    compite con Javascript y Python. mucho apoyo de la comunidad, muy sencillo de aprender
+    webs mas lentas en comparacion a lenguajes mas modernos. 
+
+    HTML: Hyper Text Markup Language, es un lenguaje de etiquetado. w3c decide los parametros de HTML. 
+    todos los navegadores tienen que ser capaces de interpretar este lenguaje, 
+    se usa para crear sitios webs y apps web pero estaticas. si queremos interactivas, necesitamos otro lenguaje (Javascript)
+    es muy sencillo. si quiero programar web tengo que aprenderlo si o si. es como para crear el esqueleto de una pagina.
+
+    CSS: Cascading Style Sheets, despues de hacer el esqueleto de la web con HTML, si le quiero dar color y forma, puedo usar CSS. 
+    es lenguaje de diseño grafico, es en forma de cascada, forma parte de la triada web HTML, CSS, JAVA SCRIP (todas para hacer web)
+    aplica estilos a una pagina web HTML. 
+
+    AJAX: Asynchronous JavaScript And Xml, se usa para complementar las caracteristicas de Javascript dentro de una pagina web.
+    tecnica de desarrollo web para crear apps webs asincronas, es una extension de Javascript para interactuar con servicios externos. 
+    nos permite mantener la pagina web (html) en standby y esperar a recibir la info de base de datos sin recargar la pagina, 
+    a traves de Javascript seriamos capaces de rellenar esa informacion que necesitamos sin necesidad de actualizar la pagina. 
+
+    RUBY: se usa para servidores, Ruby y Ruby On Rails no son lo mismo. Ruby on Rails (es un framework para ruby para poder crear apps webs y paginas webs)
+    como twitch, twitter, kickstarter,soundcloud, es facil de aprender.
+
+    PERL: originalmente era para manipulacion de texto, tipo procesadores de texto, se usa para la administracion de sistemas, 
+    desarrollo web, desarrollo de GUI (Graphic User Interface), es de complejidad moderada.
+
+    DART: inicialmente desarrollado por google, se usa para web,servidor y movil. sintaxis del estilo C. Es complejo de aprender, y comunidad pequeña.
+    
+    KOTLIN: se desarrollo para tener las mismas aplicaciones que java pero mas moderno, es mas sencillo de usar que java con el mismo output -JAR.
+    puede interactuar con codigo JAVA. Se usa para desarrollar aplicaciones moviles. 
+    si se tienen proyectos en JAVA, se pueden migrar a KOTLIN. se usa sobre todo para Android.
+
+    SWIFT: Lenguaje para programar aplicaciones IOS. es de APPLE. soporte solo a partir de IOS07.
+    
+    LENGUAJES MAS DEMANDADOS: JAVASCRIPT, HTML/CSS, PYTHON, SQL, JAVA, NODEJS, 
+
+PARADIGMAS DE PROGRAMACION: formas de programar en diferentes Lenguajes
+    PROGRAMACION ESTRUCTURADA: es una programacion por secuencia de instrucciones, funciona solo cuando se necesita algo simple o sencillo. 
+
+    PROGRAMACION ORIENTADA A OBJETOS: en la mayoria de casos se usa esto. no es de secuencia, lo mas importante son los objetos. 
+    la finalidad es que los objetos se interrelacionen, para que el usuario pueda acceder a todos los objetos o los que requiera. 
+    lo mas importante de los objetos es que tiene dos tipos de propiedades: 
+        los DATOS o ATRIBUTOS. Estos pueden ser: nombre,nombre usuario,apellidos,edad,email,etc.
+        las FUNCIONES o FUNCIONALIDAD a traves de los metodos. Nos permite añadir funcionalidad.
+        Puede ser: login,registro,editar_perfil,logout,comprar,etc. 
+        Cada objeto tiene dos caracteristicas, atributos y funcionalidad. 
+
+        Para crear los Objetos usamos las CLASE, que es un template. esto ya tiene atributos y funciones, en base a esta plantilla
+        vamos creando objetos diferentes.Por ejemplo: Clase USUARIO, a partir de ese template,
+        creamos los damos objetos usuarios, con diferentes caracteristicas, se llama instanciar. 
+        cada uno de estos objetos, sobre el template, es una instancia. 
+
+        4 CONCEPTOS DE OBJETOS:
+            ABSTRACCIÓN: proceso para definirle los atributos y funcionalidad al objeto.
+            ENCAPSULAMIENTO: dentro de un mismo objeto, tener todos los atributos y metodos para poder tratar
+            ese objeto como una variable. 
+            HERENCIA:desde una clase, podemos derivar otras clases. el primer objeto seria el clase padre
+            y desde alli, podemos crear nuevas clases (objetos) hijo, es decir, hereda los atributos
+            y metodos del padre, es decir de la primer clase, a eso se le puede agregar 
+            o modificar metodos, eso se llama reveldia, revelarse a sus padres. 
+            
