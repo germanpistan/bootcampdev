@@ -125,6 +125,7 @@ PARADIGMAS DE PROGRAMACION: formas de programar en diferentes Lenguajes
             y desde alli, podemos crear nuevas clases (objetos) hijo, es decir, hereda los atributos
             y metodos del padre, es decir de la primer clase, a eso se le puede agregar 
             o modificar metodos, eso se llama reveldia, revelarse a sus padres. 
+
             POLIMORFISMO: Multipleforma, es decir, podemos usar un mismo metodo, pero 
             con distintas formas, por ejemplo: registro (email), registro (facebook), registro (github).
 
@@ -176,3 +177,4 @@ PARADIGMAS DE PROGRAMACION: formas de programar en diferentes Lenguajes
     console.log(multiplica(1,4))
     
     
+
