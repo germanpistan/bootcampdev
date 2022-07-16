@@ -1,0 +1,45 @@
+Paradigmas de la programacion:
+    IMPERATIVOS: mas antiguo, secuencia de instrucciones, tipo un paso a paso. 
+    DECLARATIVO: se centra en el que, en lugar del como. se centra en el resultado final. 
+Ejemplo:
+
+const listaProgramadores = ["Gorka", "Martin", "Alex", "Leire"]
+
+let nombres = []
+
+//Programacion imperativa
+listaProgramadores.forEach ((programador, posicion) => {
+    nombres[posicion] = programador
+})
+
+//Programacion declarativa
+
+nombres = [...listaProgramadores]
+
+Ventajas:
+    mas facil y legible el imperativo, la escalabilidad del codigo (ocupa mas lineas el imperativo, mas largo)
+
+
+PARADIGMAS FUNCIONALES VS PROCEDIMENTALES:
+    PROCEDIMENTALES: similar al imperativo, lleva mas lineas
+    FUNCIONALES: bloques de codigo, en los cuales introducimos un parametro y obtenemos otro, en base a esos codigos ir creando nuestro programa. 
+    se define una funcion, y despues la usamos en el codigo. 
+
+DIVISION POR NIVELES: mas bajo es el nivel, mas caracteristicas especificas voy a poder tocar dentro del hardware. ç
+    Lenguaje Maquina: 01010101010101
+    Lenguaje Ensamblador: intermedio entre humano y maquina, con instrucciones especificas, el primer lenguaje de Programacion
+    Bajo Nivel: son estos dos anteriores, relacionados con el hardware y la arquitectura. 
+
+    Medio-bajo Nivel: C es antiguo, tiene capacidades de alto nivel y tiene capacidades de bajo nivel, C++ TAMBIEN. tienen acceso a los registros de la memoria.
+    Medio-alto Nivel: Lenguajes de programacion modernos, Python, Java, Javascript.
+    Alto Nivel: Lenguajes o frameworks de alto nivel, basados en los anteriores de medio nivel. Un framework es una serie de funcionalidades extra que se añaden a lenguajes ya conocidos en base a librerias, para que programar con estos lenguajes de medio nivel sea mas facil. 
+
+PROCESO DE CONVERSION: necesitamos un traductor, para que nuestro lenguaje sea traducido en 1 y 0. 
+    Existen dos formas: lenguajes de programacion compilados e interpretados. 
+        compilador: C++, transforma nuestro codigo de lenguaje para hacer la salida. 
+        interprete: Javascript o Python, no necesita compilador para que la maquina lo entienda, recien en la salida nos aparecen los errores. 
+
+DESARROLLO DE CODIGO:
+    Entorno de desarrollo integrado IDE: son programas con caracteristicas que nos ayudan a programar.Notepad++, Visual Studio Code, Atom, Sublime text, etc.
+     
+
