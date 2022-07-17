@@ -445,7 +445,33 @@ Suponer tambien que deja de funcionar F en alguna de las copias de la app, enton
         OPENSHIT
 
 CLOUD COMPUTING:
-    Suponemos que desarrollo una app, puedo tenerla desde un servidor fisico,
+    Suponemos que desarrollo una app, puedo tenerla desde un servidor fisico accesible, como puede ser una compu que no use. 
+    Tambien tengo la opcion de contratar algun servicio de cloud computing, en el cual desplego mi app para que este constantemente funcionando, lista a ser usada. 
+        *Mantenimiento: en el fisico necesito mucho mantenimiento. En cambio en la cloud, el mantenimiento viene por parte del proveedor.
+        *Coste Conjunto: En el fisico tengo una compu para ser usado en una app chica, para lo cual uso muchos recursos disponibles para ser usado en poca capacidad. En la cloud, el pago es por el uso, no pago de mas. 
+        *Escalabilidad:Suponemos que esta app necesita escalar, es decir, necesito otro servidor por ejemplo o segunda compu. la escalabilidad seria en el fisico, conectar dos compus en red para que ese servicio pueda usar recursos de las dos compus. En la cloud, la escalabilidad es mas facil, contrato el doble de recursos, se paga un poco mas y se escala la app.
+        *Seguridad: si se tiene fisico, se debe realizar los acoples de seguridad necesarios para evitar conexiones malignas. En la cloud, se encarga de la seguridad el proveedor de ese servicio de cloud computing. 
+
+    SERVICIOS COMERCIALES DE CLOUD QUE MAS SE USAN AHORA:
+        AWS: AMAZON WEB SERVICES
+        GOOGLE CLOUD PLATFORM: SERVICIO DE GOOGLE
+        AZURE: SERVICIO DE MICROSOFT
+
+TESTING: hacer una prueba y el soft nos dice si pasa la prueba o no.
+    QUALITY ASSURANCE: QA(Departamento de control de calidad de software), ellos testean los soft para asegurarse que funciona y que cumple con los estandares pedidos. 
+
+TEST DE LAS CAJAS Y TIPOS DE TEST:
+    TEST DE LA CAJA NEGRA (solamente testeo la entrada y la salida, no veo lo que hay adentro, para 1 tipo de entrada, haya 1 tipo de salida, no me interesa lo que pasa dentro. )
+             +
+    TEST DE LA CAJA BLANCA (testea lo que pasa dentro, cuando le doy entrada, quiero ver que pasos sigue esa entrada,y tambien tendra una salida pero no me interesa, solo quiero ver el camino que recorre lo que entra)
+             =
+    TEST DE LA CAJA GRIS (testea las dos cosas juntas, por ejemplo la prueba de interfaz y combina con pruebas de caja blanca. yo tengo una entrada, la sigo por dentro, y ademas testeo la salida del software.)
+
+    TIPOS DE TEST: 
+        TEST FUNCIONALES: testea funcionalidades que se supone que la app debe cumplir. Se centran en la funcionalidad. Apoyo en los requerimientos de usuario final/cliente. Tambien testea los errores (situaciones negativas), los posibles errores que puedan surgir a lo largo de la app/web. Por ejemplo: desarrollar una pantalla en caso que haya errores o que no se haya conexion a internet en una web. 
+        TEST NO FUNCIONALES: testea todo lo que hay alrededor de esa app. Testea rendimiento: tiempos de carga, stress test (lleva el soft hasta el extremo para maximizar los recursos que consume, por ej. para una web, se simula para tener 1000 visitas simultaneas), escalabilidad (cuando recien se escala el soft, queremos hacer un stress test, como se comporta con respecto a los nuevos recursos que se le asignan); accesibilidad (para personas con visibilidad reducida, o para pantallas pequeñas, etc.), UX/UI (User experience, User Interface, que seria la interfaz como funciona), Tests de seguridad (ataques de DOS a nuestro soft).
+
+        
 
 
 
