@@ -253,10 +253,199 @@ INTRODUCCION AL DESARROLLO MOVIL:
 
         IONIC: es un frame exclusivo en desarrollo movil, desarrolla apps webs basadas en el framework ANGULAR (de Javascript), ademas usa un web view, lo que hace es crear un simulador web que se integra para desarrollar la app y poder ejecutarlo en el celu. Ademas tambien puede usar REACT y VIEW. Usa tambien un bridge, para que tenga funcionalidades nativas. este bridge es APACHE CORDOVA.
 
-        
+DESARROLLO MULTIPLATAFORMA: crear un solo codigo, con ese codigo despues la compilacion cree diferentes tipos de archivos para diferentes sistemas operativos.
+un solo codigo, con muchas compilaciones para diferentes sistemas operativos.
+    IOS Y MacOS: Sistemas operativos de APPLE.
+    WINDOWS: para pc
+    LINUX: sistema de codigo abierto
+    ANDROID: sistema para celus
+    JAVA: JVM (Java Virtual Machine), plataforma donde se ejecutan los programas compilados en java. Maquina virtual que permite ejecutar apps escritas en JAVA. 
 
+    LENGUAJES EN DESARROLLO MULTIPLATAFORMA: estos son los mas usados, pero por si mismos no dicen nada. Se usan diferentes librerias o frameworks para desarrollar apps que funcionen en multiplataforma.
+        JAVASCRIPT:
+        JAVA:
+        PYTHON:
+        C#:
+        RUBY:
+        DART: 
 
+    FRAMEWORKS DE DESARROLLO MULTIPLATAFORMA: el objetivo es crear un codigo que se pueda mantener para que funcione en diferentes sistemas operativos. con un mismo codigo crear aplicaciones que puedan ser leidas en distintos sistemas operativos. 
+        APACHE CORDOVA: puede hacer de puente entre diferentes lenguajes. seria como una app externa de apoyo a diferentes lenguajes para crear aplicaciones para luego pasarlas a codigo nativo. 
+        REACT NATIVE, NATIVE SCRIPT Y APPCELERATOR: los frameworks mas demandados, estan escritos en Javascript. 
+        KIVY Y BEEWARE: estos se usan con PYTHON, son frameworks para crear apps multiplataforma. 
+        FLUTTER: usa lenguaje DART. 
+        CODENAME ONE: usa JAVA.
+        RUBY MOTION: usa lenguaje RUBY para crear apps multiplataforma.
+
+    FRAMEWORKS MAS DEMANDADOS:
+        FLUTTER: puede crear para IOS o ANDROID. DART
+        IONIC: Javascript
+        REACT NATIVE:Javascript
+        XAMARIN: C#
+        NATIVESCRIPT:Javascript
+        APPCELERATOR:Javascript
+
+    CONCLUSION: apps multiplataforma vs apps nativas:
+        a veces es conveniente usar un solo codigo para diferentes sistemas operativos en caso que seas freelance, usando frameworks multiplataforma. 
+        en caso que trabaje para una empresa pueden pedir conocimientos de aplicaciones nativas. 
+
+CODE REVIEW:
+    PULL REQUEST: solucion de codigo para ver si funciona, si se hace. pasa un filtro de alguien que revisa el codigo, lo testea, si funciona, se hace el merge branch. 
+    Es un revisador de codigo. Una persona lo revisa, lo compara con versiones anteriores (como en GIT), hace comentarios y lo puede aprobar o rechazar, si se acepta se convierte en una nueva version del software, con un merge branch, para unir las dos ramas. 
+
+    PLATAFORMAS DE CODE REVIEW:
+        GITHUB Y GITLAB: control de versiones, tambien permite revision de codigo. 
+        SONARQUBE:
+        CODEFACTOR:
+        COLLABORATOR:
+        CODESTRIKER:
+        GERRIT:
+    la revision de codigo se hace con la version vieja y version nueva, y se hace visualizacion de si se agregaron lineas, se borro algo, etc. se mantiene siempre una conversacion con el code reviewer, con comentarios constructivos. 
+
+BASES DE DATOS: es un sistema que permite almacenar informacion desde un punto de vista logico. mas tipica es la formato tabla.
+    FASES DE DISEÑO DE BASE DE DATOS:
+       1 DISEÑO CONCEPTUAL: crear toda la idea de la base de datos, si se va a relacionar y demas. 
     
+       
+
+
+EJEMPLO DE BASE DE DATOS:
+
+    USUARIOS                        LENGUAJES               ASIGNATURAS
+
+    ID ---- Clave Primaria          ID                      ID
+    Nombre                          nombre                  nombre
+    apellido                        fecha                   nombre_profesor
+    email                                                   numero_horas
+    edad
+    lenguaje_id (aca con un numero, podemos hacer referencia a la tabla de lenguajes)
+    asignatura_id   (para relacionarla con la tercer tabla)
+
+    DE ESTA MANERA SE CREA EL DISEÑO CONCEPTUAL. esta fase es agnostica del proveedor o tecnologia que vamos a usar para esa base de datos. 
+
+  2  DISEÑO LOGICO: 
+    Tener en cuenta las diferentes tecnologias para crear esa base de datos. Se elige el proveedor que mas nos interese. una vez definido esto, se empezaria a convertir el conceptual en algo adaptado a la plataforma a usar. Es tipico que tengamos que poner el tipo de variable que vamos a usar en cada campo. 
+
+ USUARIOS                        LENGUAJES               ASIGNATURAS
+
+    ID ---- Clave Primaria          ID (INT)                ID (INT)
+    Nombre (VARCHAR 32)             nombre (VARCHAR 32)     nombre (VARCHAR 32)
+    apellido  (VARCHAR 64)          fecha (DATE)            nombre_profesor (VARCHAR 32)
+    email (VARCHAR 64)                                      numero_horas (DOUBLE)
+    edad (INT)
+    lenguaje_id  (INT)
+    asignatura_id (INT)  
+
+    CON ESTO TENDRIAMOS CREADO EL DISEÑO LOGICO.
+
+    3 DISEÑO FISICO: aca es cuando se crea realmente la base de datos. Creamos la base de datos en la plataforma que hayamos elegido. 
+
+    USUARIOS                        LENGUAJES               ASIGNATURAS
+
+    ID ---- Clave Primaria          ID (INT)                ID (INT)
+    Nombre (VARCHAR 32)             nombre (VARCHAR 32)     nombre (VARCHAR 32)
+    apellido  (VARCHAR 64)          fecha (DATE)            nombre_profesor (VARCHAR 32)
+    email (VARCHAR 64)                                      numero_horas (DOUBLE)
+    edad (INT)
+    lenguaje_id  (INT)
+    asignatura_id (INT)  
+
+    Crear cada una de las tablas o modelos, en funcion de la plataforma que hayamos creado la base de datos. 
+    El objetivo del desarrollador es centrarse en el diseño conceptual para prever posibles funcionalidades que pueden surgir, y tenerlo ya diseñado. para no tener que volver a hacer tablas, referenciar, etc. 
+
+
+BASE DE DATOS SQL Y NoSQL:
+    SQL:bases de datos relacionales. se pueden crear relaciones en base a claves de otras tablas. Utiliza claves primarias y extranjeras (Primary key and foreign key). A traves de la foreign se hace relacion a otro dato de otra tabla. 
+        PROVEEDORES: MySQL, MARIADB, POSTGRESQL, ORACLE DATABASE.
+
+    NoSQL: Bases de datos no relacionales. se puede tener tablas pero no relacionales. las bases de datos keyvalue son las mas usadas, tenemos claves diferentes y a traves de buscar las claves obtenemos el valor que corresponde a esa clave. este tipo se utiliza no con almacenamiento de memoria, si no con la RAM, por eso son muy rapidas. Si queremos, se pueden configurar como almacenamiento tradicional. 
+    *Por otro lado se tienen los objetos, podemos almacenar bases de datos de forma con objetos o documentos. aca no existen relaciones, se puede introducir muchos campos y tipos. Este es un tipo de base de datos flexibles se usan para prototipos y pruebas de conceptos, no necesita una definicion tan estricta como las sql. 
+    *Otra de las bases de datos son los graphs, tenemos muchos datos que se llaman nodos, que pueden estar relacionados entre si de cualquier manera. se pueden tener diferentes nodos con los usuarios, intereses, empresas, etc. de esta manera se pueden relacionar entre nodos, esto es tipico para red social.
+
+    PROVEEDORES PARA BASES DE DATOS NoSQL: 
+        MONGO DB Y CLOUD FIRESTORE: trabajan con documentos. son las mas usadas,
+        CASSANDRA Y REDIS: las tipo keyvalue. 
+        GRAPHQL: tipo graphs.
+
+DevOps y CICD:
+    Development IT Operations
+    Existian dos departamentos Desarrollo Software y Operaciones IT. Asi surgen las DevOps. No es una app, si no una metodologia de desarrollo de soft que consiste en ir desarrollando y publicando codigo de a poco, no esperar tanto tiempo como antes, trabajando de forma diaria los dos equipos. De esta manera, si algo no funciona, los dos equipos tienen la posibilidad de revisar estos cambios pequeños diarios, es mas facil llegar a un entendimiento y solucionarlo. 
+
+    Necesita facilidades: CI / CD. 
+        CI: Continues Integration, integracion continua. Publica el codigo a traves de un (merge, pull, push)
+        CD: Continues Deployment, despliegue continuo. No publicar el codigo, si no, despleguer la aplicacion a produccion para que se pueda utilizar. 
+        no son lo mismo. 
+        Es un pequeña automatizacion entre la version del desarrollador, y la version a despliegue. en el medio, realiza acciones. Programa por ejemplo: cuando haya un push, voy a realizar test que estan pre escritos; comprobar otro tipo de casuisticas, solo entonces, cuando todo esto pase de forma correcta, solo ahi, se realiza el push o la subida de codigo. de esta manera sube codigo poco a poco, antes del despliegue. el propio code review tiene el trabajo mas facil a traves de CI. Esta nueva version esta en pre-produccion. El siguiente paso seria hacer el CD, algo similar a esto, con el fin de pasarlo a desplegarse. Se hacen otros test, se configuran los entornos correspondientes, si todo esta bien, se realiza el despliegue. Ahora si se tiene la version desplegada y en produccion. 
+
+    HERRAMIENTAS O SERVICIOS QUE OFRECEN CI/CD:
+        ANSIBLE
+        HELM
+        JENKIS
+        GITLAB CI
+        GITHUB ACTIONS
+        BITBUCKET PIPELINES
+
+
+CONTENEDORES:
+    Esto se empieza a usar cuando anteriormente, cuando alguien desarrollaba una app o un software, necesitaba tener una maquina virtual , sistema operativo y todo lo demas necesario para poder ejecutarlo correctamente y que no haya errores. necesitaba tambien instalar todas las librerias para que pueda funcionar normalmente. esto usaba mucha memoria, aprox 15 mb de app pero habia que sumar unos aprox 500 mb de maquina virtual. 
+
+    Actualmente para reemplazar todo esto, se usan los contenedores. El contenedor seria como un encapsulamiento donde se inserta :
+        1 la app (codigo fuente),
+        2 librerias o dependecias que necesito para ejecutar, 
+        3 le paso las instrucciones del sistema operativo
+    de esta forma se genera un contenedor donde puedo ejecutar desde cualquier maquina. 
+
+    Una vez creado este contenedor, se lo puedo pasar a un colega para que a traves de un sofware donde pueda leer ese contenedor, pueda ejecutarlo desde su maquina. 
+    Por un lado se tiene la infraestructura, el sistema operativo host o anfitrion, un soft container engine, y los contenedores como tal. este soft container engine ya tiene la info de que sistema operativo necesito para ejecutar esa app, aprox se manejan 40 mb por cada contenedor contra 500 mb de la anterior forma. 
+    se usan menos recursos del sistema usando contenedores, a traves del motor de contenedores (container engine)
+
+    TIPOS DE CONTENEDORES:
+        DOCKER: el mas usado
+        PODMAN: cada vez se usa mas los contenedores en podman, tiene algunas mejores de rendimiento. 
+
+ORQUESTACION:
+    ROL DE DESARROLLADOR:
+        supong que quiero realizar una web F (front end)
+        esta interfaz necesita tener acceso a un servicio de B (back end)
+        necesito acceso a base de datos DB (por ej mongodb)
+        Entonces, necesito hacer tres contenedores que tenga F,B Y DB. 
+
+entonces falta alguien que me diga que es lo que tengo que hacer con estos tres, es decir que estas tres cosas esten subidas y acceso a internet, por ejemplo. 
+Aca entra lo que se conoce como MASTER. 
+    Se encarga de llevar estos tres contenedores F,B, Y DB, y llevarlos a un sistema. 
+    Los ORQUESTADORES nos ayudan con:
+        Deploy
+        Scaling
+        Network
+        Insight
+        Purge (purga de contenedores que no funcionan)
+
+ROL DE OPERACIONES IT:
+
+en caso que usaramos un servicio de orquestacion, tendriamos diferentes NODOS. 
+    NODO 1: F,     B ,     DB.   
+    NODO 2: F,     B ,     DB
+    NODO 3: F,     B ,     DB
+            -      -       -
+            -      -       -
+            -      -       -
+        SERV1    SERV2   SERV3
+Entonces tendria un servicio centralizado para las 3 copias de mi aplicacion, para cada uno de mis contenedores F o B o DB, para poder corregir en caso que sea necesario.
+
+El MASTER desde el punto de vista de la orquestacion, me da facilidad para desplegar mis contenedores (nodos). Me ayuda tambien a escalar (Scailing) por ej, en caso que el F tenga demasiadas visitas y necesite el doble de recursos. entonces el Master me puede crear un nodo nuevo con dos veces F mas B y DB. Esto es escalar, me permite aumentar los recursos que estoy destinando a los diferentes contenedores de manera sencilla. 
+Me permite crear un nodo para cada una de mis aplicaciones. 
+
+Supongamos que mi F se conecta en algun momento con mi DB, que no deberia ser asi. Entonces un servicio de orquestacion me da reportes en tiempo real para ver cuantas conexiones hay entre los contenedores. Asi puedo determinar cuando hay problemas de conexion entre Front y las Bases de datos, lo que me generaria un problema de seguridad, ya que nunca debe ser accedida la DB desde el F.
+
+Suponer tambien que deja de funcionar F en alguna de las copias de la app, entonces el servicio de orquestacion elimina esa parte y la sustituye por otro F que si funciona. 
+
+    SERVICIOS COMERCIALES de Orquestacion:
+        DOCKER COMPOST
+        KUBERNETES: mas usado
+        OPENSHIT
+
+CLOUD COMPUTING:
+    Suponemos que desarrollo una app, puedo tenerla desde un servidor fisico,
 
 
 
