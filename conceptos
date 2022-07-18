@@ -472,6 +472,29 @@ TEST DE LAS CAJAS Y TIPOS DE TEST:
         TEST NO FUNCIONALES: testea todo lo que hay alrededor de esa app. Testea rendimiento: tiempos de carga, stress test (lleva el soft hasta el extremo para maximizar los recursos que consume, por ej. para una web, se simula para tener 1000 visitas simultaneas), escalabilidad (cuando recien se escala el soft, queremos hacer un stress test, como se comporta con respecto a los nuevos recursos que se le asignan); accesibilidad (para personas con visibilidad reducida, o para pantallas pequeñas, etc.), UX/UI (User experience, User Interface, que seria la interfaz como funciona), Tests de seguridad (ataques de DOS a nuestro soft).
 
         
+INTRODUCCION A LAS COLAS DE MENSAJES:
+    ENCOLAMIENTO DE MENSAJES (MESSAGE QUEUEING): supongamos que tengo un F (front end), que se tiene que conectar con un B (Backend), este back me devuelve una respuesta. Esto se hace, haciendo una llamada desde el F al B, y me devuelve del B. 
+    Supongo que tengo mas de una llamada, escalando en varias llamadas, en algun momento el B llega a un punto en donde los recursos destinados a ese back llegan a su limite,y colapse. puede ser que haya un fallo cuando no se produce una llamada, esto siempre va a ser mejor que haya delay para la respuesta del B antes que no haya nada. De este modo surgen las colas de mensajes, que no son mas que una interfaz intermedia entre el F y el B, en donde se almacena en cache los mensajes que llegan al B, para llevarlos de forma ordenada  y no colapsar el sistema. En este caso, la Q (cola) es la que se conecta el B y gestiona las prioridades de los mensajes. No todas son asi, a veces trabajan entre servicios y backend. Permite tener un sistema asincrono, no es lineal, se hacen las llamadas y despues nos llegaran las respuestas. 
+
+    MENSAJE:
+        Informacion (datos) que debe ser transmitida de un punto a otro. Todo tipo de datos, archivos, textos, mensajes, documentos, etc.
+    
+    TIPOS DE ESTRUCTURAS DE DESARROLLO WEB SEGUN PUNTO DE VISTA DE Q:
+        *ESTRUCTURA PUNTO A PUNTO: Ejemplo, servidor de correo. tiene entre los mail saliente y entrante, tiene un gestor de mails (Q) para almacenar cierta cantidad de mails. 
+        tiene parte de PRODUCER (los que generan los mensajes), intermedio Q (cola) y por ultimo el CONSUMER (consumidor o receptor). 
+        *ESTRUCTURA PUBLICADOR-SUSCRIPTOR:
+        Tenemos el PUBLISHER. La diferencia con el anterior, es que la anterior gestiona colas de un productor a un consumidor, es decir de 1 a 1. en cambio en esta , el publisher es uno, pero el SUSCRIBER puede ser n (muchos).
+
+    BENEFICIOS:
+        DISOCIACION DE APPS (las puedo desacoplar, metiendo un midware, que no dependan una de la otra)
+        ESPECIALIZACION DE APPS (se puede especializar a cada una, si no tiene la Q, se tiene que crear una app que gestione tanto el F como el B, pero teniendo Q, se puede hacer apps solo para F y solo para B)
+        ESCALABILIDAD (ayuda a escalar)
+        PROCESAMIENTO (si estoy desarrollando apps sin colas de mensajes, puede ser que tenga que desarrollar toda la app en un mismo lenguaje, pero capaz este lenguaje vaya mejor en B que en F, y necesitaria usar frames o servicios) entonces teniendo Q nos permite tener apps para F y otra para B de destintos lenguajes, y frames.
+        EVOLUCION
+    PROVEEDORES:
+        RABBIT MQ: gestor de colas mas utilizado
+        REDIS: otro gestor open source, tiene servicio de colas de mensajes. 
+
 
 
 
