@@ -501,6 +501,22 @@ CLIENTE - SERVIDOR:
     Los dispositivos de cliente acceden a internet a traves de distintas apps: google chrome, safari, prhotoshop. estos interpretan lo que nos devuelven de los servidores. 
 
     ESTRUCTURAS POR NIVELES:
-        1 SOLO NIVEL: Tener todo en una misma maquina, es tipico cuando se desarrolla una app (servidor, base de datos y cliente)
+        1 SOLO NIVEL: Tener todo en una misma maquina, es tipico cuando se desarrolla una app en nuestro dispositivo (servidor, base de datos y cliente) en un mismo lugar. Modelo Cliente-Servidor en un solo nivel. 
 
+        2 DOS NIVELES: Cliente (maquina o dispositivo) a traves de internet tiene acceso a otro dispositivo donde esta almacenado el servidor y la base de datos. Cliente por un lado, y servidor y base de datos por otro lado. con conexion de internet en el medio. 
+
+        3 TRES NIVELES: Cliente (dispositivo maquina, movil, etc) a traves de internet lleva a un servidor y luego a traves de internet lleva a la base de datos. los tres separados en dispositivos y conectados por internet. 
+
+        Existen MODELOS DE NIVELES: (N NIVELES): lo mismo, solo que a traves de internet accede a diferentes servidores, que estan en distintos dispositivos. 
+    TIPOS DE SERVIDORES Y MODELO P2P:desde el punto de vista de apps.
+        SERVIDORES WEB: sirven los archivos necesarios para la web.
+        FILE SERVERS: intercambio de archivos, solo archivos. 
+        EMAIL SERVERS: apps que permiten servicio de mail.
+        VPN SERVERS: Virtual Point Network permiten acceder a diferentes servicios alojados de forma local pero de forma remota, a traves de ellos, puedo hacerme pasar como si estuviera en mi oficina. 
+        PROXY SERVERS: similar al anterior, solo que accede a ciertas direcciones solo que a traves de tunel y se hace pasar por otra direccion IP.
+
+        MODELO P2P: Peer to Peer.
+            modelo descentralizado donde el modelo cliente-servidor no existe. se usa con blockchain. conectados en red, acceso a mismos datos. directamente se conectan entre clientes, a sus dispositivos. se coteja la informacion. 
+
+MODELO VISTA CONTROLADOR:
 
