@@ -518,5 +518,24 @@ CLIENTE - SERVIDOR:
         MODELO P2P: Peer to Peer.
             modelo descentralizado donde el modelo cliente-servidor no existe. se usa con blockchain. conectados en red, acceso a mismos datos. directamente se conectan entre clientes, a sus dispositivos. se coteja la informacion. 
 
-MODELO VISTA CONTROLADOR:
+MODELO VISTA CONTROLADOR: patron de diseño de arquitecturas de programacion, no es lenguaje ni framework. todos pueden adaptarse a este patron de diseño.
+    MVC: Modelo Vista Controlador. cada parte representa una parte de la app especifica.
+    Modelo: acceder y manipular los datos. puede ser acceso a una base de datos. 
+    Vista: Mostrar los datos del modelo y proporcionar la interactividad al usuario. 
+    Controlador: su  funcion es coordinar al modelo y a la vista. Es qien decide a que parte del modelo llamar y a que vista. es el que dirige. 
+
+    Historia de MVC: patron mas utilizado. introducido en los 70, popularizado en el 88. es el mas usado en apps webs. tiene paradigmas derivados: HMVC, MVA,MVP,MV VM, etc. 
+
+    Suponemos que tenemos un dispositivo, quiero acceder a google y buscar MVC. entro al navegador y buscar, o sea interactuo con el controlador. y de ahi, pregunta que es lo que tengo que mostrar. primero hace llamada al modelo, tengo que mostrar "x cosa". luego cuando tiene la info el modelo, la devuelve al controlador. ahora hace llamada a la vista, para mostrar esa info de forma ordenada. Una vez generada esa vista, vuelve al controlador. luego, con esa vista, el controlodar muestra con esa vista al cliente.
+
+    Supongamos que quiero buscar que es MVC. le digo al controlador que tiene que hacer una busqueda, ahora ya no tiene que buscar en el modelo, hace una llamada en el modelo pero tambien hace busqueda.entonces el modelo le pasa al controlador un archivo con todos los resultados que encontro dentro de la base de datos. ahora el controlador, hace llamada a vista, para que hagan la muestra de pantalla de los datos que necesitaba. el controlador devuelve la vista, que es diferente a la primera donde solo hacia la entrada en google. 
+
+INTRODUCCION A HTTP: Es el estandar de comunicaciones via web.
+Se relaciona con el modelo cliente-servidor. La conexion desde un dispositivo con internet se realiza a traves de un protocolo estandar que es HTTP. hace referencia a la conexion a traves de internet para obtener datos. 
+HTTP: Hyper Text Transfer Protocol. Inicialmente era para transmitir archivos HTML, ya que era unicamente para hiper textos. despues fue evolucionando, ahora transfiere CSS,JS, archivos, videos, etc.
+Ejemplo: entramos a una pagina web, se descarga el html. luego se obtiene css y javascript para la interactividad con el usuario. a su vez se analizan llamadas(el mas usado es el get), a traves de estos metodos se tienen diferentes partes que conforman nuestras paginas web. Luego estas llamadas http, van a los servidores para obtener datos. se obtienen imaganes, videos, anuncios,etc. 
+Protocolo: conjunto de reglas estandarizadas con el fin que diferentes tecnologias y lenguajes sean capaces de conectarse entre si. no excluye ninguna tecnologia. 
+Ejemplo: peticion de http y respuesta.  
+
+
 
