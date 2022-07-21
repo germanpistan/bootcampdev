@@ -534,8 +534,123 @@ INTRODUCCION A HTTP: Es el estandar de comunicaciones via web.
 Se relaciona con el modelo cliente-servidor. La conexion desde un dispositivo con internet se realiza a traves de un protocolo estandar que es HTTP. hace referencia a la conexion a traves de internet para obtener datos. 
 HTTP: Hyper Text Transfer Protocol. Inicialmente era para transmitir archivos HTML, ya que era unicamente para hiper textos. despues fue evolucionando, ahora transfiere CSS,JS, archivos, videos, etc.
 Ejemplo: entramos a una pagina web, se descarga el html. luego se obtiene css y javascript para la interactividad con el usuario. a su vez se analizan llamadas(el mas usado es el get), a traves de estos metodos se tienen diferentes partes que conforman nuestras paginas web. Luego estas llamadas http, van a los servidores para obtener datos. se obtienen imaganes, videos, anuncios,etc. 
-Protocolo: conjunto de reglas estandarizadas con el fin que diferentes tecnologias y lenguajes sean capaces de conectarse entre si. no excluye ninguna tecnologia. 
-Ejemplo: peticion de http y respuesta.  
+Protocolo: conjunto de reglas estandarizadas con el fin que diferentes tecnologias y lenguajes sean capaces de conectarse entre si. no excluye ninguna tecnologia. asi hace que internet sea un ecosistema universal. 
+Ejemplo: peticion de http y respuesta. 
+    Peticion: hace una llamada get, pasa el protocolo y la version. el mensaje que envia desde el dispositivo hasta internet. Desde internet se recibe una RESPUESTA. La respuesta trae el protocolo, la version de ese protocolo, el codigo, el header o encabezado del mensaje, y el mensaje. Si es cifrada es HTTPS. 
+
+    HISTORIA Y VERSIONES DE HTTP:
+        HTTP 0.9: nacio en 1991. primera version. solo soporta metodo GET (para obtener cierta informacion, solicita datos). no soporta Headers.
+        HTTP 1.0: 1996. se usa en servidores proxy. Metodos GET, HEAD y POST. 
+        HTTP 1.1: mas usada hoy. conexiones persistentes esten activadas por defecto, es decir, las anteriores eran conexiones unitarias se cortaba cada vez que hacia algo. ahora se usa el pipelining, agrupa llamadas o request para que no se hagan una por una, si no que engloba las peticiones o llamadas, obtiene todo a traves de una, para cada uno de los servidores. 
+        HTTP 2.0: año 2015. misma semantica de version 1. Mejoras en el empaquetamiento de datos. 
+        HTTP 3.0: año 2016. sustituye protocolo TCP por el de UDP. 
+
+    METODOS DE HTTP:
+        Tipos de peticiones: son sugerencias, cada servidor las traslada como mejor le convenga.
+            Las que mas se usan:
+                GET: obtener datos a traves de request y un response.
+                POST: Enviar datos, crear nuevos recursos. crear bases de datos, conexiones a bases de datos. 
+                PUT: mismo que post, pero para editar. envia datos, edita recursos existentes.
+                DELETE: para eliminar recursos existentes.
+                PACH: un poco menos usado, algo similar al put, envia datos, editar recursos existentes de forma parcial.
+
+            las que menos se usan:
+                TRACE: solicita al servidor que introduzca en la respuesta todos los datos que reciba en la peticion. se recibe la misma info que hemos enviado, se usa para desarrollo.
+                HEAD: igual que el get, solo se obtienen los encabezados, es mas rapido.
+                OPTIONS: devuelve los metodos HTTP que el servidor acepta para una URL especifico. 
+                CONNECT:se usa para saber si se tiene acceso a un host. si esta activa.
+                UPDATE: modifica el contenido y las propiedades "obsoletas" de un recurso versionado. es decir actualiza. 
+                MOVE: mover un recurso a una URL especificado en el header. seria como eliminar y post al mismo tiempo. a traves del URI. el host mas el path. 
+                MKCOL: crear una coleccion en el URI especificado
+                PROPFIND: obtiene las propiedades de un recurso especificado en el URI.
+                PROPPATCH: permite modificar las propiedades de un recurso especificado en el URI.
+                MERGE: junta dos recursos especificados en la peticion y los convierte en uno. 
+                LABEL: sirve para modificar la etiqueta de un recurso. 
+
+        RESPUESTAS HTTP: 200. todo ok. si empieza con 2 (positivo), con el 3 (falta algo en el medio), los 4 (las respuestas negativas). si empieza con 5 (tiene error interno de servidor) HTTP.CAT
+
+API Y RESTFul: una extension del protocolo HTTP
+    API: Application Programing Interface. Suponemos que tenemos una app que tiene acceso a una base de datos. la app tiene una conexion directa con la base de datos. se accede a la base de datos en funcion de una arquitectura interna, el control total del acceso a la base de datos la tiene nuestra app. Create Read Update Delete, el acceso CRUD de la app a la base. Todo esto se hace a traves de funciones, addUser, gerUsers, editUser,DeletUser; estas son las funciones que podemos utilizar para acceder y realizar operaciones dentro de la base de datos a traves de la app. lo que se conoce como API es el conjunto de funciones o metodos que nos ayudan a realizar operaciones dentro de una base de datos, sin necesidad de tocar logicas por dentro. 
+    REST: protocolo. REpresentational State Transfer,es un protocolo de comunicacion. 
+    RESTFul API: esto es lo que se usa. suponer que tengo una app con acceso a base de datos con acceso CRUD, desde afuera no se tiene acceso. si esa app quiere publicar cierta parte de sus datos o permitir a usuarios externos tener acceso a cierta parte de los datos, puede crear una RESTFul API. serian como una puerta pequeña al exterior a traves de las cuales pueden entrar solicitudes del exterior para acceder a informacion de base de datos. puede ser que usuarios externos tengan acceso a escrituras. esa puerta se llama API RESTFul. por ejemplo: telefonos, compus, etc, dispositivos exteriores y programas externos, a traves de ese protocolo API se acceden a ciertos datos de esa base de datos, hasta se pueden realizar cambios si la API lo permite. 
+
+    MENSAJE Y EJEMPLO CON POSTMAN:
+    ESTRUCTURA DE UN MENSAJE: mensaje REST, es como un mensaje HTTP. Peticion-respuesta. 
+    En la peticion tenemos tres partes: Metodo URI VHTTP (metodo, la uri tambien es endpoint, vhttp es la version http.) en este caso el endpoint seria: http://developer.mozilla.org, la URI seria el host (toda la direccion mas el /). Tenemos tambien el HEAD, y el BODY (la info que estamos dando dentro del msj). o sea tres METODO, HEAD Y BODY. 
+
+    APLICACION POSTMAN: mas usada para testear apis y apps que se conecten a apis. 
+    cuando se intenta acceder a una app a traves de una API, las versiones publicas solo acceden informacion. si queremos tener la potestad de cambiar la info de la base de datos, tenemos que tener permiso, con autenticaciones, todas esas claves despues se ven reflejadas en el HEAD cuando hacemos una llamada. 
+    usar la app de postman, crear httprequest, entrar a la api publica de por ej pokemon. 
+
+SOAP: Simple Object Access Protocol:
+    protocolo similar a REST, que tambien se usa. 
+    Diferencias con REST: no es protocolo REST, es una arquitectura. SOAP si que es protocolo definido, mantenido W3C. la organizacion que define estandares. 
+        Por defecto es Stateless, puede ser stateful para mantener sesiones o mutabilidad dentro del propio servidor. 
+        Solo maneja XML en SOAP. en cambio REST maneja mas tipos de datos. 
+        Menos flexible por ser mas definido, se necesitan mas recursos para enviar o recibir. 
+        SOAP puede trabajar con HTTP , SMTP, UDP,otros. En cambio REST solo HTTP. 
+
+INTRODUCCION A gRPC:
+    es una arquitectura, framework de comunicacion entre diferentes servicios, similar a HTTP, mas moderno, creada por google. 
+    Google Remote Procedure Call: transmite datos
+        Tecnologia de transmision de datos serializada, mensajes binarios transmite, no son como los otros. Proto buffers para definir los servicios, permite usar muchos lenguajes de programacion, como usa tecnologia HTTP2, tiene mas velocidad de direccion, 
+        Creado por google
+        Bi-directional streaming (con una misma direccion puedo enviar y recibir datos modo stream)
+        Multilenguaje y plataforma 
+    Seria como una alternativa a los REST apis, o las SOAPs. 
+    Soporta: C#, Python, PHP, Ruby, Node, kotlin, etc. 
+
+    gRPC Stub y Protobuffer:
+        Suponemos dos clientes, uno escrito por Ruby, y otro por Java. necesitan tener un stub, una parte de una app, que nos proporciona los mismos metodos que nos da el gRPC. cuando hago una solicitud lo hago a traves del stub, genero un protorequest y recibo una protoresponse. Estos servicios son archivos .proto
+        Protocol Buffer: Es un mecanismo de serializacion de datos. permite que el peso de la comunicacion sea menos y mas rapido. estan transcriptos a codigo binario. 
+
+        Se usa el protobuffer para agarrar el mensaje y serializarlo (hacerlo ceros y unos), el front entonces tiene un stap para tener acceso al ProtoBuffer, convierte el mensaje del front en mensaje binario. de esta manera, el mensaje pesa muy poco a comparacion del original, y enviarlo a traves de internet. Luego el receptor, vuelve a convertir al mensaje original en el backend para acceder a la info que le enviaron. 
+        En el output se convierte y en el input se desconvierte o decodifica. esto es mas rapido, ya que es menos pesado. 
+
+    Como se define un servicio gRPC: crear un archivo .proto, se define la estructura del mensaje que vamos a transmitir, del stap al servidor. el servicio se define: por ejemplo: se define servicio, con un request, con parametro y devuelve un mensaje. 
+
+LICENCIAS DE SOFTWARE:
+    terminos legales que afectan a la utilizacion y distribucion de cierto software. Contrato a traves del cual una persona que es el titular de los derechos de explotacion de un determinado software, establece las condiciones a traves de las cuales otra u otras personas pueden acceder a usar ese software de acuerdo con las condiciones que el mismo establecio. 
+    Dos partes: Licenciante (propietario del soft) y el Licenciatario (el que usa el software). 
+        Tipos de licencia de software:
+            Software libre: totalmente permisible. tenemos la posibilidad de ver el codigo fuente, estudiar el codigo fuente, modificar el codigo fuente, compartir el codigo fuente, compartir las modificaciones, uso comercial (podemos venderlo) y tambien usar con cualquier fin comercial o proposito. 
+            open Source: puede ver el codigo fuente, estudiarlo, no nos permite modificar el codigo fuente (algunas licencias no permiten esto), no siempre podemos compartir el codigo fuente, no siempre se comparte las modificaciones, no tiene uso comercial y limitado el uso para cualquier fin. 
+            Propietaria: propiedad de una persona u organizacion. no puede hacer nada con el codigo fuente, y solamente se puede usar para cualquier fin con permiso del fabricante. 
+            Freeware: Programas gratuitos pero que no podemos acceder al codigo, 
+            Shareware: software distribuido gratuitamente para su prueba, trial version. estrategia de marketing muy difundida en los ultimos tiempos. 
+          
+            Licencias de codigo abierto permisivas:nos indican que podemos cambiar el codigo fuente. Se puede crear una obra, o modificar, versiones separadas de software, sin tener obligacion de proteccion alguna. 
+                Licencia Apache, Licencia PHP, BSD,PSFL (Python Software Foundation License), o MIT (Massachussets Institute of Technology). desde cualquiera de ella podemos crear o modificar un software, esta creacion no tiene obligacion de licencia.
+
+            Licencias de codigo abierto menos permisivas / robustas fuertes: tienen una clausula que obliga a que las obras derivadas o modificaciones que se realicen al software original se deben licenciar bajo los mismos terminos y condiciones que la licencia original. 
+                EPL: Eclipse Public License
+                GPL, LGPL y AGPL: GNU Public License- GNU Lesser General Public License- GNU Affero General Public License.
+
+            Licencias de codigo abierto debiles: contiene una clausula que obliga a que las modificaciones que se realicen al software original se deban licenciar bajo los mismos terminos y condiciones de la licencia original. PERO NO OBRAS DERIVADAS. 
+                MPL: Mozilla Public License
+                CDDL: Common Development and Distribution License.
+                APSL: Apple Source License.
+                LGDL: la misma que la anterior. Lesser .....
+            Si no estas seguro que licencia usar, habla con un abogado o especialista para saber que licencia poner en caso de sacar algun codigo. 
+
+MD5 Y SHA: PROTECCION DE DATOS.
+    Algoritmos mas usados hoy, de cifrado, de hash seguro. estos algoritmos sirven para codificar el mensaje, no existe para descifrar. 
+        MD5: 1991, reemplaza al MD4. se puede vulnerar, o sea que no se usa tanto.Se usaba , ahora solo se usa para asegurar la integridad, comparando md5 con un software de descarga, si coinciden los dos hash, el soft es el correcto el que descargamos. 
+        SHA: Secure hash Algorit: SHA-0, SHA-1. SHA-2, SHA-3. con la ayuda de la agencia de seguridad nacional yanki, se fue desarrollando y el que mas se usa ahora es el SHA-256. es un tipo de cifrado de una sola via, solo se puede cifrar. ej: las contraseñas pasan por hash, y se almacenan las contraseñas cifradas. para mas seguridad compara los cifrados de las contraseñas, para dejar entrar al usuario. 
+
+    CRIPTOGRAFIA SIMETRICA Y ASIMETRICA:
+        CRIPTOGRAFIA SIMETRICA: suponemos que quiero mandar msj a otra persona. como no confio en el canal que voy a seguir. Escribo el mensaje. yo quiero encriptar ese mensaje. tenemos que definir una clave de cifrado o encriptacion entre las dos personas que se mandan el msj. teniendo las dos personas las mismas claves. 
+        Con el mensaje y la clave, yo puedo obtener un mensaje cifrado. la persona que recibe el mensaje, con la clave es capaz de descifrar el mensaje. Utiliza una clave que conocen el emisor y el receptor.
+
+        CRIPTOGRAFIA ASIMETRICA: concepto similar, solo que metemos dos claves. la clave publica y privada. el receptor tiene clave publica y privada, la ultima solo la conoce el. Luis cifra el mensaje con la clave publica de pedro. este mensaje cifrado solo puede descifrado por la clave privada de pedro. es decir, viaja con la publica pero se descifra con la privada. 
+
+PROTOCOLOS DE SEGURIDAD EN INTERNET:
+    SSL/TLS: HTTP aparece con S, que usa una capa de seguridad adicional. Secure Sockets Layer - Transport Layer Security. Certificados X.509- Criptografia Asimetrica. ahora se usa mas TLS.  
+    SSH: Secure Shell -Protocolo de comunicacion con servidores- tiene cifrado, para conexion a servidores remotos. ya viene cifrado por defecto. Se usa programa Putty para conectarnos desde windows a servidores. 
+    PGP: Pretty Good Privacy. se usa en la dark web para intercambiar datos personales. software instalado con criptografia asimetrica. 
+
+    
+
 
 
 
