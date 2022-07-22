@@ -1,0 +1,67 @@
+HISTORIA DE LA PROGRAMACION: 
+    DECADA DE 1940: se crea el primer sistema de codificacion ENIAC. instruccion nemotecnica: una forma corta de decir, haz algo. 
+    Ejemplo: move: mover datos de un procesador. es mas sencillo programar con este sistema nemotecnico. 
+    no era tan amigable esto. se inventan otro tipo de lenguajes entre el 50 y 70.
+    FORTRAN, BASIC Y COBOL. el mas importante fue cobol. simplifico la forma de hacer informatica. 
+    aparecen evoluciones en el lenguaje. Otro lenguaje de los 60 fue BCPL, es el lenguaje precursor del C. 
+    es importante xq la parte central de un sistema operativo actuales (su KERNEL) tienen escrito en C. 
+    Se usa mucho hoy, combina el bajo nivel y el alto nivel, tiene sintaxis y forma de ejecutar condiciones logicas. 
+    igualmente C tiene algunas carencias, algunos lo consideran dificil. 
+    Otros lenguajes: decada de los 70, aparece a parte del C, es el PASCAL, se sigue usando pero no tanto. 
+    el lenguaje de programacion DELFI deriva de PASCAL. Hasta ahora son todos de proposito general, esos lenguajes se concibieron para cualquier tipo de programa en ellos. 
+
+    DECADA DE LOS 80: lenguajes de nicho. son lenguajes especializados en una o pocas tareas, que no se usan para todo. se usa mucho en defensa, es lenguaje ADA. otro es PERL se uso mucho hasta principios de los 2000, simplificaba mucho trabajabar con ficheros de texto. Evoluciono pero se usa cada vez menos. TCL es otro lenguaje. 
+    DECADA DE LOS 90: boom de internet, salieron lenguajes que combinaban como nicho y generales. JAVA se diseño para sistemas embebidos (sistema pequeño que necesita pocos recursos). Applex eran pequeños programas que daban funciones a nuestro navegador. de aca derivo JAVASCRIPT nos permite dar dinamismo a un navegador. Tambien nacio PYTHON en los 90, que se usa mucho. PHP nace en 1995. tambien nacio RUBY. otro que se usa para videojuegos es LUA. 
+
+    DECADA DE LOS 2000 a la actualidad: ACTIONSCRIPT, se uso para hacer animaciones 2d, orientadas a dibujos o web, se llamaban banners, se conoce mas como FLASH. ya no se usa mas.
+    Esto dio pie como HTML y JAVASCRIPT tengan mas animaciones hoy en dia. 
+    C# o .NET, para entornos WINDOWS. Lenguaje GO,SWIFT (para apps moviles), usan parte java SCALA y CLOJURE. SCRATCH es sencillo, intuitiva para aprender. 
+
+TIPOS DE LENGUAJES DE PROGRAMACION:
+    Se dividen en tipos:
+        LENGUAJE COMPILADO: son aquellos que a partir de nuestro codigo se genera un programa que el procesador es capaz de ejecutar directamente a traves del sistema operativo. usan un compilador, que transforma ese lenguaje en sistema binario y lo ejecuta. se ejecuta nativamente, sin ayuda intermedia. va mucho mas rapido pero necesito un compilador que me genere esa secuencia binaria acorde a mi procesador, por eso son distintas las secuencias de procesador debido a su arquitectura, para esto deberia generar versiones para cada procesador. 
+        EJEMPLOS: C, GO
+        LENGUAJES INTERPRETADOS: parte igual del codigo fuente no se compila a algo que entiende el procesador, se puede compilar a algo intermedio, esto se suele llamar BITECODE. el procesador no entiende esa cosa intermedia, entonces se necesita un INTERPRETE. esto es un programa que lee el codigo, y ejecuta el programa paso a paso, pero no lo ejecuta directamente sobre el procesador, si no sobre el mismo lo ejecuta. es mucho mas lento que los compilados. 
+        EJEMPLOS: JAVA, ya que se ejecuta sobre la JAVA VIRTUAL MACHINE o JVM.
+        PYTHON, PERL, PHP. Tienen ventaja ya que escribo el programa por unica vez y solo necesito un interprete para ese lenguaje para ese procesador. generalmente se ejecuta en cualquier parte, ya que vale para cualquier arquitectura de procesador. 
+
+        LENGUAJES HIBRIDOS: son lenguajes interpretados, cuyo interprete es capaz de compilar al codigo nativo segun haga falta. compilador GIT, tiene lo bueno del interprete y del compilador. 
+
+        LENGUAJES TIPADOS o NO TIPADOS:
+            TIPADOS: aquellos en lo que puedo almacenar datos pero le tengo que decir que tipo de dato es (numero, cadena de texto, etc)
+            NO TIPADOS: aquellos en los que mi compilador/ interprete deduce automaticamente que tipo de dato es. 
+
+        esta division se debe segun a su desarrollador, por ej: PHP es no tipado, C es tipado, GO es tipado, JAVA es tipado. no puedo cambiarlos. 
+
+    TIPOS DE APLICACIONES:
+        APLICACIONES WEB: ejemplos: la app web del bootcamp. 
+
+        arquitectura: como primera capa es lo que el usuario ve (front end):
+            tres elementos: HTML, CSS, JAVASCRIPT trabajan cohesionados., tiene un codigo HTML, que seria el codigo fuente. tambien tiene codigo JAVASCRIPT (la parte de la funcionalidad) interactua en forma dinamica,  hay otra parte mas los estilos CSS.
+        como segunda capa: Back end de una app web: 
+            es el sistema remoto (servidor, otro ordenador) que contiene la informacion que solicita el usuario. puede estar escrito en uno o multiples lenguajes. 
+
+        APLICACIONES DE ESCRITORIO: la parte que vemos es la que el usuario interactua. tiene front y back. cambia como esta programada.  son parecidas pero cambian las tecnologias. generalmente para windows es .net o C++, en linux desarrollada C o C++. tiene mucha informacion, menus, 
+
+        APLICACIONES MOVILES: la del celu. es muy similar a las otras. tiene front y back. tiene menos informacion, aca se centran en lo que se denomina vista con serie de acciones. todas las apps tiene F y B.
+
+    APLICACIONES CLIENTE-SERVIDOR: son las front end y back end. 
+        por ejemplo: twitter en el celu. se empezaron a usar fines de los 90. obtiene informacion de un servidor remoto, usando una aplicacion cliente. cuando se hace estan apps se usa el protocolo HTTP, para acceder a APIs. estas APIs, ayudan a devolver la informacion. una API es un conjunto de funciones que yo le pido algo con mi cliente, se lo envio a un servidor, y devuelve la informacion. se usan librerias externas, las uso y me da igual lo que haya por debajo. puedo buscar en internet las librerias que necesito para armar las APIs, para copiar los codigos y generarlas.
+
+MEMORIA Y VARIABLES:
+    LA MEMORIA es donde nuestro ordenador contiene informacion que si no la pone ahi, no puede trabajar. no es infinita la memoria, tiene una cierta capacidad, es decir un limite. a la informacion dentro de la memoria se accede por la direccion de la memoria. en caso que tengamos millones de posiciones de memoria, por eso se inventaron las variables: es un nombre humano para una posicion de memoria. por ejemplo: direcciones de memoria: numero, decimal, saluda, otro. ademas es dinamica la memoria, es decir que puedo cambiar la informacion, mantengo la palabra numero pero va cambiando la informacion dentro. 
+    ejemplo:
+
+    numero = 1234 (no me importa la posicion de memoria)
+    decimal = 2.2
+    saluda = hola
+    otro = adios
+    por esto asigno variables, para que sea mas facil usar la informacion y no me interesa las posiciones de memoria. 
+
+    FUNCIONA con dos tipos de VARIABLES: 
+        VARIABLES : pueden cambiar su valor en cualquier momento.es toda aquella que almaceno en un lugar de memoria pero durante el ciclo de programa la puedo cambiar. la mayoria de son variables.  
+        VARIABLES NO CAMBIANTES o CONSTANTES: se llaman CONSTANTES, no puedo cambiar la informacion dentro. es una asignacion en la memoria que no puedo variar en la ejecucion del programa. 
+        
+
+
+
