@@ -62,6 +62,101 @@ MEMORIA Y VARIABLES:
         VARIABLES : pueden cambiar su valor en cualquier momento.es toda aquella que almaceno en un lugar de memoria pero durante el ciclo de programa la puedo cambiar. la mayoria de son variables.  
         VARIABLES NO CAMBIANTES o CONSTANTES: se llaman CONSTANTES, no puedo cambiar la informacion dentro. es una asignacion en la memoria que no puedo variar en la ejecucion del programa. 
         
+INTRODUCCION A LOS TIPOS DE DATOS PRIMITIVOS: es un tipo de dato basico para cualquier lenguaje.
+    CARACTER: representa un unico caracter o letra, o unico numero, o unico simbolo. ej. "a","9", "-".
+    cada uno de estos datos ocupa un lugar unico en la memoria. la memoria almacena en este caso un numero, 
+    que corresponde en la tabla de valores para cada caracter (tabla ascii).por ejemplo: cuando uso a, la memoria almacena el numero 97. 
+    como se declara un caracter. primero la variable, luego =, luego el caracter. siempre se pone entre comillas simples. este tipo de dato es uno de los primitivos. 
+
+    TEXTO: es una secuencia de caracteres. "hola". se le llama string. en memoria se representa en cada posicion de memoria una letra, y son consecutivas. entonces hace referencia a un string y se guardan numeros como el anterior. las variables de tipo string son una secuencia de numeros de memoria de tabla ascii. los caracteres ascii normales ocupan 1 bite (8 bit) en memoria. entonces un string de 4 caracteres ocupa 32 bits, o sea 4 bytes. 
+
+    DATOS NUMERICOS:
+        cual es la diferencia entre:
+            variable = '1' (hace referencia en la tabla ascii al numero que contiene el caracter 1, en este caso numero 49 )
+            variable = 1 (hace referencia literalmente al numero 1)
+            variable = "1" (hace referencia al string 1)
+    se dividen en dos, numero enteros y de coma flotante. 
+    numeros=1234 (enteros)
+    numeroF=1234.5678 (flotante)
+    habitualmente los numeros en los lenguajes de programacion son de 32 bits o 64 bits.
+    se representan en memoria como numeros binarios. ej: 1234, son 4 bytes, . algo asi :
+    se cuenta de derecha a izquierda. se guardan en la memoria en octetos, de a 8 ceros y unos. 
+    00000000000000000000000000000000 (32 ceros). 
+    los flotantes son los decimales, se guardan una parte de la memoria la parte entera y en otra la parte decimal. 
+
+    BOOLEANOS: solo pueden 0 o 1. en otro lenguaje puede ser true o false. 
+        se representa solo en dos lugares. 
+
+TIPOS DE DATOS COMPLEJOS:
+    ARRAYS: conjunto de un mismo de dato simple. []. pueden tener multiples elementos de datos simples. por ej: 
+        arrayChar= ['a','b','c','d']
+        arrayString = ["hola", "adios"]
+        arrayNumeros = [0,1,2,3,4,5,6]
+        arrayNumeroF = [1.1,4.4,3.14] 
+        conjunto de MISMO TIPO DE DATOS. 
+        un array invalido seria tener un conjunto de distintos tipos de datos. 
+
+        arrayArrays=[
+            [1,2,3]
+            [4,5,6]
+        ]
+        a esto se le llama array bidimensional. 
+
+    TUPLAS: se usan en algunos lenguajes. los elementos no son variables o son inmutables, mientras que en los array son mutables.  
+    tupla = (a,b,c)
+    mapa asociativo o array asociativo: dentro tiene un elemento "clave" y asociado un elemento valor. 
+
+    arrayCapitalesPais [
+        "Ucrania" => "Kyev",
+        "España" => "Madrid"
+    ]
+    puedo hacer referencia. estos tambien se llaman mapas, arrays que tienen un elemento clave seguido de un valor asignado a esa clave. 
+    tambien existen diccionarios, que son parecidos a estos. 
+
+OBJETOS: algo que la logica de nuestro programa intenta representar en el mundo real. pueden tener propiedades. ej: caja rectangular.
+    MUNDO REAL
+    caja: 
+    Propiedades: 
+        color: blanco
+        forma: rectangular
+    PROGRAMACION LENGUAJE JAVA
+    
+    ej en java:
+
+    class Caja {
+        String Color = "blanco";
+        String Forma = "rectangular";
+        int Largo =20;
+    }
+
+    los objetos tienen metodos, algo que puede alterar las propiedades. 
+    Ejemplo juguete:
+
+    juguete: 
+    Propiedades: 
+        color: marron
+        forma: patata
+    Metodos:
+        Poner sombrero
+        Quitar brazo
+
+
+    class Juguete {
+        String Color = "marron";
+        String Forma = "patata";
+        
+        ponerSombrero(){}
+        quitarBrazo (){}
+    }
+
+CONSEJOS PARA TIPOS DE DATOS:
+    String 
+        nombre = "German" + '0'
+        este ultimo caracter indica el final de una cadena de texto. o sea que por ej: German no tiene 6 posiciones guardando, tiene 7, mas el 0. 
+
+    los string son una conveniencia. xq es un array de caracteres por debajo. por conveniencia los lenguajes de programacion nos permiten usar el nombre = "german". pero es array. 
+
+FUNCIONES. DEFINICION Y CONCEPTOS:
 
 
 
