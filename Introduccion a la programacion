@@ -156,7 +156,293 @@ CONSEJOS PARA TIPOS DE DATOS:
 
     los string son una conveniencia. xq es un array de caracteres por debajo. por conveniencia los lenguajes de programacion nos permiten usar el nombre = "german". pero es array. 
 
-FUNCIONES. DEFINICION Y CONCEPTOS:
+FUNCIONES. DEFINICION Y CONCEPTOS: nos evita tener que repetir codigo. dentro de la funcion puede ir cualquier sintaxis de lenguaje. cuando tenemos que hacer muchas veces la misma tarea, creamos una funcion para no tener que escribir muchas veces el mismo codigo. 
+tienen una firma o prototipo o signature. esto consiste en: como se llama la funcion, que valores acepta, y que tipo de datos retorna la funcion en caso que lo haga. 
+ejemplo en java: 
+    public static int suma (int a, int b) {
+        return a + b
+    }
+    primero pongo el tipo de dato que quiero que devuelva con int, luego dentro de los parentesis los datos que tengo que poner para invocarla y el tipo. luego lo que quiero que haga o devuelva. 
+
+    para invocar a la funcion tengo que poner el nombre y los parametros que me pida. algunas no tienen xq devolver nada, como en java que uso void.
+    cuando la funcion devuelvo algo es xq necesito ese retorno despues para otra funcion o dentro de mi programa. 
+
+USOS DE FUNCIONES:
+    los parametros o sea las variables dentro de la funcion, solo existen dentro de ellas mismas. 
+    puede aceptar parametros o no las funciones. puede ser parametros de distintos tipos. puede devolver el varlor del tipo que creamos conveniente. podemos importar paquetes de codigos con funciones. los lenguajes hoy son modulares, es decir, se pueden crear conjuntos de funciones y compartirlos. esto se llaman librerias. 
+    tambien tiene el cuerpo de la funcion: donde la funcion implementa su logica. tiene que ser pequeña y util. los parametros solamente existen dentro del cuerpo de la funcion. es decir que por ej: tengo un parametro a en una funcion, puedo poner una variable a fuera de la funcion y no se solapan; se pueden llamar igual siempre que no esten en la misma funcion. 
+
+FUNCIONES AVANZADAS:
+    hay dos formas de pasar parametros a las funciones:
+        paso por valor: ya en la funcion defino los parametros y cuando la llamo, los valores se copian en la llamada de la funcion, en lugar de los parametros. se copia tambien el tipo de dato. por debajo se reserva el espacio de memoria cuando copio esos parametros, es decir, usa misma cantidad de memoria y ocupa dos veces, una vez cuando la defino y otra cuando la llamo.
+
+        paso por referencia: le paso una direccion de memoria como parametro, y la funcion modifica lo que haya en esa direccion de memoria. no es copia de valor, si no que pasa una referencia de memoria. un puntero es una referencia a un area de la memoria de un ordenador. el objeto trabaja por debajo con punteros. aca uso menos memoria, que el paso por valor que se duplica la cantidad de memoria. 
+
+    FUNCIONES RECURSIVAS: funcion que devuelve valor y que se invoca a si misma. por ejemplo un bucle de funcion suma, en donde se invoca constantemente. 
+    CALLBACK: asignar el nombre de una funcion a una variable. luego invoco indirectamente a mi funcion a traves de la variable, que por debajo es funcion. en java si se puede usar, pero son interface. 
+
+CONDICIONALES: son una serie de reglas que nosotros le ponemos al programa para que lo haga. son sentencias de control, que usan condiciones. 
+los condicionales son condiciones, suelen ser que comparan una cosa con otra. 
+LOGICAS:
+    "Y" dos o mas cosas deben cumplirse. &&
+    "O" una o mas cosas deben cumplirse   ||
+
+COMPARATIVAS:
+    "MAYOR QUE" >
+    "MENOR QUE"<
+    "MAYOR O IGUAL QUE" >=
+    "MENOR O IGUAL QUE" <=
+    "IGUAL A" ==
+    "DISTINTO A" !=
+
+se comparan cosas de izquierda con derecha. en este caso, se evalua la condicion. pueden tener dos resultados. True o False. 
+las condiciones se cumplen o no. esto es logica booleana. ver tablas de la verdad. 
+
+SI (if) se usa para declarar una condicion. 
+
+VAR ESTACION = "VERANO"
+VAR TEMPERATURA = 19
+SI (ESTACION IGUAL A "VERANO") Y (TEMPERATURA MAYOR QUE 20) ENTONCES 
+    AQUI LAS ACCIONES A TOMAR
+    BEBER_AGUA
+    BAÑARSE_EN_LA_PISCINA ()
+    TOMARSE_UN_MOJITO()
+    IRSE_AL_BAR()
+esto seria la logica del si escrita sin codigo, solo se cumple si la palabra es verano. en caso que la palabra sea invierno, no hace nada. ESE CODIGO NO SE CUMPLE, XQ CUMPLE SOLO CON UNA PARTE, NO CON LA PARTE DE LA TEMPERATURA. si se cumplen todas las condiciones de ese condicional si se ejecutaria ese condicional. 
+
+tambien tiene un caso contrario.
+
+VAR ESTACION = "VERANO"
+VAR TEMPERATURA = 19
+SI (ESTACION IGUAL A "VERANO") ENTONCES   "if"
+    AQUI LAS ACCIONES A TOMAR
+    BEBER_AGUA
+    BAÑARSE_EN_LA_PISCINA ()
+    TOMARSE_UN_MOJITO()
+    IRSE_AL_BAR()
+EN CASO CONTRARIO SI (ESTACION IGUAL A "PRIMAVERA") ENTONCES  "else if" o "elif"
+    SALIR_DE_PASEO()
+    IR_A_VER_A_LOS_AMIGOS ()
+EN CASO CONTRARIO ENTONCES:   "else"
+    PONERSE_EL_ABRIGO()
+    BEBER_CHOCOLATE_CALIENTE()
+    VER_LA_TELE()
+
+public class ejemplo_java {
+
+    public static void main (String[] args) {
+        String estacion = "otoño";
+
+        if (estacion == "primavera") {
+            System.out.print("Es primavera");
+        }  else if (estacion =="verano") {
+            System.out.println("Es verano");
+        }    else {
+                System.out.println( "es otra estacion...");
+        }
+
+        }
+    }
+
+BUCLES WHILE Y DO WHILE:
+    un bucle es hacer algo un numero determinado de veces o indeterminado de veces. es un fragmento de codigo que se va a ejecutar n veces mientras se cumpla una condicion. 
+    WHILE: mientras se cumpla una condicion se ejecuta.
+    
+    VAR CONTADOR = 10
+    MIENTRAS (CONTADOR MAYOR A CERO) evalua primero esta condicion y ejecuta. 
+        RESTA UNO AL CONTADOR
+
+    SIGO POR AQUI
+
+    public class ejemplo_java {
+
+    public static void main(String[] args) {
+        int contador = 10;
+
+        while (contador > 0) {
+            System.out.println("Contador vale: " + contador);
+            contador = contador - 1;
+            contador--; (forma corta de escribir contador = contador -1)
+        }
+    }
+}
+una iteracion es cuando comprueba la condicion y vuelve arriba, es decir, cada ciclo del while. 
+
+DO WHILE: 
+VAR CONTADOR = 10
+HAZ
+    RESTA UNO AL CONTADOR 
+MIENTRAS (CONTADOR SEA MAYOR QUE 10)
+la diferencia: el while primero evalua la condicion y luego ejecuta las acciones.
+el DO WHILE primero ejecuta las acciones y luego evalua la condicion (seguro se ejecuta una vez, despues depende si cumple la condicion)
+
+public class ejemplo_java {
+
+    public static void main(String[] args) {
+        int contador = 10;
+
+        do {
+            System.out.println(contador);
+            contador = contador - 1;
+        } while (contador >10);
+
+        }
+    }
+    }
+//en este caso muestra el 2, xq el do while primero ejecuta y despues condiciona
+
+    en este caso primero se ejecuta la accion y despues se comprueba la condicion. haz mientras. 
+
+BUCLES FOR: "PARA". es una mezcla de todos. 
+    se suele dividir en tres partes: la parte de declaracion, la de comparacion y la de accion. 
+    primer parametro inicializacion; comparacion;accion)
+
+    VAR CONTADOR =10
+
+    "PARA" (INICIALIZACION;COMPARACION;ACCION)
+    "PARA"(;CONTADOR MAYOR QUE 0; CONTADOR IGUAL A CONTADOR MENOS 1)
+        IMPRIME EL VALOR DE LA VARIABLE CONTADOR
+
+se usa con tipos de datos complejos el bucle for. la accion del bucle for se ejecuta despues de ejecutar todo el cuerpo del for. se usan para recorrer arrays o tipos de datos compuestos. 
+los whiles se pueden usar para comparar verdaderos o falsos. 
+ejemplo de for para recorrer arrays:
+
+    public class ejemplo_java {
+
+    public static void main(String[] args) {
+        int valores[] = new int [5];
+
+
+        for (int i = 0; i < valores.length; i ++) {
+            System.out.println(valores [i]);
+        }
+    }
+}
+
+//usar un bucle for para mostrar todos los elementos de un array
+
+public class ejemplo_java {
+
+    public static void main(String[] args) {
+        int valores[] = {10,20,30,40,50};
+                        // 0 < 5 (compara e imprime)
+                        // 1 < 5
+                        // 2 < 5
+                        // 3 < 5
+                        // 4 < 5
+                        // 5 < 5 ESTA NO!! aca sale del bucle.
+        for (int i = 0; i < valores.length; i ++) {
+        for (int i = 0 : valores) "forma corta de hacer lo de arriba"
+            System.out.println(valores [i]);
+        }
+    }
+}
+//usar un bucle for para mostrar todos los elementos de un array
+
+SWITCH CASE: interruptores; una forma de control que se aplica sobre una variable o condicion. conviene usar para varias condiciones. 
+
+VAR ESTACION = "VERANO"
+DISCIERNE (ESTACION)
+    CASO "VERANO"
+        IMPRIME "ES VERANO"
+
+    CASO "INVIERNO"
+        IMPRIME "ES INVIERNO"
+
+    OTRO CASO:
+        IMPRIME LA ESTACION DE LA VARIABLE.
+
+public class ejemplo_java {
+
+    public static void main(String[] args) {
+        var estacion = "VERANO";
+
+        switch (estacion) {
+            case "VERANO":
+                System.out.println("es verano");
+                break;
+            case "INVIERNO":
+                System.out.println("es invierno");
+                break;
+            default:
+                System.out.println("estoy en default: ");
+        }
+    }
+}
+
+se pone un break para la ejecucion de los CASE, si no se lo pongo, no corta y ejecuta todo, y me devuelve todos los case. cuando se ejecuta la condicion de un case, se ejecuta todo lo demas hasta un break. 
+
+public class ejemplo_java {
+
+    public static void main(String[] args) {
+        var hoy_es = "SABADO";
+
+        switch (hoy_es) {
+            case "LUNES":
+            case "MARTES":
+            case "MIERCOLES":
+            case "JUEVES":
+            case "VIERNES":
+                System.out.println("hoy se labura");
+                break;
+            case "SABADO":
+            case "DOMINGO":
+                System.out.println("hoy no se labura");
+                break;
+        }
+    }
+}
+
+OTRA FORMA MAS CORTA:
+
+ public static void main(String[] args) {
+        var hoy_es = "SABADO";
+
+        switch (hoy_es) {
+            case "LUNES":
+            case "MARTES":
+            case "MIERCOLES":
+            case "JUEVES":
+            case "VIERNES":
+                System.out.println("hoy se labura");
+                break;
+            default:
+                System.out.println("hoy no se labura");
+                
+        }
+    }
+}
+
+GESTION DE ERRORES:
+    errores tipicos de programador cuando recien empezas:
+
+    nombrar bien las variables: por ej: VAR CONTADOR = 0. es decir que cuando veo el nombre de la variable ya se para que la uso. como no se llamaria, foo, bar, foobar. 
+
+    el codigo sin comentarios deberia entenderse normalmente por cualquier persona. las variables deben tener buenos nombres. usando bucles for no esta mal visto que se usen variables como "i", "j" o "k". "i"= index, por eso se usa asi. cuando uso arrays bidimensionales o tridimensionales, como las matrices. en este caso uso tambien "j".
+    tambien se puede usar el nombre TEMP para variables temporales.
+    se usa temp para variables temporales o tmp tambien. 
+
+    otro error es hacer un codigo y no explicar que hace ese codigo con algun comentario. es decir, comentar lo que va a hacer el codigo que sigue. 
+
+    no se debe comentar cosas logicas que hacen los codigos, es decir, comentar de mas. por eso a veces es necesario solo comentar lo mas importante.
+
+ERRORES DEL PROGRAMADOR:
+    error mas tipico, es cuando no se mantiene la coherencia en el codigo. si lo hacemos de una forma, tenemos que seguir con la misma forma de escribirlo. hay que hacer y seguir una guia de estilos. cada empresa tiene su estilo a veces. 
+
+    hacer copias de seguridad sobre el codigo fuente que estamos trabajando, de una carpeta a otra carpeta. lo recomedable es no tenerlo al codigo en un mismo disco duro, lo mejor es usar un control de versiones (git hub). 
+
+    usar las formas mas sencillas de lenguaje en vez de las mas complejas, las abreviadas. el error seria no usar las formas mas simples. 
+
+    depurar un mensaje usando el print o lo que sea que muestre en pantalla; eso no se hace. para esto existe una herramienta llamada depurador. no intentar depurar usando el print, si no el soft del depurador. 
+
+    crear funciones que son grandes. tienen que tener un cometido identificable, y tambien deberian simplificar el codigo. intentar crear funciones pequeñas, no funciones dentro de funciones si no es necesario. la funcion tiene que ser concreta. 
+
+    REPERCUSION DE LOS ERRORES:
+        
+
+
+
+
 
 
 
