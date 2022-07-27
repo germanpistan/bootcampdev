@@ -438,11 +438,417 @@ ERRORES DEL PROGRAMADOR:
     crear funciones que son grandes. tienen que tener un cometido identificable, y tambien deberian simplificar el codigo. intentar crear funciones pequeñas, no funciones dentro de funciones si no es necesario. la funcion tiene que ser concreta. 
 
     REPERCUSION DE LOS ERRORES:
+        perdida de precision: es cuando tengo un tipo de dato y lo convierto a otro, a veces pierdo el valor original. suponemos tengo un valor flotante y lo convierto a un valor entero, hago una conversion de tipo, pero pierdo esa parte decimal.  la solucion a este problema no es hacer un cast, es que yo cambie el tipo de parametro que recibe mi funcion. entonces ahi si no haria falta cambiar el tipo de dato de ingreso y no pierdo parte decimal. 
+
+        otro error tipico: error de out of bounds ( off-by-one).
+            tengo un array de 5 elementos y quiero imprimir la posicion 0. resulta que cuando quiero imprimir una posicion por ej 5, no es el numero 5, si no el numero 4, porque se empieza a contar desde 0. el numero 5 seria la 6ta posicion. se accede con el numero de posicion -1 pero se declara con la posicion normal, es decir con los numeros de elementos que queremos. 
+
+        error de overflow: cuando a un tipo de dato le asigno un valor por encima de su maximo o por debajo de su minimo. por ej.: byte, que tiene 127 o 128, le asigno un valor mas grande y creo un overflow. cuando le paso uno por encima del maximo, empieza a contar del minimo y tengo un numero mas chico. 
+
+DEPURACION DE CODIGO: en buscar programas o anomalias durante la ejecucion de nuestro programa. a veces ocurre un fallo en nuestro programa, entonces ahi usaremos y valoramos un depurador. un buen desarrollador depura utilizando un depurador. se puede usar depuracion remota. funcionan mediante puntos de ruptura. un punto de ruptura es una parte en la que nosotros le decimos al programa que debe parar, y cuando el programa para, nos aparece el depurador. se debe insertar un punto de ruptura. para crearlo tengo que hacer click normal al lado de la linea de codigo donde quiero que se haga la ruptura y se pone en color rojo, dependiendo el soft que use. no solo se puede bloquear el codigo para verlo en el momento que yo quiera el estado de las variables, si no que tambien puedo modificarlas para evaluar el comportamiento posterior al programa ante casos no esperados. 
+watcher: o watch point, que solamente se dispara cuando se cumple una condicion, es como un break point de los anteriores pero solo se ejecuta si se cumple cierta condicion. se hace con boton derecho sobre el punto rojo. se le escribe la condicion y luego aparece el punto rojo con un signo de pregunta. 
+
+public class Main {
+
+    public static void main(String[] args) {
+        int suma = 0;
+
+        suma = suma + 16;
+
+        System.out.println(suma);
+    }
+}
+// proximo error de out of bounds.
+
+public class Main {
+
+    public static void main(String[] args) {
+        int valores [] = new int [5];
+        int posicion = 5;
+
+        System.out.println(valores [posicion]);
+    }
+}
+
+tambien tiene algo que se llama pila de llamada, para saber por donde paso mi programa. o sea cuando tengo varias funciones, y hago debug, al costado aparece una ventana en donde me dice por donde anda mi programa, y en que linea fue pasando. 
+
+public class Main {
+
+    public static void main(String[] args) {
+        funcion1();
+    }
+
+    public static void funcion1() {
+        funcion2();
+
+    }
+    public static void funcion2() {
+        funcion3();
+
+    }
+    public static void funcion3() {
+        funcion4();
+
+    }
+    public static void funcion4() {
+        System.out.println("Vaya viaje que nos estamos dando");
         
+    }
+}
 
 
+INTRODUCCION A LA PROGRAMACION ORIENTADA A OBJETOS:
+    un objeto pretendemos que sea una entidad que represente a un objeto del mundo real. tienen propiedades, colores, peso, medidas, etc. tambien tiene metodos, algunos objetos tienen metodos, por ej: auto, metodo abrir puerta, cerrar, etc. se declaran mediante clases, o funciones, en java se declaran igual que los demas lenguajes mas usados. 
+    primero tengo que crear una clase, como en el ejemplo abajo de java, y luego para crear un objeto de esa clase tengo que instanciarlo, significa que creo una zona en la memoria a traves de una variable para que contenga lo que tenga la clase coche, creo el objeto que uso despues. para crear una instancia de una clase, primero pongo el nombre de mi clase, seguido de la variable y ahora instanciarlo, es igual a new y el objeto.  
+
+      Coche coche = new Coche ();
+
+    las funciones dentro de una clase se llaman metodos. las variables de la clase son independientes. 
 
 
+class Coche {
+    int numeroDePuertas;
+    int velocidadMaxima;
+    float velocidadActual;
 
+    public void acelerar() {
+        velocidadActual += 15;
+    }
+
+    public void decelerar() {
+    }
+}
+
+cuando instancio objetos comparten las mismas propiedades pero no los mismos metodos, es decir no son los mismos. a cada objeto asigna un espacio de memoria como si fuera una variable. 
+podemos crear multiples objetos a partir de una clase. cada una de estas variables (objetos) tiene cada una de las propiedades independientes de las otras. 
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+        System.out.println(coche.velocidadActual);
+        coche.acelerar();
+        System.out.println(coche.velocidadActual);
+
+        Coche coche2 = new Coche();
+        System.out.println(coche2.velocidadActual);
+    }
+}
+
+class Coche {
+    int numeroDePuertas;
+    int velocidadMaxima;
+    float velocidadActual;
+
+    public void acelerar() {
+        velocidadActual += 15;
+    }
+
+    public void decelerar() {
+    }
+}
+
+
+cuando no creo un constructor, java automaticamente lo hace por mi. cuando yo creo un constructor,java ya no lo hace. un CONSTRUCTOR es una forma de inicializar las propiedades de una clase cuando la instanciamos. 
+CREAR UN CONSTRUCTOR EN JAVA:
+como no devuelve dato es publico. y el nombre del constructor tiene que ser igual al de la clase. creo el constructor:   
+
+public Coche (){
+        System.out.println("Estoy en el constructor");
+    }
+
+y se ejecuta luego de que creo el new coche, en ese momento se dispara el constructor. 
+cuando creo mi objeto instanciandolo, se dispara el constructor, y en el constructor puedo poner las variables o propiedades iniciales.
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+        System.out.println(coche.numeroDePuertas);
+        System.out.println(coche.velocidadMaxima);
+        System.out.println(coche.velocidadActual);
+
+    }
+}
+
+class Coche {
+    int numeroDePuertas;
+    int velocidadMaxima;
+    float velocidadActual;
+
+    public Coche (){
+        numeroDePuertas =5;
+        velocidadMaxima = 120;
+        System.out.println("Estoy en el constructor");
+    }
+    public void acelerar() {
+        velocidadActual += 15;
+    }
+
+    public void decelerar() {
+    }
+}
+
+
+SOBRECARGA: consiste en que puedo tener dos funciones con el mismo prototipo pero distinto parametros. puedo poner los dos constructores con mismo prototipo pero distintos parametros, uno con parametros y otro sin. 
+
+ public Coche (){
+        numeroDePuertas = 5;
+        velocidadMaxima = 120;
+        System.out.println("Estoy en el constructor sin nada");
+    }
+
+    public Coche (int puertas, int velocidad){
+        numeroDePuertas = puertas;
+        velocidadMaxima = velocidad;
+        System.out.println("Estoy en el constructor CON PARAMETROS ");
+    }
+
+el constructor es el mejor lugar para inicializar las propiedades de una clase. 
+ESTO ES SOBRECARGA DEL CONSTRUCTOR:
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+        System.out.println(coche.numeroDePuertas);
+        System.out.println(coche.velocidadMaxima);
+        System.out.println(coche.velocidadActual);
+
+        Coche coche2 = new Coche(2,90);
+        System.out.println(coche2.numeroDePuertas);
+        System.out.println(coche2.velocidadMaxima);
+        System.out.println(coche2.velocidadActual);
+    }
+}
+
+class Coche {
+    int numeroDePuertas;
+    int velocidadMaxima;
+    float velocidadActual;
+
+    public Coche (){
+        numeroDePuertas = 5;
+        velocidadMaxima = 120;
+        System.out.println("Estoy en el constructor sin nada");
+    }
+
+    public Coche (int puertas, int velocidad){
+        numeroDePuertas = puertas;
+        velocidadMaxima = velocidad;
+        System.out.println("Estoy en el constructor CON PARAMETROS ");
+    }
+    public void acelerar() {
+        velocidadActual += 15;
+    }
+
+    public void decelerar() {
+    }
+}
+
+generalmente se le ponen los mismos nombres de variables cuando creo y defino la clase, con los parametros de la funcion de constructor. entonces para que no ocurra un problema. se le antepone a los definidos en la clase la palabra "this." .
+
+class Coche {
+    int numeroDePuertas;
+    int velocidadMaxima;
+    float velocidadActual;
+
+    public Coche (){
+        numeroDePuertas = 5;
+        velocidadMaxima = 120;
+        System.out.println("Estoy en el constructor sin nada");
+    }
+
+    public Coche (int numeroDePuertas, int velocidadMaxima{
+        this.numeroDePuertas = numeroDePuertas
+        this.velocidadMaxima = velocidadMaxima;
+        System.out.println("Estoy en el constructor CON PARAMETROS ");
+    }
+
+PRIVACIDAD, ABSTRACCION Y ENCAPSULACION: 
+cuando se define una clase, tiene propiedades:
+
+    CLASE MICLASE
+        PROPIEDAD1;
+        PROPIEDAD2;
+
+        FUNCION1();
+        FUNCION2();
+
+------PROGRAMA PRINCIPAL-------
+    MICLASE unclose = new MICLASE()    / VAR unaclase INSTANCIA DE MICLASE.
+                                       / unaclase.PROPIEDAD1 = valor
+                                       IMPRIME unaclase.PROPIEDAD2
+
+cuando se puede acceder desde fuera de una clase a una propiedad, decimos que es publica. pueden ser publicas o privadas. una propiedad privada solo se puede usar dentro de la implementacion de la clase, y cuando es publica la puedo usar dentro de la clase, o en mi programa. en caso de java, cuando es publica le ponemos "public" y cuando es privada "private". 
+ENCAPSULACION: jugar con los tipos publicos y privados de forma que desde la clase los manipule y desde fuera de la clase los pueda implementar. para eso a las propiedades de la clase las declaramos privada. y luego creamos dos funciones por cada propiedad, que serian las geters y seters. xq tienen como tarea modificar la propiedad o darnos el valor de la propiedad. se dice encapsulacion xq estamos encapsulando las propiedades para acceder a ellas a traves de funciones. 
+
+CLASE MICLASE
+        PRIVADA PROPIEDAD1;
+        PRIVADA PROPIEDAD2;
+
+        FUNCION SETTERPROPIEDAD1(TEXTO valor);
+            ESTA_CLASE.PROPIEDAD1 = valor
+
+        FUNCION GETTERPROPIEDAD1() TEXTO;
+            DEVUELVE EL VALOR DE ESTA_CLASE.PROPIEDAD1
+
+los setter nunca devuelven nada y toman como tipo de dato el de la propiedad. 
+
+class Vehiculo {
+    private String tipo;
+
+    public void SetTipo (String valor) {
+        this.tipo = tipo;
+    }
+}
+
+en este siguiente caso, uso setter y get para traer las propiedades encapsuladas e imprimirlas. 
+
+import java.beans.VetoableChangeListener;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Vehiculo coche = new Vehiculo();
+        coche.setTipo("Coupe");
+
+        Vehiculo moto = new Vehiculo();
+        moto.setTipo("Scooter");
+
+        System.out.println(coche.getTipo());
+        System.out.println(moto.getTipo());
+
+    }
+}
+
+class Vehiculo {
+    private String tipo;
+
+    public void setTipo (String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo () {
+        return this.tipo;
+    }
+}
+
+OTRO EJEMPLO DE CODIGO JAVA CON ENCAPSULACION:
+
+import java.beans.VetoableChangeListener;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Vehiculo coche = new Vehiculo();
+        coche.setTipo("Coupe");
+        coche.setVelocidadMaxima(120);
+
+        Vehiculo moto = new Vehiculo();
+        moto.setTipo("Scooter");
+        moto.setVelocidadMaxima(50);
+
+        System.out.println(coche.getTipo());
+        System.out.println(coche.getVelocidadMaxima());
+        System.out.print(moto.getTipo() + " " + moto.getVelocidadMaxima());
+
+    }
+}
+
+class Vehiculo {
+    private String tipo;
+    private int velocidadMaxima;
+
+
+    public void setVelocidadMaxima (int velocidadMaxima) {
+        this.velocidadMaxima=velocidadMaxima;
+    }
+
+    public int getVelocidadMaxima() {
+        return this.velocidadMaxima;
+    }
+    public void setTipo (String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo () {
+        return this.tipo;
+    }
+}
+
+NO ES NECESARIO CREAR GETER Y SETER PARA PROPIEDADES QUE VAMOS A UTILIZAR DENTRO DE NUESTRA CLASE. 
+
+cuando tenemos una variable del tipo boolean , para usar los set y get, la variable en el geter se llamar "is" seguido del nombre de la variable. si se usa programacion multihilo, o que la clase tenga info de su estado, y que esas variables se puedan modificar a traves de los geter y seters, cuando se invocan, podrian tener codigo adicional que hiciera otras cosas. la multihilo, consiste en que tu programa se ejecuta con dos o mas cosas a la vez. 
+
+ABSTRACCION:
+    consiste en que implemento parte de mi clase, y dejo la otra parte a su libre albedrio. un metodo abstracto, suele tener un calificador. 
+    una clase abstracta es igual a la normal pero en ciertos momentos esa clase tambien puede implementar el codigo de algunas funciones abstractas. implementan la funcion de forma parcial. 
+
+    esto se hace cuando uso una clase abstracta, que es derivada si o si de una clase. en esta funcion derivada o abstracta tengo que usar si o si funciones abstractas. 
+
+CLASE ABSTRACTA VEHICULO
+        PRIVADA TIPO;
+        PRIVADA SONIDO;
+
+        FUNCION SETTERTIPO(TEXTO valor);
+            ESTA_CLASE.TIPO = valor
+
+        FUNCION GETTERTIPO(TEXTO valor);
+            DEVUELVE ESTA_CLASE.TIPO;
+
+        FUNCION ABSTRACTA SETTERSONIDO() TEXTO;
+            ESTA_CLASE.SONIDO = sonido 
+
+        FUNCION ABSTRACTA GETTERSONIDO() TEXTO;
+            DEVUELVE ESTA_CLASE.sonido 
+
+CLASE COCHE
+    FUNCION SETTERSONIDO (TEXTO sonido)
+    FUNCION GETTERSONIDO () TEXTO.
+
+entonces las clases abstractas son parciales, xq te dan la mitad de codigo hecho y la otra mitad tenes que hacerlo vos. te dan el prototipo de funcion. 
+
+HERENCIA, POLIMORFISMO E INTERFACES:
+la herencia consiste en que una clase hereda metodos y propiedades de otra clase. a la que hereda se le llama HIJA. y a la clase que cede sus funciones se puede llamar clase base o principal. 
+
+    CLASE VEHICULO
+        PRIVADA VELOCIDAD MAXIMA;
+        PRIVADA TIPOGASOLINA;
+
+        FUNCION diHola()
+            IMPRIME "Hola"
+
+    CLASE COCHE HEREDA DE VEHICULO;
+        (heredada) VELOCIDADMAXIMA
+        (heredada) TIPOGASOLINA
+        NUMERO_DE_PUERTAS;
+
+        (heredada) FUNCION diHola()
+            IMPRIME "Hola"
+
+        FUNCION SETTERNUMERODEPUERTAS (INTEGER puertas)
+            ESTA_CLASE.NUMERODEPUERTAS = puertas
+
+        FUNCION GETTERNUMERODEPUERTAS() INTEGER
+            DEVUELVE ESTA_CLASE.NUMERO_DE_PUERTAS
+
+    CLASE COUPE HEREDA DE COCHE
+        (heredada) VELOCIDADMAXIMA
+        (heredada) TIPOGASOLINA
+        (heredada) NUMERO_DE_PUERTAS;
+
+        (heredada) FUNCION diHola()
+                   IMPRIME "Hola"
+
+        (heredada) FUNCION SETTERNUMERODEPUERTAS (INTEGER puertas)
+                   ESTA_CLASE.NUMERODEPUERTAS = puertas
+
+        (heredada) FUNCION GETTERNUMERODEPUERTAS() INTEGER
+                 DEVUELVE ESTA_CLASE.NUMERO_DE_PUERTAS
+ 
+ esto es herencia multiple, es decir que la clase coupe hereda propiedades de la clase coche, que a su vez hereda propiedades de vehiculo. cada clase hereda las funciones de su clase padre y añade las suyas propias. 
 
 
