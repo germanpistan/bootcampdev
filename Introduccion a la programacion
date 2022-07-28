@@ -821,7 +821,7 @@ la herencia consiste en que una clase hereda metodos y propiedades de otra clase
         FUNCION diHola()
             IMPRIME "Hola"
 
-    CLASE COCHE HEREDA DE VEHICULO;
+    CLASE COCHE HEREDA DE VEHICULO Y NO QUIERO QUE PUEDAN HEREDAR DE MI  /esto se puede agregar
         (heredada) VELOCIDADMAXIMA
         (heredada) TIPOGASOLINA
         NUMERO_DE_PUERTAS;
@@ -835,7 +835,7 @@ la herencia consiste en que una clase hereda metodos y propiedades de otra clase
         FUNCION GETTERNUMERODEPUERTAS() INTEGER
             DEVUELVE ESTA_CLASE.NUMERO_DE_PUERTAS
 
-    CLASE COUPE HEREDA DE COCHE
+    CLASE COUPE HEREDA DE COCHE XXXXXX  /esto no se permitiria xq coche no deja heredar para abajo 
         (heredada) VELOCIDADMAXIMA
         (heredada) TIPOGASOLINA
         (heredada) NUMERO_DE_PUERTAS;
@@ -850,5 +850,532 @@ la herencia consiste en que una clase hereda metodos y propiedades de otra clase
                  DEVUELVE ESTA_CLASE.NUMERO_DE_PUERTAS
  
  esto es herencia multiple, es decir que la clase coupe hereda propiedades de la clase coche, que a su vez hereda propiedades de vehiculo. cada clase hereda las funciones de su clase padre y añade las suyas propias. 
+
+una FINAL CLASS es una clase a la cual no vamos a poder heredar, no deja que nadie herede de ella. 
+utilizo una clase padre cuando tengo la certeza que no voy a necesitar mas metodos de los que hay en esa clase. en cambio en la clase hija, necesito mas metodos aparte de los que ya trae de la clase padre. 
+las clases abstractas sirven para implementar clases parcialmente. entonces con esto delego en las clases hijas como hacer las cosas, pero en la clase padre pongo los metodos abstractos. los metodos abstractos me dicen que tengo que hacer pero no me dicen como. 
+
+import java.beans.VetoableChangeListener;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+        coche.setSonido("BRRR");
+        System.out.println(coche.getSonido());
+
+
+    }
+}
+
+abstract class  Vehiculo {
+    int velocidadMaxima;
+    String matricula;
+    String sonido;
+
+    public Vehiculo (){
+        System.out.println("Estoy en el constructor de Vehiculo");
+    }
+
+    abstract public String getSonido();
+    abstract public void setSonido (String sonido);
+
+    public void setSonido() {}
+    }
+
+
+class Coche extends Vehiculo {
+    public String getSonido(){
+        System.out.println("Soy un super sonido " + this.sonido);
+        return this.sonido;
+    }
+    public void setSonido (String sonido) {
+        this.sonido = sonido;
+    }
+
+}
+
+class Moto extends Vehiculo {
+    public String getSonido (){
+        return "soy un sonidillo de moto: " + this.sonido;
+    }
+
+
+    public void setSonido(String sonido) {
+
+    }
+
+
+}
+
+
+HAY MULTIPLES TIPOS DE HERENCIA: es la relacion que nosotros creamos entre las clases. 
+le herencia multiple consiste en que una clase hereda de dos o mas clases padres. 
+la herencia simple una clase hereda de otra. 
+la herencia multinivel es igual, salvo que hay mas clases que van heredando de otras. 
+La herencia multiple una clase herada de dos o mas clases. 
+
+CLASE VEHICULO
+        PRIVADA VELOCIDAD MAXIMA;
+
+        FUNCION diHola()
+            IMPRIME "Hola"
+CLASE MOTOR
+    PRIVADA TIPOGASOLINA;    
+
+    CLASE COCHE HEREDA DE VEHICULO. y de MOTOR  Y NO QUIERO QUE PUEDAN HEREDAR DE MI  /esto se puede agregar
+        (heredada) VELOCIDADMAXIMA   /esta seria clase multinivel, xq hereda metodos y propiedades de dos clases distintas. 
+        (heredada) TIPOGASOLINA
+        NUMERO_DE_PUERTAS;
+
+        (heredada) FUNCION diHola()
+            IMPRIME "Hola"
+
+        FUNCION SETTERNUMERODEPUERTAS (INTEGER puertas)
+            ESTA_CLASE.NUMERODEPUERTAS = puertas
+
+        FUNCION GETTERNUMERODEPUERTAS() INTEGER
+            DEVUELVE ESTA_CLASE.NUMERO_DE_PUERTAS
+
+
+HERENCIA JERARQUICA: de una clase base, derivan otras clases, y despues derivan mas clases, una especie de arbol de jerarquia. 
+
+CLASE A
+CLASE B HEREDA DE A
+    CLASE UNO HEREDA DE B
+    CLASE DOS HEREDA DE B
+CLASE C HEREDA DE A
+    CLASE PERRO HEREDA DE C
+    CLASE GATO HEREDA DE C
+CLASE D HEREDA DE A
+    CLASE COCHE HEREDA DE D
+    CLASE MOTO HEREDA DE D 
+
+como que hubiera una especie de jerarquias. 
+
+HERENCIA HIBRIDA:
+    combina modelos de herencia. 
+
+CLASE A
+    CLASE B HEREDA DE A
+    CLASE C HEREDA DE A
+
+CLASE D HEREDA DE B Y HEREDA DE C
+si se dibuja es una especie de rombo.
+
+POLIMORFISMO: consiste en que las clases hijas implementan la misma funcion pero hacen distinta cosa. 
+
+CLASE VEHICULO
+        PRIVADA VELOCIDAD MAXIMA;
+
+        FUNCION diHola()
+            IMPRIME "Hola"
+CLASE MOTOR
+    PRIVADA TIPOGASOLINA;    
+
+    CLASE COCHE HEREDA DE VEHICULO. y de MOTOR  
+        (heredada) VELOCIDADMAXIMA  . 
+
+        (heredada) FUNCION diHola()
+            IMPRIME "soy un robot y se contar "
+
+        FUNCION SETTERNUMERODEPUERTAS (INTEGER puertas)
+            ESTA_CLASE.NUMERODEPUERTAS = puertas
+
+        FUNCION GETTERNUMERODEPUERTAS() INTEGER
+            DEVUELVE ESTA_CLASE.NUMERO_DE_PUERTAS
+derivo una funcion de una clase base, y la tengo en mi clase hija. pero no quiero que haga lo que hacia en la clase base, entonces la puedo reescribir "overwrite" y que haga lo que yo quiero que haga en la clase hija. 
+import java.beans.VetoableChangeListener;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+        coche.diHola();
+
+    }
+}
+
+class  Vehiculo {
+    int velocidadMaxima;
+
+    public void diHola () {
+    System.out.println( "Hola!!");
+    }
+}
+
+class Coche extends Vehiculo {
+    public void diHola (){
+        System.out.println("Soy un coche");
+    }
+}
+
+la funcion es ejecutada en la instancia mas cercana, si no existe en este caso en la clase derivada, ejecuta de la clase padre. 
+
+algunos lenguajes tienen polimorfismo a nivel de funciones, como que una misma funcion puede aparecer muchas veces en una misma clase devolviendo valores diferentes o aceptando parametros diferentes. 
+Ej:
+
+FUNCION SumaNumeros(ENTERO a, ENTERO b) ENTERO
+    DEVUELVE A +B
+
+FUNCION SumaNumeros (FLOTANTE a, FLOTANTE b) FLOTANTE
+    DEVUELVE A +B
+
+FUNCIONA SumaNumeros (DOUBLE a, DOUBLE b) 
+    IMPRIME A + B
+
+import java.beans.VetoableChangeListener;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+        coche.diHola();
+
+        coche.sumaNumeros(32, 5.4);
+
+    }
+}
+
+class  Vehiculo {
+    int velocidadMaxima;
+
+    public void diHola () {
+    System.out.println( "Hola!!");
+    }
+}
+
+class Coche extends Vehiculo {
+    public void diHola (){
+        System.out.println("Soy un coche");
+    }
+
+    public int sumaNumeros (int a, int b) {
+        System.out.println("Soy el sumaNumeros de INT");
+        return a + b;
+    }
+
+    public float sumaNumeros (float a, float b) {
+        System.out.println("Soy el sumaNumeros de float");
+        return a + b + (float) 9.0;
+    }
+
+    public void sumaNumeros (double a, double b) {
+        System.out.println("Soy el sumaNumeros de double");
+        System.out.println( "El resultado es: " + (a + b));
+
+    }
+}
+
+esto tambien se llama sobreescritura de metodos. 
+
+INTERFACES: 
+son parecidas a las clases abstractas pero no nos implementan ninguna funcion, si no, que nos dicen lo que nosotros tenemos que implementar. 
+
+INTERFACE COCHE
+    FUNCION ACELERAR(NUMERO CUANTAVELOCIDAD)
+    FUNCION FRENAR (NUMERO CUANTAVELOCIDAD)
+
+cuando yo creo una clase tengo que implementar los metodos que esa interface ha decidido. una forma que yo tengo para decirle a un programador que cuando implementa una clase tiene que tambien implementar los metodos que yo tengo definidos en una interface. 
+yo creo una interface, le digo que es lo que tiene que tener las clases que se creen a partir de ahi. 
+
+import java.beans.VetoableChangeListener;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+
+    }
+}
+
+interface Vehiculo {
+    void Acelerar (int cuantaVelocidad);
+    void Frenar (int cuantaVelocidad);
+        }
+
+class Coche implements Vehiculo {
+    public void Acelerar(int cuantaVelocidad) {
+            }
+
+    public void Frenar (int cuantaVelocidad) {
+
+    }
+
+}
+
+class Moto {
+
+}
+
+una interface nos da una serie de funciones o incluso variables, que necesitamos implementar en las clases que creemos. 
+
+METODOS DE CLASE:
+CLASE A
+    PROPIEDAD1
+    PROPIEDAD2
+
+metodo de clase: es una funcion dentro de la clase. signature o firma tienen o prototipo. es la forma en la que la declaramos. declara el ambito: public o private, 
+(VISIBILIDAD) (NOMBRE_METODO) (PARAMETROS) (VALOR)
+PUBLICA leerLibros (TEXTO libro) TEXTO contenido
+obligatorio poner si es publica o privada, obligatorio el nombre, opcional los parametros y opcional lo que devuelve.
+para invocar a los metodos tengo que crear un objeto e instanciarlo, es decir:
+Coche coche = new Coche();
+        coche.Acelerar(60);
+
+cuando el metodo esta en otra clase, tengo que crear una instancia (objeto) para poder llamar a ese metodo. luego la invocare mediante nombrevariable.nombremetodo(parametros).
+
+puedo escribir una funcion en el main, y como parametro puedo poner una interfaz. 
+
+ public static void EjecutaAcelerar (Vehiculo vehiculo) {
+        
+    }
+en realidad en este caso pido al programador que me pase como parametro de esa funcion el nombre de una clase que implemente esa interfaz. 
+la interfaz obliga a un programador a usar esos metodos, por eso yo requiero como parametro una clase que implemente esa interfaz.
+
+import java.beans.VetoableChangeListener;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+        EjecutaAcelerar(coche);
+
+    }
+
+    public static void EjecutaAcelerar (Vehiculo vehiculo) {
+        vehiculo.Acelerar(15);
+
+    }
+}
+
+interface Vehiculo {
+    int variables = 0;
+    void Acelerar (int cuantaVelocidad);
+    void Frenar (int cuantaVelocidad);
+        }
+
+class Coche implements Vehiculo {
+    public void Acelerar(int cuantaVelocidad) {
+        System.out.println("Coche() -> Acelerar()");
+            }
+
+    public void Frenar (int cuantaVelocidad) {
+        System.out.println("Coche() -> Frenar()");
+
+    }
+
+}
+
+se dice que una clase satisface una interface, cuando esa clase implementa todos los metodos de esa interfaz. 
+esto se llama metaprogramacion, xq no los puedes ejecutar de forma diferente. mientras cumplas el prototipo, el como lo hagas es de forma independiente. 
+
+INTERFAZ USUARIOS
+    METODO GETUSUARIO()
+
+CLASE USUARIOSTXT IMPLEMENTA LA INTERFAZ USUARIOS /funciones por debajo que cambian 
+    METODO GETUSUARIOS()
+        LEER FICHERO.TXT
+        DEVOLVER TODAS LAS LINEAS 
+
+CLASE USUARIOSBBDD IMPLEMENTA LA INTERFAZ USUARIOS  /funciones por debajo que cambian 
+    METODO GETUSUARIOS()
+    CONECTARME A MYSQL
+    EJECUTAR "SELECT" "FROM...."
+    DEVOLVER TODOS LOS RESULTADOS
+
+CLASE USUARIOSREDIS IMPLEMENTA LA INTERFAZ USUARIOS  /funciones por debajo que cambian 
+    METODO GETUSUARIOS()
+        CONECTATE A REDIS
+        DEVOLVER TODOS LOS USUARIOS
+
+FUNCION LISTARUSUARIOS (NECESITO INTERFAZ USUARIOS)  /funcion envoltorio NO CAMBIA
+    DE LA INTERFAZ_USUARIOS EJECUTA EL METODO GETUSUARIOS  /siempre llama nombre de interfaz y metodo
+
+INVOCO A LISTARUSUARIOS (TE DOY OBJETO USUARIOSREDIS)
+
+lo que cambia aca es la implementacion del codigo get usuarios, que fue decidida en las implementaciones de la interfaz. es una especie de crear el envoltorio para satisfacer la interfaz y luego en las clases puedo modificar los metodos. 
+esa funcion envoltoria invoca por debajo a la real, la real puede cambiar pero la envoltorio no cambia para nada. 
+
+import java.beans.VetoableChangeListener;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+        Moto moto = new Moto ();
+
+
+        EjecutaAcelerar(coche);
+        EjecutaAcelerar(moto);
+
+    }
+
+    public static void EjecutaAcelerar (Vehiculo vehiculo) {
+        vehiculo.Acelerar(15);
+
+    }
+}
+
+interface Vehiculo {
+    int variables = 0;
+    void Acelerar (int cuantaVelocidad);
+    void Frenar (int cuantaVelocidad);
+        }
+
+class Coche implements Vehiculo {
+    public void Acelerar(int cuantaVelocidad) {
+        System.out.println("Coche() -> Acelerar()");
+            }
+
+    public void Frenar (int cuantaVelocidad) {
+        System.out.println("Coche() -> Frenar()");
+
+    }
+
+}
+
+class Moto implements Vehiculo {
+    public void Acelerar(int cuantaVelocidad) {
+        System.out.println("moto() -> Acelerar()");
+    }
+
+    public void Frenar(int cuantaVelocidad) {
+        System.out.println("moto() -> Frenar()");
+    }
+}
+
+
+
+------
+
+PARAMETROS QUE PASAMOS A UNA FUNCION:
+    PASO POR VALOR: consiste en que cuando llamo a una funcion, copio los valores en memoria y se los doy
+
+FUNCION SUMA (INT A, INT B) {
+    DEVUELVE A + B
+}
+
+VAR VALA= 5;
+VAR VALB =10;
+SUMA (VAL1,VALB)  
+
+en este caso se dice que cuando se llama a la funcion, en los parametros, los nombres de las variables copian el valor asignado en memoria. se dice que es copia de los valores, xq los originales no se cambian. 
+los copian en una zona de memoria distinta, pero los valores originales no se modifican. consumo el doble de memoria, por lo tanto no me sirve cuando tengo valores muy pesados en memoria. 
+
+public static void main(String[] args) {
+        int valA = 5;
+        int valB = 10;
+
+        suma(valA, valB);
+        System.out.println(valA);
+        System.out.println(valB);
+    }
+
+    public static int suma (int a, int b) {  /en este caso, los valores de valA y valB se copian en las variables a y b de suma
+        return a + b;
+    }
+
+
+PASO POR REFERENCIA:
+tengo mis dos valores, y les digo que va a tener que trabajar la funcion con la direccion de memoria de esas variables. en lugar de copiar los valores, manipula los valores desde el mismo lugar de memoria.
+
+en java, cuando el parametro es un objeto, estamos haciendo un paso por referencia, xq le pasamos la referencia del objeto. a diferencia del anterior, se necesita un parametro del tipo coche, se refiere a un objeto. 
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+
+        cocheChanger(coche); / aca hace la funcion en el main, con la funcion definida anteriormente y con el parametro coche
+
+    }
+
+    public static void cocheChanger (Coche coche) { / aca a la funcion en el parametro le pone una variable / objeto, o sea referencia ese valor 
+        coche.velocidad += 50;  / aca seria el valor de la variable velocidad definida antes 0, sumandole 50 y que sea el resultado de cocheChanger
+    }
+}
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Coche coche = new Coche();
+
+        cocheChanger(coche);
+        cocheChanger(coche);
+
+        System.out.println(coche.velocidad);
+
+    }
+
+    public static void cocheChanger (Coche coche) {
+        coche.velocidad += coche.velocidad + 50;
+    }
+}
+cambio por referencia manipula la memoria de los parametros que le paso, ese valor luego permanece cambiado. 
+
+RECURSIVIDAD:
+una funcion/ metodo se va a llamar a si mismo, varias veces. 
+
+FUNCION SUMA (INT A, INT B) {
+    VAR TEMP = A + B
+    SUMA (A, TEMP)
+}
+vuelve a invocar a la misma funcion, con el primer parametro y con un segundo como la variable temp de resultado. si no se controla la funcion recursiva, hay que tener cuidado xq puede dañar elprograma. hay que saber cuando detenerla. 
+
+SI TEMP ES MAYOR A 15
+    PARA!
+
+    SUMA (A, TEMP)
+
+ej mas tipico: el factorial de un numero. 
+ejemplo de factorial recursivo en java, se usa este xq es mas facil y se invoca solo
+
+public static int factorial (int numero) {
+        int resultado;
+        if (numero == 1) {
+            return 1;
+        }
+        resultado = factorial(numero -1) * numero;
+        return resultado;
+    }
+
+ej de forma no recursiva
+
+ public static int factorialNR (int numero ) {
+        int temp;
+        int resultado = 1;
+        
+        for (temp = 1; temp <= numero; temp++) {
+            resultado = resultado * temp;
+        }
+        return resultado;
+    }
+
+
+public static int factorial (int numero) {
+        int resultado;
+
+        if (numero == 1) {
+            return 1;
+        }
+        resultado = factorial(numero -1) * numero;
+        System.out.println(resultado);
+        return resultado;
+    }
+
+    public static int factorialNR (int numero ) {
+        int temp;
+        int resultado = 1;
+
+        for (temp = 1; temp <= numero; temp++) {
+            resultado = resultado * temp;
+        }
+        System.out.println(resultado);
+        return resultado;
+    }
+
+LENGUAJES COMPILADOS E INTERPRETADOS:
 
 
