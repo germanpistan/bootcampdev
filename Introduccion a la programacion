@@ -1377,5 +1377,97 @@ public static int factorial (int numero) {
     }
 
 LENGUAJES COMPILADOS E INTERPRETADOS:
+un compilador agarra una secuencia de caracteres/ fichero de codigo y lo convierte en otra cosa. una especie de traductor. agarra una entrada y la convierte en codigo maquina u otro lenguaje. 
+tipos:
+    GENERAN CODIGO MAQUINA
+    GENERAN REPRESENTACION INTERMEDIA
+se diferencian por el objetivo final.
 
+un lenguaje compilado se compila a codigo maquina, un lenguaje interpretado no, se compila a otra cosa. 
 
+CODIGO FUENTE -> [AQUI TRABAJA EL COMPILADOR] -> CODIGO FINAL 
+
+VAR VARIABLE = 10;
+
+primero tiene el analizador lexico, y genera el token. analiza cada letra del codigo fuente y va generando el token. define cada una de las letras analizandola. 
+despues el compilador avanza, y va juntando los token para seguir leyendo. 
+
+VAR -> "PALABRA RESERVADA VAR" (COMO IF, WHILE, DO, STATIC)
+VARIABLE -> "IDENTIFICADOR"
+= -> "SIMBOLO DE ASIGNACION"
+10 -> "NUMERO_ENTERO"
+
+esto es analizador lexico y token. 
+cuando ya tiene todo el analisis, pasa a la siguiente fase: analisis sintactico.
+analiza si tiene coherencia. 
+ VAR VARIABLE =; (esto no tendria sentido, faltaria el numero o la variable) (esto hace el analisis sintactico, si tiene sentido lo que escribimos)
+ if (numero > 10) {...}
+ 1.IF
+ 2. ABRE_PARENTESIS
+ 3. CONDICION
+ 4. CIERRA_PARENTESIS
+ 5. ABRIR LLAVE
+ 6. EXPRESIONES
+ 7. CIERRA LLAVE
+
+ esto ya tendria grabado el analisis sintactico, a modo de ejemplo. 
+luego de analizar, y da todo ok, genera un codigo intermedio (que no es el final). 
+este codigo intermedio, es de mas bajo nivel, que sea mas facil de leer, y por si lo necesito a futuro, simplifica el lenguaje humano a algo que esta mejor representado y que pueda manipular mejor el compilador. 
+aca se genera una estructura de datos llamada 
+ABSTRACT SYNTAX TREE (arbol sintactico abstracto) representa todo el codigo nuestro pero a nivel de estructura de datos. 
+
+FASE OPTIMIZACION DEL CODIGO INTERMEDIO: generan un codigo mas optimo que el escrito, o eliminar codigo redundante. 
+Var variable = 3;
+if (variable ==0) {
+    acciones;
+}
+(podrian eliminar este codigo xq se dan cuenta que jamas ocurre, ya que la variable es 3 y ese if funciona con variable igual a 0)
+tambien determina que es mas costoso de hacer a nivel computacional, para cambiar algunos codigos por ej con los for, hace "unroll loops".
+
+FASE DE GENERACION DE CODIGO: aca es donde vemos los resultados. aca es donde genera codigo maquina o codigo para ser interpretado. 
+FINALIZA COMPILADOR.
+
+TIPOS DE LENGUAJES: 
+LENGUAJE COMPILADO: se compila a codigo maquina y por lo tanto se ejecuta en nuestra compu a traves del sistema operativo. 
+    C
+    C++
+    RUST
+    GO
+la diferencia con los interpretados, es que, no son ejecutados directamente por el sistema operativo, se ejecuta a traves de una maquina virtual o interprete. no se ejecutan nativamente en el procesador. 
+
+    JAVA (todo lo que hicimos con java se ejecuto con una maquina virtual llamada JVM o Java Virtual Machine) en este caso lee un "BYTECODE", codigo para ser interpretado. 
+
+    BYTECODE -> JVM -> RESULTADO FINAL 
+
+suponemos C: CODIGO COMPILADO 
+EXIT (0);
+MOV AX, 4 Ch
+INT 21h
+    66 B8 4C 00 CD 21 (esto en binario, no hexadecimal)
+
+SUPONEMOS CODIGO INTERPRETADO:
+
+EXIT (0);
+    CALL EXIT (aca lee el interprete y ejecuta lo siguiente )
+    -> EJECUTAR SALIR DE LA APLICACION 
+
+    interpretados mas utilizados:
+    JAVA
+    PYTHON
+    PHP
+    DART
+    JAVASCRIPT
+    RUBY
+
+LENGUAJES COMPILADOS E INTERPRETADOS:
+    C# 
+    aca se genera un codigo intermedio, MSIL (Microsoft Intermediate Language) y se interpreta. pero el interprete, para ejecutarlo, decide en algunas partes compilar para hacer mas eficiente el codigo. 
+    a esta tecnica se llama JIT (Just In Time) o JIT compiler. 
+    
+    
+    un lenguaje compilado siempre va a ser mas rapido que un interpretado, xq el interpretado necesita un programa interprete. 
+    los emuladores son compiladores. 
+    los lenguajes interpretados son mucho mas faciles de depurar. 
+
+otra ventaja del lenguaje interpretado es que una vez que lo escribis en interprete lo podes ejecutar en cualquier plataforma, ya que lleva su maquina virtual para ejecutar. 
+el compilado no, hay que tener el codigo maquina para cada procesador. en este caso hay que hacer el generador de codigo maquina, para cada una de las plataformas. 
