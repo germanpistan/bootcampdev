@@ -1,0 +1,373 @@
+TIPOS DE DATOS EN JAVA:
+
+public class tipos {
+    public static void main(String[] args) {
+        
+        // enteros
+        byte number1 =1;   // 1 byte
+        short number2 =2; // 2 byte
+        int number3 = 3; // 4 byte  (mas capacidad)
+        long number4 = 4; // 8 bytes (mas capacidad)
+        
+        // punto flotante
+        float decimal1= 4.9f;
+        double decimal9 = 9.99d;//(mas capacidad)
+        
+        // caracter
+        char caracter1 = 'a';
+        
+        //boleanos
+        boolean verdadero = true;
+        boolean falso = false;
+        
+        //cadenas de texto
+        String nombre = "Alan";
+        String apellido = "Sastre";
+        
+        //tipos envoltorios
+        
+        Integer numero = null; // este tipo de datos nos deja poner datos nulos, en los otros datos primitivos no
+        Long numero2 = 2L; 
+
+OPERADORES:
+
+public class Operadores {
+    public static void main(String[] args) {
+        // Operadores
+        
+        //aritmeticos
+        // + - / * %
+        int number1 =1;
+        int number2= 2;
+        int resultado = number1 + number2;
+        int resultado2 = number1 - number2;
+        int resultado3 = number1 * number2;
+        double resultado4 = number1 / number2;
+        
+        // logicos, relacion, comparacion, booleanos
+        /*
+        >
+        >=
+        <
+        <=
+        ==
+        != distinto
+        && and
+        || or
+        ! negador
+         */
+        
+        // asignacion
+        /*
+        = 
+        +=
+        -=
+        *=
+        /=
+        %=
+        
+         */
+        
+        // incremento
+        // ++
+        
+        // decremento
+        
+        // --
+        
+        // concatenacion
+        // + (para concatenar dos textos)
+
+    }
+}
+
+FUNCIONES:
+tiene identificador y la puedo invocar las veces que quiera. argumento es cuando pasamos valores, y parametro que es cuando recibe. 
+si queremos devolver algo, es return. antes indicamos el tipo de dato. 
+Ambito y retorno:
+el modificador al principio indica la visibildad de la funcion, public o private. cuando ponemos static, es xq esa funcio
+pertenece a esa clase.si se pone public, podriamos llamar la funcion desde otra clase.
+se invoca Funciones.HolaMundo(); / primero se pone el nombre de la clase.funcion 
+si no se pone el ambito, es modificador solo de paquete. 
+void es cuando no devuelve nada
+si no, se pone el tipo de dato, y luego el return
+SOBRECARGA DE FUNCIONES:
+no duplicar funciones, pero lo que puedo hacer es poner el mismo nombre pero con distintos parametros. voy agregando
+parametros para sobrecargarla. 
+
+public class funciones {
+    public static void main(String[] args) {
+
+        holaMundo();
+        // holaMundo();
+
+        //holaMundo("German");
+        // holaMundo ("Roberto");
+        String hola = devolverHola();
+        System.out.println(hola);
+
+
+    }
+
+    public static void holaMundo() {
+        System.out.println("Hola Mundo");
+        System.out.println("Hola Mundo");
+    }
+
+    private static void holaMundo (String name) { // aca sobrecargo funcion con el mismo nombre pero sumando parametros
+        System.out.println("Hola " + name);
+    }
+
+    private static void holaMundo (String name, String surname) {
+        System.out.println("Hola " + name + " " + surname);
+    }
+
+    private static String devolverHola(){
+        return "Hola";
+    }
+
+    private static int sum (int num1, int num2) {
+        return num1 +num2;
+    }
+}
+
+funcion constructor tambien se puede sobrecargar. tambien funciona cuando se cambia el tipo de dato, para sobrecargar la misma funcion;
+es decir, agregamos parametros a la misma funcion, sin duplicarlas. 
+esto puede ofrecer a la misma funcion tener mas variaciones. 
+
+ESTRUCTURAS DE CONTROL CONDICIONAL:
+public class IfElse {
+    public static void main(String[] args) {
+        boolean check = 5<10;
+
+        if (check) {
+            System.out.println("verdadero");
+        }
+    }
+}
+
+public class IfElse {
+    public static void main(String[] args) {
+        boolean check = 5>10;
+
+        if (check) {
+            System.out.println("verdadero");
+        }
+        else {
+            System.out.println("falso");
+        }
+        System.out.println("fin");
+    }
+}
+puedo usar tambien else if
+
+BUCLE FOR:
+primero se pone for , luego se declara una variable que puede llamarse i,j,k,l, depende cuantos bucles
+eso seria la condicion de comienzo, luego viene la condicion de parada y luego de condicion de incremento.
+public class forloop {
+    public static void main(String[] args) {
+        for (int i=0; i <10;i++) {
+            System.out.println("Hola Mundo");
+        }
+    }
+
+}
+cuando se incumple el bucle, se rompe. seria con la condicion de parada.
+con esto se puede saber cuantas iteraciones hay, y se usa generalmente con arrays. 
+
+BUCLE WHILE:
+public class whileLoop {
+    public static void main(String[] args) {
+
+
+        int count =0;
+        while (count <=10){
+
+            System.out.println("Hola Mundo" + " "+ count);
+            count++;  // esta es la condicion que hace que cambie la evaluacion y que pueda romperse el bucle
+        }
+        System.out.println("fin");
+    }
+}
+
+hay que tener una condicion de cumplimiento primero y luego poner el codigo que quiero repetir.
+siempre tengo que tener cuidado de cerrar el while, que no sea infinito
+
+CONTINUE Y BREAK:
+permite alterar los bucles for y while. 
+
+CONTINUE:
+public class whileLoop {
+    public static void main(String[] args) {
+
+
+        int count =0;
+        while (count <=10){
+            count++; //condicion de incremento
+
+            if (count ==6){ // cuando llega al valor 6, no lo imprime. salta la condicion y sigue el codigo normal.
+                continue;
+            }
+            System.out.println("Hola Mundo" + " "+ count);
+
+            
+        }
+        System.out.println("fin");
+    }
+}
+BREAK:
+
+public class whileLoop {
+    public static void main(String[] args) {
+
+
+        int count =0;
+        while (count <=10){
+            count++; //condicion de incremento
+
+            if (count ==6){ 
+                break; // rompe el bucle o el flujo de ejecucion
+            }
+            System.out.println("Hola Mundo" + " "+ count);
+
+
+        }
+        System.out.println("fin");
+    }
+}
+rompe el flujo de ejecucion, sale del bucle pero el programa sigue, sigue con el codigo de afuera. 
+
+SENTENCIA SWITCH:
+
+public class Switchcase {
+    public static void main(String[] args) {
+        String weather = "sunny";
+        switch (weather) {
+            case "sunny":
+                System.out.println("el tiempo es soleado");
+                break;
+            case "cloudy":
+                System.out.println("el tiempo es nublado");
+                break;
+            default:
+                System.out.println("no se cumple nada");
+                break;
+        }
+    }
+}
+
+se verifican distintos casos, y si o si tengo que poner break para cerrar cada caso. 
+se usa cuando se tienen que evaluar multiples situaciones, para simplificar la evaluacion de casos. 
+
+CREAR CLASES:
+tiene estructura; primero atributos, constructores y comportamiento 
+
+public class Coche {
+
+    // atributos: caracteristicas que tendria un coche y que varian de uno a otro
+    String color;
+    String fabricante;
+    String modelo;
+    Double peso;
+    Double largo;
+    Integer velocidad =0;
+
+    // constructores: me permite crear objetos de esta clase
+    public Coche(String color, String fabricante, String modelo, Double peso, Double largo) {
+        this.color = color;
+        this.fabricante = fabricante;
+        this.modelo = modelo;
+        this.peso = peso;
+        this.largo = largo;
+    }
+
+
+    //comportamiento
+    public void acelerar(Integer cantidad) {
+        if (cantidad > 0 && cantidad <=120){
+        this.velocidad += cantidad;
+    }
+
+}
+CREAR objetos
+
+public class CocheMain {
+    public static void main(String[] args) {
+        String coche = "alfa romeo";
+
+        Coche cocheobj = new Coche("rojo","honda","civic",1430.45,5.4);
+
+        cocheobj.acelerar(60);
+        System.out.println(cocheobj);
+
+    }
+}
+
+HERENCIA:
+una clase base nos hereda codigo y las clases hijas pueden agregar mas propiedades. 
+
+package com.OpenBootcamp;
+
+public class cocheElectrico extends Coche { // usando la palabra reservada extends
+    String motorElectrico;
+    public cocheElectrico() {
+
+    }
+
+
+    public cocheElectrico(String motorElectrico) {
+        this.motorElectrico = motorElectrico;
+    }
+
+    @Override
+    public String toString() {
+        return "cocheElectrico{" +
+                "motorElectrico='" + motorElectrico + '\'' +
+                '}';
+    }
+}
+
+METODO SUPER: 
+me lleva a los parametros de una clase superior, para invocar los parametros de la clase coche base. 
+
+package com.OpenBootcamp;
+
+public class cocheElectrico extends Coche {
+    String motorElectrico;
+    public cocheElectrico() {
+
+    }
+
+
+    public cocheElectrico(String color, String fabricante, String modelo, Double peso, Double largo) {
+        super(color, fabricante, modelo, peso, largo);  //es vez de nombrar nuevamente todos los parametros
+        //directamente invoco super y lo autocompleto
+    }
+
+    @Override
+    public String toString() {
+        return "cocheElectrico{" +
+                "motorElectrico='" + motorElectrico + '\'' +
+                '}';
+    }
+}
+
+public class CocheMain {
+    public static void main(String[] args) {
+        String coche = "alfa romeo";
+
+        Coche cocheobj = new Coche("rojo","honda","civic",1430.45,5.4);
+
+        cocheobj.acelerar(60);
+        System.out.println(cocheobj);
+
+    }
+
+    cocheElectrico cocheElectrico2 = new cocheElectrico("azul","ford","mustang",185.4,3.65);
+
+    public cocheElectrico getCocheElectrico2() {
+        return cocheElectrico2;
+    }
+
+}
+el metodo super entonces me permite reutilizar codigo desde una clase hija hacia una clase base.
