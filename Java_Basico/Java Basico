@@ -371,3 +371,340 @@ public class CocheMain {
 
 }
 el metodo super entonces me permite reutilizar codigo desde una clase hija hacia una clase base.
+
+SOBREESCRITURA: permite modificar el comportamiento del metodo. 
+ @Override    
+    public void acelerar(Integer cantidad); {
+        Integer cantidadAjustada = cantidad *2;
+        super.acelerar(80);
+    }
+    
+
+aca lo que se hace invoca el codigo original en la clase superior,. y luego lo puedo modificar. 
+
+POLIMORFISMO:
+trabajas con muchas formas,pero quiero tratarlos como una clase base. 
+
+public class PolimorfimoMain {
+    public static void main(String[] args) {
+        Coche coche1 = new Coche();
+        Coche coche2 = new Coche();
+        Coche coche3 = new Coche();
+        
+        
+cuando tengo herencia y quiero tratar a todos por igual, a un nivel mas elevado o general. 
+se reemplaza el primer tipo de clase, por la clase base. 
+        Coche coche5 = new cocheElectrico ();  
+        Coche coche6 = new CocheHibrido();
+
+
+instance of, nos permite sobre un objeto ver de donde viene, 
+cuando se usa el poliformismo puedo tratar a todos los objetos por igual, desde el tipo base. 
+nos permite usar estructuras de datos y bucles para poder iterar a traves de arrays de coches. 
+        if (coche5 instanceof cocheElectrico){  //aca verdadero xq comprueba que coche 5 es electrico
+            System.out.println("cocheElectrico")
+        }
+
+        if (coche6 instanceof cocheElectrico){
+            System.out.println("cocheElectrico")  //en este caso es falso,
+        }
+
+cuando no usamos poliformismo tratamos con la clase en concreto, mientras que cuando si usamos, tratamos a todos por igual desde la clase que esta encima. 
+
+
+CLASES ABSTRACTAS: no se pueden instanciar, y es cuando hay herencia. nos sirve para crear una clase base
+y que tenga ciertos atributos pero solo pueda instanciarse a traves de clases hijas, capaz xq las clases hijas
+tienen mas datos o estan mas completas.
+
+        public abstract class Coche
+
+se usa para forzar que solo puede instanciarse a traves de las clases hijas. 
+puede tener todo igual de una clase normal, pero no se puede instanciar. solo se puede isntanciar a traves 
+de las clases hijas. se fuerza a los dev a que usen las clases hijas.
+no se puede crear objetos de las clases abstractas. 
+
+INTERFACES:
+define una especie de contrato de que es lo que va a  hacer, y luego una clase que implemente esa interfaz
+define como hay que hacerlo. 
+se crea la interface, y se definen los metodos. luego una clase normal los tiene que implementar. 
+
+public interface CocheService {
+    public Coche crearCocheDemo(); // aca se pone ; no hay que confundir con atributo, se crea el metodo 
+    //pero no tiene cuerpo, solo la asignacion. 
+
+}
+
+para implementar: palabra reservada implements.
+
+public class CocheServiceClassicImpl implements CocheService {
+    @Override
+    public Coche crearCocheDemo() {
+        return new cocheElectrico() {
+    
+        }
+    }
+}
+aca creo un main para probar las interfaces, y aplico una especie de polimorfismo de interface
+
+public class InterfacesMain {
+    public static void main(String[] args) {
+        CocheService service = new CocheServiceClassicImpl();
+        CocheService service2 = new CocheServiceDeportivoImpl();
+    }
+}
+
+
+package com.interfaces;
+
+import com.OpenBootcamp.Coche;
+
+public class InterfacesMain {
+    public static void main(String[] args) {
+        CocheService service = new CocheServiceClassicImpl();
+        CocheService service2 = new CocheServiceDeportivoImpl();
+
+        Coche coche1 = service.crearCocheDemo();
+        Coche coche2 = service2.crearCocheDemo();
+
+    }
+}
+
+se puede implementar todo esto cuando se trabaja con bases de datos, 
+una interfaz que define como se trabaja con una base de datos, y la implementacion para como trabajar
+con una base de datos en particular 
+me proporciona desacoplar el codigo, para mantener intacta la clase main. 
+
+REFACTORING: consiste en adaptar un codigo y tenerlo mas legible, y mantenerlo a largo plazo. 
+un ejemplo es cuando tengo grupos de condiciones. agrupo estas condiciones en un metodo y luego la invoco. 
+otro ejemplo es cuando tengo el mismo codigo en un if y else, directamente lo saco de los if y else
+y lo ejecuto afuera
+otro ejemplo es cuando tengo una clase con muchos atributos, puedo agrupar esos atributos en otra clase
+otra funcion es con boton derecho, extract method, el cual crea un metodo con varios parametros que puedo agrupar
+otra funcion de refactor en boton derecho, es extraer en variables algunos codigos que sean largos
+
+METODOS DE LA CLASE STRING:
+ // la clase string
+
+ /*
+    length
+    startsWith("")
+    endsWith("")
+    indexOf("")
+    subString (1,5)
+    trim()
+    equals()
+    compareTo
+
+*/
+
+    String mensaje = "Hola Mundo";
+    System.out.println(mensaje.length());   //esta funcion me da la longitud del caracter
+    mensaje.    //poniendo el punto, me da los distintos metodos a aplicar para la clase string
+    mensaje.toUpperCase // me devuelve el mismo texto pero en mayusculas, no modifica, si quiero
+    //tenerlo tengo que almacenarlo en otra variable
+    String mensajeMAY = mensaje.toUpperCase();
+    System.out.println(mensajeMAY);
+
+    funcion trim //elimina espacios no deseados
+
+    otra funcion para comparar strings, equals. 
+    String otro = "Hola MUNDO"
+    uso if(mensajeMAY.equals(otro));
+        System.out.println("Verdadero");
+
+con equalsIgnoreCase ignora las mayusculas y minusculas y compara. 
+
+ARRAYS: estructura de datos que agrupa variables. 
+
+public class ArraysMain {
+    public static void main(String[] args) {
+        String nombre1 = "nombre 1";
+        String nombre2 = "nombre 2";
+        String nombre3 = "nombre 3";
+        // puedo crear una estructura de datos para englobar estas variables 
+        
+        String [] nombres = new String[3];  //tipo de variable, corchetes, identificador, 
+        // igual a new tipo de variable y [cantidad de datos que quiero en el array]
+    }
+}
+//ahora para usarlas, las tengo que rellenar, ya estan creadas pero vacias
+        
+        nombres[0] = nombre1;  //siempre empieza en la posicion 0, y voy agregando los nombres
+        nombres[1] = nombre2;
+        nombres[2] = nombre3;
+
+//si quisiera iterar sobre esa lista, imprimir o mostrar
+
+        for (int i = 0; i < nombres.length; i++) {  //.length() me da la longitud para el tamaño de un array
+            System.out.println(nombres[i]);
+
+        }
+estos dos comandos son iguales, solo que en el de abajo ya le paso los nombres y automaticamente detecta 
+la cantidad de datos que tiene ese array
+
+        String [] nombres = new String[4];
+        String [] nombres2 = new String[]{nombre1, nombre2, nombre3, nombre4}; //esto es igual al de arriba
+
+
+los arrays son estaticos, no puedo agregar datos por fuera de los limites del array. 
+
+LISTAS DINAMICAS:
+
+de esta forma se crean las LISTAS
+
+package comJavaBasico;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListMain {
+    public static void main(String[] args) {
+        List<String> nombres = new ArrayList<>(); // comando list <dentro el tipo de dato>
+        //identificador = new arrayList (el mas usado)
+            }
+}
+
+para agregarle elementos: uso el comando add, con la cantidad de datos que quiera, ya que como no es un array
+no es estatico, entonces no tengo limite para agregar. 
+
+public static void main(String[] args) {
+        List<String> nombres = new ArrayList<>();
+        nombres.add("nombre1");
+        nombres.add("nombre2");
+        nombres.add("nombre3");
+        nombres.add("nombre4");
+        nombres.add("nombre5");
+        nombres.add("nombre6");
+        
+        System.out.println(nombres);
+
+ // para iterar en estas listas conviene usar el bucle for each
+
+        for (String nombre : nombres) {  // for, tipo de dato, nombre de variable temporal
+        // : nombre de la lista , y luego imprimo si quiero para comprobar
+            System.out.println(nombre);      
+                   
+        }
+esto me permite trabajar con muchos datos de manera comoda y DINAMICAS
+
+creo una lista nueva de coches 
+
+        List<Coche> coches = new ArrayList<>();
+
+        coches.add(new Coche("Honda Civic")); 
+        coches.add(new Coche("alfa romeo"));
+        coches.add(new Coche("ford mondeo"));
+
+        System.out.println(coches);
+        for (Coche coche : coches) {  // con el bucle puedo imprimir cada uno de ellos
+            System.out.println(coche);
+        }
+    }
+
+MAPAS: me permite trabajar con pares de clave-valor. 
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapMain {
+    public static void main(String[] args) {
+
+        Map <String, String> personas = new HashMap<>(); // se crea el mapa con map de util.map
+        //luego <tipo de dato de clave, tipo de dato de valor(puede ser una clase tambien)> identificador= new HashMap (clase de mapa)
+        
+        personas.put("35216722", "Nombre Apellido 1"); //se usa generalmente cuando tengo 
+        // una unica clave para un dato, por ej dni
+        
+    }
+}
+
+        personas.put("35216722", "Nombre Apellido 1");
+        personas.put("38300950", "Nombre Apellido 2");
+        personas.put("37896321", "Nombre Apellido 3");
+
+        System.out.println(personas);
+
+        for (String key : personas.keySet()){  // para iterar sobre el mapa, con el keyset 
+            System.out.println(key);  //para sacar las claves del mapa
+        }
+
+        //si quisiera sacar los valores del mapa
+        
+        for(String value :personas.values()){  // despues del for, pongo el tipo de dato del valor, si es clase, va el nombre de la clase
+            System.out.println(value);
+        }
+
+        //tiene que venir de java.util, lo que se saca es un par de clave valor
+        for(Map.Entry <String, String> pair: personas.entrySet()){
+            System.out.println(pair.getKey() + " " + pair.getValue());
+        }  //se utiliza el map.Entry de java util y se hace con get key y get value
+
+TRY CATCH FINALLY: gestion de excepciones
+sirve para crear programas que no se detengan ante un determinado fallo 
+
+public class TryCatchMain {
+    public static void main(String[] args) {
+        try { //se pone primero try
+            int result = 5 / 0;  //genera el error y quiero excepcionar para que el codigo continue
+        } catch (ArithmeticException e) { //luego catch y el tipo de excepcion
+            e.printStackTrace();  //se lo imprime
+        }
+
+        System.out.println("fin"); // continua el programa
+
+    } //se ejecuta y mantiene el error, pero el programa sigue su curso
+    //hay que poner el e.printStackTrace(); para saber si tengo un error, si no el error no se imprime
+    
+    }
+
+entre el try {se pone el codigo que quiero saltar o hacer la expecion}
+luego del catch {se pone el codigo que quiero que se ejecute si se produce esa excepcion}
+
+ finally {
+            System.out.println("Cierre de recursos"); //este codigo se ejecuta siempre si o si, haya o no error
+            //es un cierre de recursos 
+            // la utilidad es: en el try, se pone el codigo que puede llegar a tener problemas y envolverlo en el try catch
+            //el finally se usa para cerrar los recursos, dejar todo como estaba al comienzo, para limpiar el entorno
+            //esto se hace generalmente cuando se trabaja con base de datos. 
+            
+        }
+
+THROW Y THROWS: otro gestor de excepciones
+palabra reservadas throw y throws. que me permite lanzar excepciones. 
+throws se usa en el metodo, en la asignatura, y throw es para lanzarla. 
+complementa a try catch, quien lanza la excepcion , la propaga al metodo de ese nivel para llamarla.
+
+10 ESTANDAR: para enviar y recibir datos.para entrar datos desde teclado
+
+package comJavaBasico;
+
+import java.util.Scanner;
+
+public class ScannerMain {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);  //se crea el objeto scanner y dentro System.in para leer de la entrada
+        System.out.println("por favor introduce un nombre");
+        String nombre = scanner.nextLine(); //se le asigna variable a esa entrada
+
+        System.out.println("el nombre introducido es: " + nombre);
+    }
+
+}
+
+
+        public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);  //se crea el objeto scanner y dentro System.in para leer de la entrada
+        System.out.println("por favor introduce un nombre");
+        String nombre = scanner.nextLine();
+        
+        System.out.println("por favor introduce un numero");
+        int numero = scanner.nextInt();  // puedo ingresar un numero con next.Int();
+
+        System.out.println("el nombre introducido es: " + nombre);
+        System.out.println("el numero introducido es: " + numero);
+
+
+
+
+
+
