@@ -1,0 +1,337 @@
+ruta de aprendizaje de java:
+java SE (standar edition)
+Java avanzada (spring)
+es multiple paradigma, de alto nivel, facil de usar, es uno de los mas populares
+
+
+CALCULADORA NERDEARLA 
+
+https://docs.google.com/spreadsheets/d/1ceRosaOf8QgYv9bPlvpqxlvLddO2mtttDTLrEmiM-_M/htmlview?pru=AAABgpJm0Zo*E_AntloQZ-Kz1KNZIBL8MQ#
+
+TABLA DE REFERENCIA DE SUELDOS
+
+https://www.cpciba.org.ar/honorarios
+
+ENCUESTA SALARIAL SYSARMIN
+
+https://docs.google.com/spreadsheets/d/1h7VSFV2xkbgUi3kmJMVzCtX3RajwkzqdIyQkOsyathw/edit#gid=765652237
+
+TABLA PERIODICA DE DEVOPS
+
+https://digital.ai/devops-tools-periodic-table
+
+
+FUNCIONES:
+
+package com.example.funciones;
+
+/**
+ * Crear una funcion que reciba un precio y devuelva el precio con el IVA incluido
+ */
+public class Funciones {
+
+    static double getPrice() {
+        return 100.99;
+    }
+
+
+    /**
+     * void indica que no devuelve nada
+     */
+    static void showMenu(){
+        System.out.println("Bienvenidos al E-commerce de zapatillas:");
+        System.out.println("1 - Ver zapatillas");
+        System.out.println("2 - Comprar zapatilla");
+        System.out.println("3 - Salir");
+    }
+
+    static String getMenu(){
+        System.out.println("Imprimiendo texto prueba");
+        return "Bienvenidos al E-commerce de zapatillas: \n 1 - Ver zapatillas....";
+    }
+
+    public static void main(String[] args) {
+
+        // opcion 1: funcion sin parámetros y sin tipo de retorno
+//         showMenu();
+//         showMenu();
+
+        // opcion 2: funcion sin parámetros y con tipo de retorno
+        String menu = getMenu();
+        System.out.println(menu);
+        System.out.println(getMenu());
+
+        double price = getPrice();
+        System.out.println(price);
+
+        // opcion 3:
+        // funcion con parametros y sin tipo de retorno
+        imprimirSaludoBuenosDias("OpenBootcamp");
+
+        // opcion4:
+        // funcion con parámetros y con tipo de retorno
+        String nombre = "Alan";
+        String apellido = "Sastre";
+        String saludo = obtenerSaludo(nombre, apellido);
+        System.out.println(saludo);
+
+        int resultadoSuma = suma(50, 200);
+    }
+
+    static int suma(int numero1, int numero2){
+        return numero1 + numero2;
+    }
+
+
+    static String obtenerSaludo(String nombre, String apellido){
+        return "Buenas tardes " + nombre + " " + apellido;
+    }
+
+
+    static void imprimirSaludoBuenosDias(String nombre){
+        System.out.println("Buenas tardes " + nombre);
+    }
+
+}
+
+package com.example.funciones;
+
+/**
+ * Sobrecarga permite duplicar un método siempre y cuando tengan diferente numero/tipo parametros.
+ */
+public class Sobrecarga {
+
+    public static void main(String[] args) {
+
+    }
+
+    static double suma(double numero1, double numero2){
+        return numero1 + numero2;
+    }
+
+    static int suma(int numero1, int numero2){
+        return numero1 + numero2;
+    }
+
+    static int suma(int numero1, int numero2, int numero3){
+        return numero1 + numero2 + numero3;
+    }
+}
+
+ESTRUCTURAS DE CONTROL:
+IF:
+package com.estructurasdecontrol;
+
+public class If {
+    public static void main(String[] args) {
+        int edad = 19;
+        boolean esMayor = edad >= 18; // false
+
+        if(esMayor){
+            System.out.println("Es mayor de edad");
+        }
+
+        if(edad >= 18){
+            System.out.println("Es mayor de edad");
+        }
+    }
+}
+
+IF ELSE:
+
+package com.estructurasdecontrol;
+
+public class IfElse {
+    public static void main(String[] args) {
+        int edad = 16;
+
+        if (edad >= 18) { // si true entra aquí
+            System.out.println("Es mayor de edad");
+        } else { // si false entra aquí
+            System.out.println("Es menor de edad");
+        }
+    }
+}
+
+IF ELSE IF:
+
+package com.estructurasdecontrol;
+
+public class IfElseIf {
+    public static void main(String[] args) {
+        String dia = "DiaNostro";
+
+        // ejemplos comparar
+        boolean resultadoCompararNum = 5 == 5; // si comparo numeros uso ==
+        boolean resultado = dia.equals("Martes"); //uso esta funcion para comparar string.
+
+        // if else if
+
+        if (dia.equals("Lunes")) {
+            System.out.println("Animo con la semana champions");
+
+        } else if (dia.equals("Martes")) {
+            System.out.println("Martes con M de Me besas");
+
+        } else if (dia.equals("Miercoles")) {
+            System.out.println("Miercoles con M de Me besas");
+
+        } else if (dia.equals("Jueves")) {
+            System.out.println("Ya es juernes");
+
+        } else if (dia.equals("Viernes")) {
+            System.out.println("Nos fuimos!");
+
+        } else if (dia.equals("Sabado")) {
+            System.out.println("Nos murimos!");
+
+        } else if (dia.equals("Domingo")) {
+            System.out.println("Depresión");
+        } else {
+            System.out.println("El día introducido no es un día válido.");
+        }
+
+
+    }
+    }
+
+SWITCH:
+parecido al if else if. 
+package com.estructurasdecontrol;
+
+public class Switch {
+    public static void main(String[] args) {
+        String dia = "Martes";
+
+        switch(dia){
+            case "Lunes":
+                System.out.println("Hoy es Lunes!! Animo!!");
+                break;
+            case "Martes":
+                System.out.println("Hoy es Martes!! Animo!!");
+                break;
+            case "Miercoles":
+                System.out.println("Hoy es Miercoles!! Animo!!");
+                break;
+            case "Jueves":
+                System.out.println("Hoy es Jueves!! Animo!!");
+                break;
+            case "Viernes":
+                System.out.println("Hoy es Viernes!! Animo!!");
+                break;
+            case "Sabado":
+                System.out.println("Hoy es Sabado!! Animo!!");
+                break;
+            case "Domingo":
+                System.out.println("Hoy es Domingo!! Animo!!");
+                break;
+            default:
+                System.out.println("No es un día válido");
+
+        }
+
+    }
+    }
+
+
+REPETITIVAS:
+FOR PARA CONCATENAR TEXTO:
+package com.estructurasdecontrol.repetitivas;
+
+public class ConcatenarTexto {
+    public static void main(String[] args) {
+
+        String[] nombres = {"Pepito", "Juanit", "eveready"};
+
+        for(String nombre : nombres){
+
+            }
+        }
+    }
+
+ Esto lo puedo usar para concatenar textos como quiera, para no hacer tantos prints. 
+
+ FOR:
+
+ package com.estructurasdecontrol.repetitivas;
+
+public class For {
+    public static void main(String[] args) {
+        for(int i = 0; i < 20; i++){
+            // System.out.println("El valor de i es: " + i );
+            // System.out.println("Hola mundo");
+        }
+                            // 0        1           2
+        String[] nombres = {"Pepe", "Juanito", "Ruperta"}; // length 3
+        for(int i = 0; i < nombres.length; i++){
+            System.out.println(nombres[i]);
+        }
+puedo usarlo para recorrer arrays de nombres y de numeros. 
+        int suma = 0;
+        int[] numeros = {5, 7, 8}; // length 3
+        for(int i = 0; i < numeros.length; i++){
+            // suma = suma + numeros[i];
+            suma += numeros[i];
+        }
+
+
+    }
+    }
+
+generalmente el for, se usa para iterar sobre un array.    
+
+FOR EACH:
+
+package com.estructurasdecontrol.repetitivas;
+
+public class ForEach {
+    public static void main(String[] args) {
+        String[] nombres = {"Pepe", "Juanito", "Ruperta"};
+
+        for(String nombre : nombres){ //estructura del for each
+            System.out.println(nombre);
+        }
+
+        int[] numeros = {5, 10 , 15};
+
+        int suma = 0;
+        for(int numero : numeros){ //estructura de for each para numeros. aca no se pone indice i=0;
+            suma += numero;  //simplificacion de suma = suma + numero (i);
+        }
+        System.out.println(suma);
+
+    }
+    }
+
+WHILE: bucle indeterminado
+
+package com.estructurasdecontrol.repetitivas;
+
+/**
+ * Crear un bucle que permita concatenar textos y imprima el resultado final por consola.
+ * Concatenar nombres
+ * Los textos pueden venir de un array String
+ * String[] nombres = {"", "", "", ""};
+ */
+public class While {
+
+    public static void main(String[] args) {
+
+        int contador = 0;
+
+        while(contador < 10){
+            String nombre = "Prueba";
+            contador++;
+            if (contador == 5){
+                // break; se usa pàra romper un bucle
+                continue;
+            }
+            System.out.println("Valor de contador  " + contador);
+        }
+        // Variable nombre está fuera del ámbito del que se creó
+        // System.out.println(nombre);
+    }
+}
+
+
+
