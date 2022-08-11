@@ -333,5 +333,115 @@ public class While {
     }
 }
 
+CONCEPTOS DE CLASES Y OBJETOS:
+se emulan los objetos de la realidad en el codigo fuente.
+
+package poo.clases;
+
+public class Vehiculo {
+    //aca adentro es donde se explica la estructura que va a tener la clase y a partir de ella crear objetos
+
+    // ESTRUCTURA DE LOS OBJETOS
+    // 1. atributos
+    String fabricante;
+    String modelo;
+    double cc;  // si lo pongo con mayuscula la primera, es una clase tipo envoltorio y me permite que pueda tener valores nulos, si no lo pongo directamente double como dato primitivo.
+    int year;
+    boolean sport;
+    int speed;
+
+
+    //2. constructores: son metodos especiales que me permiten construir los objetos a partir de esta plantilla (clase)
+    public Vehiculo () { //siempre es publico, va con el nombre de la clase, puedo ponerlo vacio para que me permita crear objetos sin atributos.
+
+    }
+    //puedo utilizar la sobrecarga para crear un constructor igual que el anterior pero cambiando los parametros
+    public Vehiculo (String fabricante, String modelo, double cc, int year, boolean sport) {
+        this.fabricante = fabricante; // se asigna desde el constructor al atributo, para invocar este constructor desde afuera.
+        this.modelo = modelo; //hace referencia al atributo que esta dentro de la clase = parametro del constructor
+        this.cc = cc;
+        this.year = year;
+        this.sport = sport;
+        this.speed = 0;  //asumir que la velocidad del coche es 0
+    }
+    //puedo crear el mismo constructor con sobrecarga con menos parametros
+    public Vehiculo (String fabricante, String modelo) {
+        this.fabricante = fabricante;
+        this.modelo = modelo;
+    }
+
+    public Vehiculo(String fabricante, int year) {  //puedo crear ese constructor con generate en click derecho
+        this.fabricante = fabricante;
+        this.year = year;
+    }
+
+    // 3. metodos (comportamiento): puedo crear funciones para ese vehiculo, para modificar su comportamiento
+    public void acelerar (int quantity) {
+        this.speed += quantity;
+    }
+
+porque se haria encapsulacion de atributos con private, para proteger la manera en que esos atributos se cambiando
+se puede hacer tambien composicion, que es relacionar clases unas con otras, para que una clase no sea tan pesada
+concepto de herencia
+uso la palabra reservada protected en los atributos para poder usarlos en herencia desde otra clase.
+esto me permite desde cualquier clase poder acceder a los atributos de vehiculo.
+con el metodo super yo puedo acceder a un constructor de la clase superior. 
+project ob-poo en Bootcamp java.
+no se puede heredar de dos clases, es decir de clase padre y madre
+
+clase abstracta quiere decir que no puede ser instanciada. 
+
+package poo.clases;
+
+import poo.herencia.Camion;
+import poo.herencia.Coche;
+import poo.herencia.Motocicleta;
+
+public class Main {
+    public static void main(String[] args) {   //static me permite que un atributo o metodo pertenece a la clase, y lo puedo ejecutar
+
+        //Clase identificador = new Clase();  asi se crearia un objeto de una clase, una llamada al constructor
+
+        // crear un objeto utilizando el constructor vacio
+        Vehiculo toyotaPrius = new Vehiculo();
+
+        // crear un objeto utilizando el constructor con parametros. ctrl p para ver los parametros
+
+        Motor motorGTI = new Motor("GTI",190,459.0,6);
+        //creo este objeto motor para poder pasarselo al objeto vehiculo como nuevo parametro
+
+        Vehiculo fordMondeo = new Vehiculo("Ford", "Mondeo",2.1,2010,false,0,motorGTI);
+        System.out.println(fordMondeo.fabricante);
+        System.out.println(fordMondeo.year);
+        System.out.println(fordMondeo.speed); // 0
+        fordMondeo.acelerar(50);
+        System.out.println(fordMondeo.speed); //50
+
+        //HERENCIA
+        Motocicleta kawasakiNinja = new Motocicleta ();
+        kawasakiNinja.fabricante ="Kawasaki";
+
+        System.out.println("Fin de programa");
+
+
+        // POLIMORFISMO a partir de una forma como ser vehiculo, se puede comportar como las distintas clases, de distintas formas.
+
+
+        Vehiculo vehiculo;
+        vehiculo = new Motocicleta();
+        vehiculo.acelerar(50);
+
+        vehiculo = new Coche();
+        vehiculo.acelerar(50);
+
+        vehiculo = new Camion();
+        vehiculo.acelerar(50);
+        
+        //CLASES ABSTRACTAS: no se pueden instanciar, solo instancian (crear objeto) las clases hijas. 
+
+programacion generica es la programacion que permite que los metodos trabajan con distintos tipos de datos.
+
+
+
 
 
