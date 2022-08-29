@@ -897,4 +897,501 @@ public class Main {
             
         }
 
+CONTROL DE ERRORES:
+
+  un comportamiento no esperado en nuestro programa. tambien cuando lo diseño o escribo, no solo cuando ejecuto.
+  1 tipo: error en tiempo de ejecucion: situacion en el programa que hace que el programa aborte. 
+ej: dividir algun numero / 0. en este caso se produce error. 
+
+2. error de compilacion: cuando falta algo en el codigo, tipo ej: ;  .  ( )
+    error sintactico, que no cumplo con la sintaxis de java. 
+
+3. error logico u humano: lo que yo le digo al programa que haga, esta mal dicho. la logica humana es mala. 
+    Ej: temperatura alta que diga que haga frio. son los peores xq no me doy cuenta de ellos. 
+
+Avisos: estan en problems, en el run del compilador, nos avisa posibles errores. 
+    @SuppressWarnings ("rawtipes"
+    se los puede pasar por altos, ignorar. 
+    generalmente voy a tratar de resolver los warnings.
+
+GESTION DE ERRORES:
+cuando hay error de run time, se dispara una excepcion. 
+se usa try. y se mete el codigo que quiero proteger.
+
+ //GESTION DE ERRORES:
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce dos numeros: ");
         
+        int numeroA = scanner.nextInt();
+        int numeroB = scanner.nextInt();
+        
+        try {
+            int resultado = numeroA / numeroB;
+            System.out.println("Resultado: " + resultado);
+        } catch (Exception e) {  //esto es excepcion de todos los errores
+            System.out.println("boom! Error: " + e.getClass());
+        }  } finally {
+            System.out.println("Finally");
+        }
+
+
+PUEDO GESTIONAR VARIAS EXCEPCIONES
+
+try {
+            int resultado = numeroA / numeroB;
+            System.out.println("Resultado: " + resultado);
+        } catch (ArithmeticException e) {
+            System.out.println("boom! Error: " + e.getClass());
+            int resultado = numeroA / 1;
+        } catch (Exception e) {
+            System.out.println("Estoy en una excepcion que no es arithmeticException");
+             } finally {
+            System.out.println("Finally");
+        }
+el try catch pase lo que pase, ejecuta el codigo que tenemos en el finally. 
+
+se puede generar EXCEPCIONES
+throw (genera excepcion) y throws (para declarar que una funcion devuelve excepciones)
+
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            divide (4, 0);
+        } catch (Exception e) {
+            System.out.println("AAAA");
+        }
+    }
+
+    public static int divide(int A, int B)  throws  ArithmeticException , IOException{
+        int resultado = 0;
+        try {
+             resultado = A / B;
+        } catch (ArithmeticException e) {
+            throw new IOException();
+        }
+        return resultado;
+    }
+}
+
+Se puede capturar excepciones, las puedo capturar en el primer metodo, pero tengo que arrojarlas
+a la clase main, y capturar de nuevo con otro try.
+
+INPUT / OUTPUT
+
+obtener datos y generar datos, de multiples fuentes
+Ej: leer un fichero
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class Main {
+    public static void main(String[] args) {
+        try { //tengo que meter en un try el fileInputStream xq si o si tiene que arrojar algo. aunque sea error
+        InputStream fichero = new FileInputStream("C:\\Users\\Carolina\\Desktop\\BHPD 2022\\GFH\\NI 485 ETMP6290F1232.txt");
+
+        try {
+            byte[] datos = fichero.readAllBytes();
+
+            for (byte dato: datos) {
+                System.out.println((char)dato);
+            }
+        } catch (IOException e) {
+            System.out.println("No puedo leer el fichero: " + e.getMessage());  //wapring de errores
+        }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("El programa da error: " + e.getMessage());
+        }
+    }
+}
+
+//a mi InputStream de nombre fichero le dije que va a operar con el fichero equipamiento....
+//el FileInputStream me devuelve una secuencia de bytes. tengo que guardarlo en el tipo de datos acorde
+//creo el array de tipo bytes datos, y leo el fichero con readAllBytes pero tengo que mterlo en un try catch
+//me falta mostrar el dato. lo meto dentro del try de cuando lo leo. le pongo char xq quiero que me muestre texto, y no numeros de bytes
+
+
+// puedo leerlo caracter por caracter con read, y int.
+//si leo fichero por fichero es mas lento
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class Main {
+    public static void main(String[] args) {
+        try { //tengo que meter en un try el fileInputStream xq si o si tiene que arrojar algo. aunque sea error
+        InputStream fichero = new FileInputStream("C:\\Users\\Carolina\\Desktop\\BHPD 2022\\GFH\\NI 485 ETMP6290F1232.txt");
+
+        try {
+            int dato = fichero.read(); //contiene el codigo numerico de lo que quiero leer
+            while (dato != -1) { //el - 1 es cuando termina el fichero
+                System.out.println((char)dato);  //convierto el dato en char
+                dato =fichero.read(); //importante actualizar la variable dato
+            }
+
+
+        } catch (IOException e) {
+            System.out.println("No puedo leer el fichero: " + e.getMessage());  //wapring de errores
+        }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("El programa da error: " + e.getMessage());
+        }
+    }
+}
+
+puedo leer por partes 
+try {
+            byte datos [] = new byte[5];
+            int dato = fichero.read(datos); //contiene el codigo numerico de lo que quiero leer
+            while (dato != -1) { //el - 1 es cuando termina el fichero
+                System.out.println(datos.toString()); //convierto el dato en char
+                dato =fichero.read(); //importante actualizar la variable dato
+            }
+
+
+BUFFER
+
+public class Main {
+    public static void main(String[] args) {
+        try { //tengo que meter en un try el fileInputStream xq si o si tiene que arrojar algo. aunque sea error
+        InputStream fichero = new FileInputStream("C:\\Users\\Carolina\\Desktop\\BHPD 2022\\GFH\\NI 485 ETMP6290F1232.txt");
+        BufferedInputStream ficheroBuffer = new BufferedInputStream(fichero); //hago el buffer con parametro de entrada el input
+        try {
+
+            int dato = fichero.read(); 
+            while (dato != -1) { //el - 1 es cuando termina el fichero
+                System.out.println((char)dato); //convierto el dato en char
+                dato =ficheroBuffer.read(); //parcialmente en memoria y parcialmente no
+            }
+
+// mete en memoria un pedazo del arhivo y va leyendo de a poco, automaticamente 
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        try {
+            InputStream fichero2 = new FileInputStream("C:\\Users\\Carolina\\Desktop\\BHPD 2022\\GFH\\NI 485 ETMP6290F1232.txt");
+            Scanner scanner = new Scanner(fichero2);
+       
+
+        //tengo que meter en un try el fileInputStream xq si o si tiene que arrojar algo. aunque sea error
+        InputStream fichero = new FileInputStream("C:\\Users\\Carolina\\Desktop\\BHPD 2022\\GFH\\NI 485 ETMP6290F1232.txt");
+        BufferedInputStream ficheroBuffer = new BufferedInputStream(fichero); //hago el buffer con parametro de entrada el input
+        try {
+
+            int dato = fichero.read();
+            while (dato != -1) { //el - 1 es cuando termina el fichero
+                System.out.println((char)dato); //convierto el dato en char
+                dato =ficheroBuffer.read(); //parcialmente en memoria y parcialmente no
+            }
+
+
+        } catch (IOException e) {
+            System.out.println("No puedo leer el fichero: " + e.getMessage());  //wapring de errores
+        }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("El programa da error: " + e.getMessage());
+        }
+    }
+}
+
+try {
+           Scanner scanner = new Scanner(System.in);
+            System.out.println("Mete dos numeros: ");
+            int a = scanner.nextInt();  //esto mete cualquier cosa, si quiero que sea solo numero seria scanner.nextint();
+            int b = scanner.nextInt();  //lee una entrada y busca enteros
+            System.out.println("Enteros son: " + a +" " + b);
+
+    
+ try {
+           Scanner scanner = new Scanner(System.in);
+            System.out.println("Mete dos numeros: ");
+            String a = scanner.next();  //por defecto, scanner.next devuelve string
+            String b = scanner.next();
+            System.out.println("Palabras son: " + a +" " + b);
+
+METODO FLAG, que es ponerle un boolean y while para que pida scanners validos
+
+public class Main {
+    public static void main(String[] args) {
+
+        try {
+            Scanner scanner = new Scanner(System.in);
+
+            boolean ok = false;
+            do {
+                System.out.println("Mete dos numeros: ");
+                try {
+                    int a = scanner.nextInt();
+                    int b = scanner.nextInt();
+
+                    ok = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Numeros invalidos");
+                }
+            } while (!ok);
+        } catch (InputMismatchException e) {
+            System.out.println("El programa da error: " + e.getMessage());
+        }
+
+        }
+        }
+
+
+        // me da bucle infinito, xq el scanner no se reinicia automaticamente. necesito hacer que vuelva al principio.
+//hay que meter el scanner en el do while y resetearlo
+
+
+ try {
+            boolean ok = false;
+            do {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Mete dos numeros: ");
+                scanner.reset();
+                try {
+                    int a = scanner.nextInt();
+                    int b = scanner.nextInt();
+                    System.out.println("Tus numeros ingresados son: " + a  + " y "+ b);
+
+                    ok = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Numeros invalidos");
+
+LEER UN FICHERO EN MEMORIA Y COPIARLO:
+import java.io.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+//leer un fichero en memoria y luego copiarlo
+public class Main {
+    public static void main(String[] args) {
+        try {
+            InputStream in = new FileInputStream("C:\\Users\\Carolina\\Desktop\\BHPD 2022\\GFH\\NI 485 ETMP6290F1232.txt");
+            byte[] datos = in.readAllBytes();
+
+            PrintStream out = new PrintStream("destino.txt");
+            out.write(datos);
+
+        } catch ( Exception e ) {
+            System.out.println("Excepcion: " + e.getMessage());
+
+        }
+    }
+}
+
+/* en consola
+    ls : ve los ultimos movimientos
+    cat (nombre el fichero) : veo el fichero en consola
+    diff -u (nombre fichero copiado) (nuevo nombre fichero) : compara los ficheros y si no produce salida, son identicos
+
+InputStream: lee desde un sitio un fichero
+PrintStream: imprime desde un sitio un fichero
+
+ */
+
+
+ EVENTOS:
+ SWING TAX
+ es cuando yo interactuo con una aplicacion, esa aplicacion hace algo. una interfaz de usuario
+ yo pulso un boton, la app realiza una accion. 
+ es lo que ocurre cuando inteactuo con una aplicacion 
+ GUI FORM en new
+ armo mi interface con labels, texto, buttons, luego tengo que crear JFrame en codigo e instanciarlo
+
+ package swingTax;
+
+import javax.swing.*;
+
+public class MainForm {
+    private JTextPane pricePane;
+    private JTextPane IVAPane;
+    private JTextPane TotalPane;
+    private JButton buttonCalculate;
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("SwingTax");
+        
+    }
+}
+
+CreateListener es crear algo que esta a la espera que un evento se produzca
+Patron observador, cuando un evento se produce se invoca a un metodo que reciben los escuchantes
+el emisor manda un msj y llega a todos los receptores
+
+package eventos;
+
+import java.util.ArrayList;
+
+interface Mensajero {
+    void hanSaludado();
+}
+
+class Receptor implements Mensajero {
+    @Override
+    public void hanSaludado() {
+        System.out.println(Math.random());
+    }
+}
+
+class ReceptorMusical implements Mensajero {
+    @Override
+    public void hanSaludado() {
+        System.out.println("Soy un receptor musical");
+    }
+}
+
+class Emisor {
+    private ArrayList<Mensajero> receptores = new ArrayList<Mensajero>();
+
+    public void meteReceptor(Mensajero receptor) {
+        receptores.add(receptor);
+    }
+
+    public void saluda() {
+        for (Mensajero ml : receptores) {  //recorre todos los mensajeros del arraylist
+            ml.hanSaludado();
+        }
+    }
+}
+
+
+
+public class Main
+{
+    public static void main(String []args) {
+        Emisor emisor = new Emisor();
+        Receptor receptor = new Receptor();
+        Receptor receptor2 = new Receptor();
+        Receptor receptor3 = new Receptor();
+        Receptor receptor4 = new Receptor();
+        ReceptorMusical rm = new ReceptorMusical();
+
+        emisor.meteReceptor(receptor);
+        emisor.meteReceptor(receptor2);
+        emisor.meteReceptor(receptor3);
+        emisor.meteReceptor(receptor4);
+        emisor.meteReceptor(rm);
+
+        emisor.saluda();
+    }
+}
+//una clase que manda msj a una interfaz, entonces todas las clases que implemeten esa interfaz
+//van a ser capaces de interceptar el evento que generemos en el emisor y ejecutar el codigo necesario
+eventos algo que se produce en el codigo sobre lo que se va a reaccionar
+EJMPLEO XML:
+package ejemploXML;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+
+public class Main
+{
+    public static void main(String []args) {
+        File file = new File("datos.xml");
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();  //crea un patron tipo factoria
+
+        try {
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+            try {
+                // Analizamos el documento
+                Document document = documentBuilder.parse(file);
+
+                // Obtenemos usuario y clave
+                String usuario = document.getElementsByTagName("usuario").item(0).getTextContent();
+                String clave = document.getElementsByTagName("clave").item(0).getTextContent();
+
+                // Mostramos usuario y clave:
+                System.out.println("Usuario: " + usuario + " Clave: " + clave);
+
+                // Vamos a mostrar el atributo "proveedor"
+                NamedNodeMap atributos = document.getElementsByTagName("videos").item(0).getAttributes();
+
+                for (int i = 0; i < atributos.getLength(); i++) {
+                    String atributoNombre = atributos.item(i).getNodeName();
+                    String atributoValor = atributos.item(i).getNodeValue();
+
+                    System.out.println("Atributo " + atributoNombre + " contiene " + atributoValor );
+                }
+
+                // Mostramos los videos que hay asociados
+                NodeList videos = document.getElementsByTagName("videos");
+
+                for (int i = 0; i < videos.getLength(); i++) {
+                    Node video = videos.item(i);
+                    System.out.print(video.getTextContent());
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error procesando documento:" + e.getMessage());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al utilizar el builder: " + e.getMessage());
+        }
+
+
+    }
+}
+
+EJEMPLO JSON:
+package ejemploJSON;
+
+import org.json.*;
+
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+public class Main {
+    public static void main(String []args) {
+
+        try {
+            // Creamos el inputstream desde un fichero
+            InputStream is = new FileInputStream("datos.json");
+
+            // Creamos un tokenizador que leera desde nuestro IS
+            JSONTokener tokener = new JSONTokener(is);
+
+            // Y se lo pasamos a una instancia de la clase JSONObject
+            JSONObject obj = new JSONObject(tokener);
+
+            // Sacamos las credenciales:
+            JSONObject credenciales = obj.getJSONObject("credenciales");
+
+            String usuario = credenciales.getString("usuario");
+            String clave = credenciales.getString("clave");
+
+            System.out.println("Usuario " + usuario + " clave " + clave);
+
+            // Dentro de credenciales tenemos los videos:
+            JSONArray videos = credenciales.getJSONArray("videos");
+            for (Object video : videos) {
+                System.out.println(video.toString());
+            }
+
+        } catch (Exception e) {
+            System.out.println("No puedo leer el fichero: " + e.getMessage());
+        }
+    }
+}
+
+
+
