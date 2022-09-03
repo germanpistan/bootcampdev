@@ -1,0 +1,286 @@
+PROYECTO DE API REST CON JERSEY
+usar controlador, que es lo que ejecuta la peticion, en este caso con el metodo factory
+la respuesta se emite en formato json. tiene que usar fachadas
+cada pieza en una clase diferente.
+se tiene que hacer el CRUD completo.
+usar postman para crear una coleccion (soft para probrar apis)
+la parte de REST es donde se implementan las peticiones
+
+backend recepciona las peticiones, con postman o curl, 
+se hacen peticiones en http en el ejemplo. 
+wordpress: monolito, es decir, tiene la back y front suya. se ejecutan a la vez front y back, es php casi todo. 
+REST a nivel de back es el punto de entrada, en este caso en http. es como se hacen todas las apis hoy en dia. 
+hay varios patrones de diseño. 
+
+PROGRAMACION FUNCIONAL:
+programacion declarativa, no imperativa. tiene asociado: 
+funciones puras: es toda aquella que dados unos mismos parametros de entrada, siempre produzca lo mismo de salida. 
+no puede tener efectos colaterales, es decir, todo aquel cambio que se realiza cuando invoco una funcion. 
+cuando una funcion pura invoca a otra funcion que podria no ser pura, esta primera ya no es pura. 
+puedo modificar variables que son locales a mi funcion, ahi seguiria siendo pura. 
+tambien tiene que hacer exactamente lo que dice.
+
+ejemplo de funcion pura que produce daño colateral:
+
+public class Main {
+    private static int contador = 0;
+    
+    public static void main(String[] args) {
+        int result = suma(1,2);
+        int result2 = suma(1,2);
+        System.out.println(result + " " + result2);
+        System.out.println(contador);
+        
+    }
+    public static int suma (int a, int b) {
+        contador += 1;
+        return a + b;
+    }
+}
+
+ante los mismos parametros de entrada, si se produce distintos valores de salida no es pura. 
+usualmente una funcion que llama a una base de datos suele ser impura. 
+
+FUNCIONES HIGH LEVEL O ALTO ORDEN: una funcion puede llamar a otra funcion y debe devolver otra funcion. 
+alto nivel: recibe un parametro que sea una funcion,  o tambien es cuando devuelve una funcion.
+en el return me devuelva otra funcion.
+lamdas: funciones especiales. 
+private Function <String, String> toMayus = x -> x.toUpperCase();
+
+import java.util.function.Function;
+
+public class Funcionales {
+    //ejemplo funcion que recibe una lambda
+    //primero declaro la funcion pero como variable con Function
+    //pide dos parametros <parametro que acepto entrada , parametro que devuelvo salida>, luego darle nombre
+
+    private Function<String, String> toMayus = x -> x.toUpperCase();  //funcion lambda // x es el parametro de entrada
+    //esta forma es funcional, y si fuera imperativo seria
+    // public String toMayus (String x) {
+    // return x.toUpperCase(); }
+
+    private Function<Integer, Integer> sumador = x -> x.sum(x, x);  //no se puede aplicar mas xq pide devolver funcion
+
+
+    public void pruebas() {
+        System.out.println(toMayus.apply("German"));     //para invocar a la funcion flecha o alto nivel uso apply
+        System.out.println(sumador.apply(5));
+    }
+
+esto se usa mucho para encadenar la salida de una funcion con la entrada de otra.
+la programacion funcional aporta legibilidad y transformaciones 
+
+puedo hacer que una funcion tenga como parametro otra funcion 
+
+ArrayList<String> nombres = new ArrayList();
+        nombres.add("Germany");
+        nombres.add("Brazil");
+        nombres.add("France");
+        nombres.add("Belgium");
+
+        nombres.stream().forEach(x -> System.out.println(x));  //funcion stream que llama otra funcion for each 
+
+
+
+ nombres.stream().forEach(x -> System.out.println(x));  //funcion stream que llama otra funcion for each
+        //con este recorro un array
+
+        Stream<String> valores = nombres.stream().map(x -> x.toUpperCase()); //mapeo. genero una variable stream y hace el for automatico
+        //una vez que recorro con stream no puedo recuperarlo
+         //la funcion map aplica lo que yo indico sobre cada elemento de un stream 
+
+        valores.forEach(x -> System.out.println(x));
+
+el stream se consumo y ya no se puede reutilizar 
+hay que crear cada stream con cada vez que se quiera iterar 
+
+forma mas legible de escribirlo y larga:
+
+   Stream<String> valores = nombres.stream()
+                .map((x) -> {
+                    return "Hola, " + x.toUpperCase();
+                }); 
+
+//si quiero meter filtro
+        Stream<String> valores = nombres.stream()
+                .map((x) -> x.toUpperCase())
+                .filter(x -> x.startsWith("B"));  //aplica funcion de descarte filter. devuelve true o false
+
+
+        valores.forEach(x -> System.out.println(x));
+
+si quiero recorrer un array de integer y hacerlo con stream 
+
+int [] numeros = {1,2,3,4,5,6,7,8,9,10,11,12,13,};
+        var stNumeros = Arrays.stream (numeros); //convierto array a stream y consumirlo.
+int [] numeros = {1,2,3,4,5,6,7,8,9,10,11,12,13,};
+        var stNumeros = Arrays.stream (numeros); //convierto array a stream y consumirlo. uso IntStream
+        stNumeros.forEach(x -> System.out.println(x));   //puedo iterar sobre el array de numeros, ya que es un stream
+
+
+ valores.forEach(x -> System.out.println(x));
+
+        int [] numeros = {1,2,3,4,5,6,7,8,9,10,11,12,13,};
+        var stNumeros = Arrays.stream (numeros); //convierto array a stream y consumirlo. uso IntStream
+        var resultado = stNumeros.filter(x -> x % 2 == 0); //filtro los pares.
+        resultado.forEach(System.out::println);  //otra forma de escribir el print
+
+reduce: agarra todos los elementos que me quedan y los reduce a una expresion
+
+ int [] numeros = {1,2,3,4,5,6,7,8,9,10,11,12,13,};
+        var stNumeros = Arrays.stream (numeros); //convierto array a stream y consumirlo. uso IntStream
+        var resultado = stNumeros.filter(x -> x % 2 == 0).reduce(0,(x,y) -> {
+            System.out.println("X es: " + x + " Y es: " + y);
+            return x+y;
+        });
+        //puedo meter llave en la lamda -> para meter el codigo que quiera
+        //lo puedo imprimir para ver que se va llamando a si misma, con una x pivot. 
+        // reduce (1er variable 0, luego lo qeu quiero que reduzca
+        //el cero es el valor inicial, puedo modificarlo si quiero e iniciar en cualquier valor
+
+esto es la salida de una funcion filter, es la entrada de reduce. para filtrar los pares y sumarlos en cada iteracion
+
+mejor escribirlo asi: map, filter, reduce
+
+valores.forEach(System.out::println);
+
+        int [] numeros = {1,2,3,4,5,6,7,8,9,10,11,12,13,};
+        var stNumeros = Arrays.stream (numeros); 
+        var resultado = stNumeros
+                .map(x -> x*2)
+                .filter(x -> x % 2 == 0)
+                .reduce(0,(x,y) -> {
+            System.out.println("X es: " + x + " Y es: " + y);
+            return x+y;
+        });
+
+int [] numeros = {1,2,3,4,5,6,7,8,9,10,11,12,13,};
+        var stNumeros = Arrays.stream (numeros);
+        var resultado = stNumeros
+                .map(x -> x*2)
+                .filter(x -> x % 2 == 0)
+                .reduce(0,(x,y) -> {
+            System.out.println("X es: " + x + " Y es: " + y);
+            return x+y;
+        });
+
+        //forma con el for o imperativa
+
+        int sumaTotal = 0;
+        for (int numero: numeros){
+            numero = numero *2;
+            if (numero %2 != 0){
+                continue;
+            }
+            sumaTotal += numero;
+        }
+
+        System.out.println("Mi suma de pares es: " + resultado + " y con for el total es: " + sumaTotal);
+
+RENDIMIENTO Y RECURSION:
+recursion: una funcion se llama a si misma. un algoritmo es mas claro cuando se usa la recursion. 
+ej: arboles binarios. factoriales. etc. 
+no todo es recursivo, se puede hacer iterativa tambien.
+ ejemplo de funcion recursiva:
+
+
+ public class Main {
+    public static void main(String[] args) {
+        System.out.println(suma(5));
+        System.out.println(sumaRecursiva(5));
+
+    }
+    //la forma recursiva. la funcion se llama asi misma, primero con valor 5 y luego va restando 1
+    //si no paro la funcion, se ejecuta hasta el infinito. le pongo sentencia de control
+    //siempre le tengo que poner sentencia de control o punto de salida de la recursividad
+
+    public static int sumaRecursiva (int numero) {
+        if (numero ==1) {  //control para que se pare
+            return 1;
+        }
+        return numero + sumaRecursiva( numero -1);
+    }
+
+    public static int suma (int max) {
+        //forma iterativa
+        int resultado = 0;
+        for ( int i = 0; i <= max; i++ ) {
+            resultado = resultado + i;
+        }
+        return resultado;
+    }
+}
+
+DOS TIPOS DE RECURSIVIDAD: de COLA y de CABEZA.
+de COLA: lo ultimo que se ejecuta es la llamada de la funcion asi misma. ej: sumaRecursiva.
+de CABEZA: lo primero que se hace, se invoca a la funcion recursiva. 
+
+
+public static void headRecursion (int valor) {
+        if (valor == 0) {
+            return;
+        }
+        headRecursion(valor - 1); //primero se invoca la funcion recursiva, se hace todoy luego se lo imprime
+        System.out.println(valor);
+    }
+    public static void tailRecursion (int valor) {
+        if (valor == 0) {
+            return;
+        }
+        System.out.println(valor);  //primero se lo imprime y luego se invoca a la funcion recursiva
+        tailRecursion(valor - 1);
+    }
+
+se puede hacer de forma funcional la recursividad:
+
+//forma funcional de recursividad
+    public static int sumaFuncional (int numero) {
+        return IntStream.rangeClosed(1,5)     //clase IntStream con metodo rangeClosed para generar numeros
+                .reduce(0, (a,b) -> a + b);     //metodo reduce con lamda
+    }
+
+EJEMPLO CON TRES IMPLEMENTACIONES DE FACTORIAL:
+ System.out.println("----------------------------------------------------------------");
+        System.out.println("Factorial Iterativa: " + factorialIterativo(5));
+        System.out.println("Factorial Recursiva: " + factorialRecursivo(5));
+        System.out.println("Factorial Funcional: " + factorialFuncional(5));
+
+ //factorial de un numero en forma iterativa
+    public static int factorialIterativo (int numero) {
+        int resultado = 1;
+        for (int i = 1; i <= numero; i++) {
+            resultado = resultado * i;
+        }
+        return resultado;
+    }
+
+    //forma recursiva de factorial de un numero
+
+    public static int factorialRecursivo (int numero) {
+        if (numero == 0) {
+            return 1;
+        }
+
+        return numero * factorialRecursivo(numero- 1);  //forma tailRecursion
+    }
+
+    //forma funcional de un factorial de un numero
+
+    public static int factorialFuncional(int numero) {
+        return IntStream.rangeClosed(1, numero)
+                .reduce(1, (a,b) -> a * b);
+    }
+
+la recursividad se usa mucho para recorrer arboles 
+donde no se usa mucho por problemas. es por el consumo de memoria, cada vez que se lllama asi mismo
+tiene que crear una copia de las variables para no modificarlas. 
+
+System.currentTimeMillis(); se usa para medir el tiempo en milisegundos 
+
+
+
+
+
+
+
+
