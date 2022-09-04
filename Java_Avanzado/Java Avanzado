@@ -277,6 +277,53 @@ tiene que crear una copia de las variables para no modificarlas.
 
 System.currentTimeMillis(); se usa para medir el tiempo en milisegundos 
 
+SERVICIOS REST: no todas las apps son tipos rest. 
+es una aplicacion web que cumple una serie de patrones determinados. 
+VERBOS HTTP: tipo de peticion que enviamos a un servidor, con protocolo http.
+    los mas usados son GET(obtiene info o recurso de un servidor) y POST (envio datos al servidor). 
+    tambien se usan PUT(se aplica sobre un usuario, y actualiza algo que ya existe, enviando todos los datos que cambiaron mas los anteriores) y 
+    DELETE (elimina un recurso que ya exista).
+    PATCH: actualiza usuario, pero envia solo los datos que cambiaron.
+    todos estos son el patron CRUD(Create Replace Update Delete)
+
+NOMENCLATURA: tienen que estar bien definidos, en el nombre,  se usan los nombres en plural: ej, users, cars, pets. no se usan VERBOS
+http://www.dominio.tld/users/vroman/friends/paco (todo bien definido)
+
+se suelen versionar las apis. http://wwww.dominio.tld/api/v1/users
+generalmente cada vez que se las actualizan. 
+Ej: app de bootcampers.
+codigo de demo hecho por mi. 
+tengo que crear un modelo, que contiene informacion de los usuarios o datos
+
+el modelo contiene la informacion sobre los objetos que vamos a trabajar.
+el servicio es lo que manipula el modelo, es lo que comunica el controlador con el modelo 
+
+el controlador acepta la peticion, el modelo tiene la informacion y el servicio hace de union, manipula el modelo
+
+POSTMAN: es un soft que realiza pruebas a apis, con peticiones con protocolo http. al obtener respuestas,
+verificar si funciona o no, para depurar apis, o invocar manualmente. 
+hay que crear una coleccion y desde alli realizar las peticiones. 
+
+test para verificar que me tira estado 200 en postman
+pm.test("Estado es 200", function (){
+    pm.response.to.have.status(200)
+});
+
+test para ver cual es el primer elemento
+pm.test("Primer elemento es uno", function (){
+    reply=pm.response.json();
+    pm.expect(reply[0].nombre).to.eql("uno");
+});
+
+test de latencia:
+
+
+pm.test("Respuesta en menos de 10 ms",() => {
+    pm.expect(pm.response.responseTime).to.be.below(10);
+});
+
+
+
 
 
 
