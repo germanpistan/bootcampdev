@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "a0f72f77-8af3-4281-8a39-93049f5ec3cd",
+		"name": "Ejercicio2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar Contactos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}api/users",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Contactos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"id\": 8,\r\n            \"email\": \"german.pistan@reqres.in\",\r\n            \"first_name\": \"German\",\r\n            \"last_name\": \"Pistan\",\r\n            \"avatar\": \"https://reqres.in/img/faces/8-image.jpg\"\r\n        },"
+				},
+				"url": {
+					"raw": "{{URL}}api/users",
+					"host": [
+						"{{URL}}api"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://reqres.in/"
+		}
+	]
+}
