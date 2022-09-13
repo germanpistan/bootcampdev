@@ -322,6 +322,246 @@ pm.test("Respuesta en menos de 10 ms",() => {
     pm.expect(pm.response.responseTime).to.be.below(10);
 });
 
+PATRONES DE DISEÑO:
+es una tecnica para resolver un problema en el desarrollo de soft. 
+solucion a un problema de una forma en concreto, y compartido por varios. 
+23 patrones reconocidos. ya trae una forma concreta, con clases y demas. 
+puede tener varios usos. patron singleton, observer. etc. 
+sirve para no inventar cosas complejas. y ya trae soluciones que estan pensadas. 
+los patrones no pretenden ser que se usen a la fuerza, si no se quiere usar, no se usa. 
+no tienen que anular nuestra logica de intentar resolver un problema, y no anular la creatividad de cada uno. 
+antipatrones: es una mala practica. 
+tres tipos de patrones:
+    por su nombre, cada uno tiene un nombre unico. 
+    tambien por la intencion, que problema pretende resolver. 
+    ej:builder, crear objetos complejos
+    aplicabilidad, para que se puede usar ese patron.
+    que consecuencias tiene usar un patron, positivas y negativas
+
+    CREACIONALES:crear instancias de objetos, ayuda a encapsular y crear objetos.ej:builder,factory,prototipo
+    MVC, mode view controler, object pull, es medio patron. 
+    
+    ESTRUCTURALES: solucionan diseños de composicion, cohesionan diferentes clases, acopla clases para que trabajemos mejor. Ej:fachada. 
+    adapter:tiene un grupo de clases distintas, mediante una clase unica las une. adapta codigo de terceros a nuestro. 
+
+    COMPORTAMIENTO: ofrece soluciones entre la interaccion y lo que hace las clases y objetos. ej:observer. 
+    reacciona ante algo. 
+
+    los podemos usar donde queremos, no estamos obligados a usarlos. si lo uso, y trabajo con otras personas, es mas facil para las otras personas. 
+
+PATRONES CREACIONALES:
+SINGLETON: solo puede haber una instancia de una clase. 
+pretende evitar que se creen nuevas instancias, es decir, instancio una vez y luego opera con la instancia que ya habia creado.
+getInstance: devuelve una instancia de la clase singleton
+public static Singleton getInstance() {
+    return new Singleton();
+    }
+
+este es el metodo de bloqueo del patron singleton:
+
+public static Singleton getInstance() {
+    if (singleton == null) {
+        singleton = new Singleton();
+    }
+    return singleton;
+}
+
+//si singleton privada es nula, me devuelve una nueva. pero como siempre es nula xq no la instancia ni tiene constructor
+//me devuelve siempre la misma, no crea una nueva. 
+//con esto los dos tienen el mismo valor, y en la misma zona de memoria
+
+tambien se puede usar para compartir acceso a una base de datos. evitar una instanciacion de una app muchas veces. 
+
+//finalidad principal: no se puede instanciar una clase muchas veces, hacer privado el constructor
+//luego implementar un metodo como pseudo constructor (getInstance) y luego verificar que no este crea
+//con el if. 
+
+FACTORY: crear una jerarquia de clase y usar una u otra de forma transparente. 
+Ej: segun el pais donde estemos, nos da un precio u otro. 
+primero. abtract class o interface. para definir el metodo con el que va a trabajar por debajo 
+
+package Factory;
+
+public class PrecioFactory {
+    Precio precio;
+    private PrecioFactory() {};  //oculto el constructor
+
+    public PrecioFactory (String pais) {                     //aca paso el constructor con parametro para que funcione cuando ingresen un pais
+        if (pais.equalsIgnoreCase("España")) {
+            System.out.println("España, precio en EUR");
+            this.precio = new PrecioEUR();
+        } else if (pais.equalsIgnoreCase("UK")) {
+            System.out.println("Estamos en UK");
+            precio = new PrecioGBP();
+    } else {
+            System.out.println("Otro pais, precio en USD");
+            precio = new PrecioUSD();
+        }
+    }
+
+    public double getPrecio() {
+        return precio.getPrecio();
+    }
+}
+
+//creo una variable pero del tipo instancia
+//luego agrego en el if los casos de precios segun el pais, con this.precio (variable de interface)
+
+PATRON BUILDER: permite construir objetos complejos paso a paso
+esto es programacion fluida
+
+//ejemplo de StringBuilder
+
+StringBuilder cadena = new StringBuilder("hola");
+cadena.append(" amigos ").append(" como").append(" estan?");
+System.out.println(cadena);
+
+PATRON PROTOTYPE: de tipo constructor.
+implementar de dos formas distintas:
+el patron prototype, tiene como objetivo que una clase se clone asi misma, y que ese clon herede todo, tambien clona su estado
+es como fuera un molde.
+
+forma manual:
+
+package Prototype;
+
+public class Coche {
+    public String marca;
+    public String modelo;
+    int puertas;
+
+    public Coche () {};
+
+    public Coche clonar () {   //creo mi metodo clonar y dentro instancio mi clase coche.
+        Coche clon = new Coche();
+        clon.marca = marca;     //por cada propiedad que tengo en mi clase, las tengo que igualar a mis propiedades de clase declaradas
+        clon.modelo = modelo;
+        clon.puertas = puertas;
+
+        return clon;
+    }
+}
+
+
+forma con interfaz cloneable:
+
+package Prototype;
+
+public class Coche implements  Cloneable{
+    public String marca;
+    public String modelo;
+    int puertas;
+
+    public Coche () {};
+
+    public Coche clonar () throws CloneNotSupportedException{   //creo mi metodo clonar y dentro instancio mi clase coche.
+        Coche clon = new Coche();
+        return (Coche) this.clone();
+    }
+}
+
+como arroja excepcion, en el main tengo que atraparlo en try y catch
+
+try {
+    Coche clonado = coche.clonar();
+    clonado.puertas = 3;   //puedo modificar lo que quiero
+    System.out.println(clonado.marca + " " + clonado.modelo + " " + clonado.puertas);   //esto me da lo mismo de coche.marca etc xq es clonado
+} catch (CloneNotSupportedException e) {
+        System.out.println("No se puede clonar: " + e.getMessage());
+
+    }
+
+
+PATRONES ESTRUCTURALES:
+DECORADOR: añade funcionalidad a una clase existente, sin modificarla.
+es decir, la mejora y añade funcionalidades sin tocar la clase original. 
+esto se hace envolviendo las clases, es decir, una clase dentro de otra. 
+envuelve unas cosas en otras
+tiene aplicacion real en un sistema de notificaciones por ejemplo, notificacion basica decorar con mas metodos. 
+
+package Decorator;
+
+public class Main {
+    public static void main(String[] args) {
+        //TelefonoBasico telefonoBasico= new TelefonoBasico();
+        //telefonoBasico.crear();
+
+        TelefonoInteligente ti = new TelefonoInteligente(new TelefonoBasico());
+        //es una instancia de tel inteligente que a su vez como parametro crea una instancia de telefono basico
+        ti.crear();
+
+        TelefonoNextGen tng = new TelefonoNextGen(new TelefonoInteligente(new TelefonoBasico()));
+        tng.crear();
+    }
+}
+//puedo invocar las veces que quiera el envoltorio, como en tng.
+//tng.crear(); invoca al crear de telefonoNextGen, que a su vez invoca al crear de TelefonoInteligente, que a su vez invoca al crear de TelefonoBasico
+
+package Decorator;
+
+public class TelefonoDecorator implements Telefono{
+    private Telefono telefono;   //creo variable del tipo interfaz
+
+    public TelefonoDecorator(Telefono telefono) {     //creo constructor con parametro de interfaz que implemente la clase telefono.
+        this.telefono = telefono;    //se implementa el patron decorado
+    }    //es decir, que yo como parametro de constructor paso una interfaz que tiene que implementar lo que pida.
+
+
+    @Override
+    public void crear() {
+        this.telefono.crear();
+
+    }
+}
+
+
+//luego de constructor, tengo que crear los decoradores e implementarlos
+//lo hago con la clase telefono inteligente,y heredar el decorador
+
+PATRON ADAPTER:
+crea una clase que permite que clases con la misma implementacion y con distinta, funcionen coherentemente.
+clase adaptadora, es una clase intermedia que hace que multiples clases, trabajen coherentemente. 
+
+package Adapter;
+
+public class Main {
+    public static void main(String[] args) {
+        Horno horno = new Horno();
+        Lampara lampara = new Lampara();
+        PowerAdapter lightbulb = new PowerAdapter();  //uso el poweradapter xq esa clase implementa el lightbulb
+
+        enciende(horno);
+        enciende(lampara);
+        enciende(lightbulb);
+
+        System.out.println(estaEncedido(horno));
+        System.out.println(estaEncedido(lampara));
+        System.out.println(estaEncedido(lightbulb));
+
+
+    }
+
+    public static void enciende(Enchufable enchufable) {   //creo los envoltorios
+        enchufable.enciende();
+    }
+
+    public static void apaga(Enchufable enchufable) {
+        enchufable.apaga();
+    }
+
+    public static boolean estaEncedido(Enchufable enchufable) {
+        return  enchufable.estaEncendido();
+    }
+}
+
+siempre se crea un adaptador para cada cosa que quiero adaptar 
+
+PATRON FC: FACADE 
+es un envoltorio que simplifica algo que es complejo por detras. 
+ocultar la complejidad, poniendo adelante algo sencillo. por ejemplo, con una llamada a muchas clases 
+
+
+PATRONES DE COMPORTAMIENTO:
 
 
 
