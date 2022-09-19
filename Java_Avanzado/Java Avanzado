@@ -563,6 +563,8 @@ ocultar la complejidad, poniendo adelante algo sencillo. por ejemplo, con una ll
 
 PATRONES DE COMPORTAMIENTO:
 
+se ocupan de la comunicacion entre diferentes objetos. 
+ITERATOR: implementa metodos en la clase, de forma que pueda recorrer datos sin saber como estan almacenados en esa clase. 
 
 
 
